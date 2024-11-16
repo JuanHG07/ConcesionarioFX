@@ -1,4 +1,4 @@
-package co.edu.uniquindio.poo;
+package co.edu.uniquindio.poo.model;
 
 public class Camion extends Vehiculo {
     private double capacidadCarga;

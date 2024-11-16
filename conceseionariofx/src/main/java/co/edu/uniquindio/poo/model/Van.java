@@ -1,4 +1,4 @@
-package co.edu.uniquindio.poo;
+package co.edu.uniquindio.poo.model;
 
 public class Van extends VehiculoBasico {
     private boolean camaraReversa;

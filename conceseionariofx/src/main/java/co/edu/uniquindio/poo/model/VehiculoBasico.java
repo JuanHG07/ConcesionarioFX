@@ -1,4 +1,4 @@
-package co.edu.uniquindio.poo;
+package co.edu.uniquindio.poo.model;
 
 public abstract class VehiculoBasico extends VehiculoPasajero {
     private boolean aireAcondicionado;
