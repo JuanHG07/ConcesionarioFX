@@ -89,7 +89,7 @@ public class Alquiler extends Negocio {
     @Override
     public double calcularPrecioNegocio() {
         int dias = calcularDiasAlquiler();
-        double precio = precioAlquiler * dias;
+        double precio = precioAlquiler * dias + super.getImpuesto();
         return precio;
     }
 
