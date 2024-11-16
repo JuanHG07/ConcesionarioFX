@@ -8,31 +8,45 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import co.edu.uniquindio.poo.model.Concesionario;
+import co.edu.uniquindio.poo.viewController.LoginViewController;
+
 /**
  * JavaFX App
  */
 public class App extends Application {
 
-    private static Scene scene;
+    private Stage loginStage;
 
-    @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
-        stage.setScene(scene);
-        stage.show();
-    }
+    LoginViewController loginViewController;
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
+    public static Concesionario concesionario = new Concesionario("TU CARRO UQ");
 
     public static void main(String[] args) {
         launch();
     }
 
+    @Override
+    public void start(Stage loginStage) throws IOException {
+        this.loginStage = loginStage;
+        this.loginStage.setTitle("Gestion de la Empresa");
+        openViewLogin();
+    }
+
+    private void openViewLogin() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginView.fxml"));
+            Parent root = loader.load();
+
+            loginViewController = loader.getController();
+            loginViewController.setApp(this);
+
+            Scene scene = new Scene(root);
+            loginStage.setScene(scene);
+            loginStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

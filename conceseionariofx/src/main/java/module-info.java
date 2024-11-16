@@ -4,4 +4,6 @@ module co.edu.uniquindio.poo {
 
     opens co.edu.uniquindio.poo to javafx.fxml;
     exports co.edu.uniquindio.poo;
+    exports co.edu.uniquindio.poo.viewController to javafx.fxml;
+    opens co.edu.uniquindio.poo.viewController to javafx.fxml;
 }
