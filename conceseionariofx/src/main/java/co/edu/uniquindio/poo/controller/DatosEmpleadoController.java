@@ -1,15 +1,13 @@
 package co.edu.uniquindio.poo.controller;
 
-import java.util.ArrayList;
-
 import co.edu.uniquindio.poo.model.Concesionario;
 import co.edu.uniquindio.poo.model.Vendedor;
 
-public class AgregarEmpleadoController {
+public class DatosEmpleadoController {
     
     Concesionario concesionario;
 
-    public AgregarEmpleadoController(Concesionario concesionario){
+    public DatosEmpleadoController(Concesionario concesionario){
         this.concesionario=concesionario;
     }
 

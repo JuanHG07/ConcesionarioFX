@@ -4,8 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.App;
-import co.edu.uniquindio.poo.controller.AgregarEmpleadoController;
-import co.edu.uniquindio.poo.controller.LoginController;
+import co.edu.uniquindio.poo.controller.DatosEmpleadoController;
 import co.edu.uniquindio.poo.model.Vendedor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class AgregarEmpleadoViewController {
+public class DatosEmpleadoViewController {
 
     @FXML
     private ResourceBundle resources;
@@ -52,12 +51,12 @@ public class AgregarEmpleadoViewController {
     private TextField telefonoField;
 
     private App app;
-    AgregarEmpleadoController agregarEmpleadoController;
+    DatosEmpleadoController datosEmpleadoController;
     private Vendedor empleado;
 
     @FXML
     void initialize() {
-        agregarEmpleadoController = new AgregarEmpleadoController(app.concesionario);
+        datosEmpleadoController = new DatosEmpleadoController(app.concesionario);
         limpiarEspacios();
     }
 
@@ -101,7 +100,7 @@ public class AgregarEmpleadoViewController {
         } else {
             Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, codigoEmpleado, null, null, null,
                     codigoEmpleado);
-            if (agregarEmpleadoController.recuperarVendedor(codigoEmpleado) != null) {
+            if (datosEmpleadoController.recuperarVendedor(codigoEmpleado) != null) {
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setTitle("Usuario invalido");
                 alerta.setHeaderText("");
@@ -109,7 +108,7 @@ public class AgregarEmpleadoViewController {
                 alerta.showAndWait();
             } else {
 
-                agregarEmpleadoController.agregarVendedor(aux);
+                datosEmpleadoController.agregarVendedor(aux);
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                 alerta.setTitle("Usuario creado");
                 alerta.setHeaderText("");
