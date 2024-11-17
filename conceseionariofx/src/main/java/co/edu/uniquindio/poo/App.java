@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import co.edu.uniquindio.poo.model.Concesionario;
 import co.edu.uniquindio.poo.viewController.AdministradorViewController;
+import co.edu.uniquindio.poo.viewController.DatosClienteViewController;
 import co.edu.uniquindio.poo.viewController.DatosEmpleadoViewController;
 import co.edu.uniquindio.poo.viewController.LoginViewController;
 import co.edu.uniquindio.poo.viewController.RestablecerViewController;
@@ -24,11 +25,13 @@ public class App extends Application {
     private Stage restablecerStage;
     private Stage administradorStage;
     private Stage datosEmpleadoStage;
+    private Stage datosClienteStage;
 
     LoginViewController loginViewController;
     RestablecerViewController restablecerViewController;
     AdministradorViewController administradorViewController;
     DatosEmpleadoViewController datosEmpleadoViewController;
+    DatosClienteViewController datosClienteViewController;
 
 
     public static Concesionario concesionario = new Concesionario("TU CARRO UQ");
@@ -129,6 +132,29 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
+
+    public void openDatosClienteView() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("DatosClienteView.fxml"));
+            Parent root = loader.load();
+
+            datosClienteViewController = loader.getController();
+            datosClienteViewController.setApp(this);
+
+            Scene scene = new Scene(root);
+            datosClienteStage = new Stage();
+            datosClienteStage.initModality(Modality.WINDOW_MODAL);
+            datosClienteStage.setScene(scene);
+
+            datosClienteStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public LoginViewController getLoginViewController() {
         return loginViewController;
