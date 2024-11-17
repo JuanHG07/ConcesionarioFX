@@ -75,19 +75,17 @@ public class LoginViewController {
                 alert.showAndWait();
             }
         }
-        for (Administrador administrador : loginController.obtenerListaAdministradores()) {
-            if (administrador.iniciarSesion(usuario, contrasenia)) {
-                app.openAdministradorView();
-                Stage stage = (Stage) btnIngresar.getScene().getWindow();
-                stage.close();
-                break;
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("ERROR");
-                alert.setContentText("El usuario o contraseña no son validos.");
-                alert.showAndWait();
-            }
+        Administrador administrador = loginController.obtenerAdministrador();
+        if (administrador.iniciarSesion(usuario, contrasenia)) {
+            app.openAdministradorView();
+            Stage stage = (Stage) btnIngresar.getScene().getWindow();
+            stage.close();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("El usuario o contraseña no son validos.");
+            alert.showAndWait();
         }
     }
 
@@ -108,10 +106,9 @@ public class LoginViewController {
                 usuario = vendedor;
             }
         }
-        for (Administrador administrador : loginController.obtenerListaAdministradores()) {
-            if (administrador.getCuenta().equals(usuarioText)) {
-                usuario = administrador;
-            }
+        Administrador administrador = loginController.obtenerAdministrador();
+        if (administrador.getCuenta().equals(usuarioText)) {
+            usuario = administrador;
         }
 
         if (usuarioText.isEmpty()) {

@@ -27,11 +27,11 @@ public class Van extends VehiculoBasico {
      * @param capacidadMaletero la capacidad del maletero del vehículo
      */
     public Van(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax, double cilindraje,
-            int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, Negocio negocio, Combustion combustion,
-            Transmision transmision, Estado estado, boolean aireAcondicionado, boolean abs, boolean camaraReversa,
+            int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, Combustion combustion,
+            Transmision transmision, boolean aireAcondicionado, boolean abs, boolean camaraReversa,
             double capacidadMaletero) {
         super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas,
-                numeroBolsasAire, negocio, combustion, transmision, estado, aireAcondicionado, abs);
+                numeroBolsasAire, combustion, transmision, aireAcondicionado, abs);
         this.camaraReversa = camaraReversa;
         this.capacidadMaletero = capacidadMaletero;
     }

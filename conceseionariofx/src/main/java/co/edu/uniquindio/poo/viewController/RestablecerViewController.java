@@ -66,10 +66,9 @@ public class RestablecerViewController {
                 txtPregunta.setText(vendedor.getPreguntaRecuperacion());
             }
         }
-        for (Administrador administrador : restablecerController.obtenerListaAdministradores()) {
-            if (administrador.getCuenta().equals(usuario)) {
-                txtPregunta.setText(administrador.getPreguntaRecuperacion());
-            }
+        if (restablecerController.obtenerAdministrador().getCuenta().equals(usuario)) {
+            Administrador administrador = restablecerController.obtenerAdministrador();
+            txtPregunta.setText(administrador.getPreguntaRecuperacion());
         }
     }
 
@@ -129,11 +128,9 @@ public class RestablecerViewController {
     private boolean verificarRespuestaAdministrador() {
         String respuesta = txtRespuesta.getText();
         boolean centinela = false;
-
-        for (Administrador administrador : restablecerController.obtenerListaAdministradores()) {
-            if (administrador.getRespuestaRecuperacion().equals(respuesta)) {
-                centinela = true;
-            }
+        Administrador administrador = restablecerController.obtenerAdministrador();
+        if (administrador.getRespuestaRecuperacion().equals(respuesta)) {
+            centinela = true;
         }
         return centinela;
     }
@@ -174,16 +171,16 @@ public class RestablecerViewController {
                     }
                 }
             } else if (verificarRespuestaAdministrador()) {
-                for (Administrador administrador : restablecerController.obtenerListaAdministradores()) {
-                    if (administrador.getCuenta().equals(usuario)) {
-                        administrador.reestablecerContrasenia(contraseniaNueva);
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setHeaderText(null);
-                        alert.setTitle("INFO.");
-                        alert.setContentText("Se ha reestablecido la contraseña.");
-                        alert.showAndWait();
-                    }
+                Administrador administrador = restablecerController.obtenerAdministrador();
+                if (administrador.getCuenta().equals(usuario)) {
+                    administrador.reestablecerContrasenia(contraseniaNueva);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText(null);
+                    alert.setTitle("INFO.");
+                    alert.setContentText("Se ha reestablecido la contraseña.");
+                    alert.showAndWait();
                 }
+
             } else if (verificarRespuestaCliente() & verificarRespuestaVendedor() & verificarRespuestaAdministrador()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);

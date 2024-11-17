@@ -26,10 +26,10 @@ public class Deportivo extends VehiculoPasajero {
      *                         100 km/h
      */
     public Deportivo(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax,
-            double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, Negocio negocio,
-            Combustion combustion, Transmision transmision, Estado estado, int caballosFuerza, double tiempoCeroCien) {
+            double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire,
+            Combustion combustion, Transmision transmision, int caballosFuerza, double tiempoCeroCien) {
         super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas,
-                numeroBolsasAire, negocio, combustion, transmision, estado);
+                numeroBolsasAire, combustion, transmision);
         this.caballosFuerza = caballosFuerza;
         this.tiempoCeroCien = tiempoCeroCien;
     }

@@ -5,13 +5,12 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Concesionario {
-    private String nombre; // Nombre del concesionario
-    private ArrayList<Cliente> clientes; // Lista de clientes
-    private ArrayList<Vendedor> vendedores; // Lista de vendedores
-    private ArrayList<Administrador> administradores; // Lista de administradores
-    private ArrayList<Vehiculo> vehiculos; // Lista de vehículos
-    private ArrayList<Transaccion> transacciones; // Lista de transacciones
-
+    private String nombre;
+    private ArrayList<Cliente> clientes;
+    private ArrayList<Vendedor> vendedores;
+    private ArrayList<Vehiculo> vehiculos;
+    private ArrayList<Transaccion> transacciones;
+    private Administrador administrador;
 
     /**
      * Constructor que inicializa el concesionario con un nombre.
@@ -22,21 +21,19 @@ public class Concesionario {
         this.nombre = nombre;
         this.clientes = new ArrayList<>();
         this.vendedores = new ArrayList<>();
-        this.administradores = new ArrayList<>();
         this.vehiculos = new ArrayList<>();
         this.transacciones = new ArrayList<>();
-        agregarGranAdministrador();
+        administrador = agregarGranAdministrador();
     }
 
-        /**
+    /**
      * Agrega un administrador predeterminado al concesionario.
      */
-    public void agregarGranAdministrador() {
+    public Administrador agregarGranAdministrador() {
         Administrador administrador = new Administrador("Raul", "Rivera", "1034", "317", "raul@uqvirual.edu.co",
                 "Mz G Casa 3", "UQ", "UQ", "¿Cuando se fundo la universidad del Quindio?", "1960", "Gerencia");
-        administradores.add(administrador);
+        return administrador;
     }
-
 
     /**
      * Metodo para obtener el nombre del concesionario.
@@ -56,47 +53,92 @@ public class Concesionario {
         this.nombre = nombre;
     }
 
-    // Métodos getter y setter para la lista de clientes
+    /**
+     * Metodo para obtener la lista de clientes del concesionario.
+     * 
+     * @return la lista de clientes.
+     */
     public ArrayList<Cliente> getClientes() {
         return clientes;
     }
 
+    /**
+     * Metodo para establecer la lista de clientes del concesionario.
+     * 
+     * @param clientes la nueva lista de clientes.
+     */
     public void setClientes(ArrayList<Cliente> clientes) {
         this.clientes = clientes;
     }
 
-    // Métodos getter y setter para la lista de vendedores
+    /**
+     * Metodo para obtener la lista de vendedores del concesionario.
+     * 
+     * @return la lista de vendedores.
+     */
     public ArrayList<Vendedor> getVendedores() {
         return vendedores;
     }
 
+    /**
+     * Metodo para establecer la lista de vendedores del concesionario.
+     * 
+     * @param vendedores la nueva lista de vendedores.
+     */
     public void setVendedores(ArrayList<Vendedor> vendedores) {
         this.vendedores = vendedores;
     }
 
-    // Métodos getter y setter para la lista de administradores
-    public ArrayList<Administrador> getAdministradores() {
-        return administradores;
+    /**
+     * Metodo para obtener el administrador del concesionario.
+     * 
+     * @return el administrador.
+     */
+    public Administrador getAdministrador() {
+        return administrador;
     }
 
-    public void setAdministradores(ArrayList<Administrador> administradores) {
-        this.administradores = administradores;
+    /**
+     * Metodo para establecer el administrador del concesionario.
+     * 
+     * @param administrador el nuevo administrador.
+     */
+    public void setAdministrador(Administrador administrador) {
+        this.administrador = administrador;
     }
 
-    // Métodos getter y setter para la lista de vehículos
+    /**
+     * Metodo para obtener la lista de vehículos disponibles en el concesionario.
+     * 
+     * @return la lista de vehículos.
+     */
     public ArrayList<Vehiculo> getVehiculos() {
         return vehiculos;
     }
 
+    /**
+     * Metodo para establecer la lista de vehículos en el concesionario.
+     * 
+     * @param vehiculos la nueva lista de vehículos.
+     */
     public void setVehiculos(ArrayList<Vehiculo> vehiculos) {
         this.vehiculos = vehiculos;
     }
 
-    // Métodos getter y setter para la lista de transacciones
+    /**
+     * Metodo para obtener la lista de transacciones realizadas en el concesionario.
+     * 
+     * @return la lista de transacciones.
+     */
     public ArrayList<Transaccion> getTransacciones() {
         return transacciones;
     }
 
+    /**
+     * Metodo para establecer la lista de transacciones del concesionario.
+     * 
+     * @param transacciones la nueva lista de transacciones.
+     */
     public void setTransacciones(ArrayList<Transaccion> transacciones) {
         this.transacciones = transacciones;
     }
@@ -116,9 +158,9 @@ public class Concesionario {
      * @param direccion Dirección del cliente.
      * @return Cliente encontrado o null.
      */
-    public Cliente verificarCliente(String direccion) {
+    public Cliente verificarCliente(String cedula) {
         for (Cliente cliente : clientes) {
-            if (cliente.getDireccion().equals(direccion)) {
+            if (cliente.getCedula().equals(cedula)) {
                 return cliente;
             }
         }
@@ -165,39 +207,6 @@ public class Concesionario {
      */
     public void eliminarVendedor(Vendedor vendedor) {
         vendedores.remove(vendedor);
-    }
-
-    /**
-     * Agrega un administrador a la lista.
-     * 
-     * @param administrador Administrador a agregar.
-     */
-    public void agregarAdministrador(Administrador administrador) {
-        administradores.add(administrador);
-    }
-
-    /**
-     * Verifica si un administrador existe por su departamento.
-     * 
-     * @param departamento Departamento del administrador.
-     * @return Administrador encontrado o null.
-     */
-    public Administrador verificarAdministrador(String departamento) {
-        for (Administrador administrador : administradores) {
-            if (administrador.getDepartamento().equals(departamento)) {
-                return administrador;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Elimina un administrador de la lista.
-     * 
-     * @param administrador Administrador a eliminar.
-     */
-    public void eliminarAdministrador(Administrador administrador) {
-        administradores.remove(administrador);
     }
 
     /**

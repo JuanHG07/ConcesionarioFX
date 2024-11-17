@@ -25,9 +25,9 @@ public class VehiculoElectrico extends Vehiculo {
      * @param estado      estado del vehiculo
      */
     public VehiculoElectrico(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax,
-            double cilindraje, Negocio negocio, double autonomia, double tiempoCarga, Combustion combustion,
-            Transmision transmision, Estado estado) {
-        super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, negocio, combustion, transmision, estado);
+            double cilindraje, double autonomia, double tiempoCarga, Combustion combustion,
+            Transmision transmision) {
+        super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, combustion, transmision);
         this.autonomia = autonomia;
         this.tiempoCarga = tiempoCarga;
     }

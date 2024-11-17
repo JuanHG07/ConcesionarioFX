@@ -30,11 +30,11 @@ public class Bus extends VehiculoEstandar {
      * @param numeroSalidasEmergencia el número de salidas de emergencia del bus
      */
     public Bus(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax, double cilindraje,
-            int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, Negocio negocio, Combustion combustion,
-            Transmision transmision, Estado estado, boolean aireAcondicionado, boolean abs, boolean aireAcondicionado2,
+            int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, Combustion combustion,
+            Transmision transmision, boolean aireAcondicionado, boolean abs, boolean aireAcondicionado2,
             double capacidadMaletero, int numeroEjes, int numeroSalidasEmergencia) {
         super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas,
-                numeroBolsasAire, negocio, combustion, transmision, estado, aireAcondicionado, abs, aireAcondicionado2,
+                numeroBolsasAire, combustion, transmision, aireAcondicionado, abs, aireAcondicionado2,
                 capacidadMaletero);
         this.numeroEjes = numeroEjes;
         this.numeroSalidasEmergencia = numeroSalidasEmergencia;

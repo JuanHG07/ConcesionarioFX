@@ -55,7 +55,7 @@ public class AdministradorViewController {
     private TableColumn<Cliente, String> clmDireccionC;
 
     @FXML
-    private TableColumn<Vendedor, String> clmDireccionE;
+    private TableColumn<Vendedor, String> clmCodigoE;
 
     @FXML
     private TableColumn<Vendedor, String> clmCedulaE;
@@ -77,6 +77,9 @@ public class AdministradorViewController {
 
     @FXML
     private TableColumn<Vendedor, String> clmCuentaE;
+
+    @FXML
+    private TableColumn<Cliente, String> clmCodigoEmpleado;
 
     @FXML
     private DatePicker date2;
@@ -152,17 +155,18 @@ public class AdministradorViewController {
     }
 
     private void enlaceDataVendedor() {
+        clmCodigoE.setCellValueFactory(new PropertyValueFactory<>("codigoEmpleado"));
         clmCedulaE.setCellValueFactory(new PropertyValueFactory<>("cedula"));
         clmNombreE.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         clmApellidoE.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         clmApellidoE.setCellValueFactory(new PropertyValueFactory<>("telefono"));
         clmCorreoE.setCellValueFactory(new PropertyValueFactory<>("correo"));
-        clmDireccionE.setCellValueFactory(new PropertyValueFactory<>("direccion"));
         clmCuentaE.setCellValueFactory(new PropertyValueFactory<>("cuenta"));
     }
 
     private void enlaceDataTransaccion() {
         clmCodigoReportes.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+        clmCodigoEmpleado.setCellValueFactory(new PropertyValueFactory<>("codigoEmpleado"));
         clmFechaReportes.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         clmPrecioTotalReportes.setCellValueFactory(new PropertyValueFactory<>("precioTotal"));
     }
@@ -176,7 +180,7 @@ public class AdministradorViewController {
     @FXML
     void agregarEmpleado(ActionEvent event) {
         app.openDatosEmpleadoView();
-        vendedores = administradorController.obtenerListaVendedores()
+        vendedores = administradorController.obtenerListaVendedores();
     }
 
     @FXML

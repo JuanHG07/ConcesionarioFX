@@ -25,8 +25,8 @@ public class VehiculoHibrido extends Vehiculo{
  * @param estado      estado del vehiculo
  */
 public VehiculoHibrido(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax,
-double cilindraje, boolean enchufable, boolean ligero, Negocio negocio, Combustion combustion, Transmision transmision, Estado estado) {
-super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, negocio, combustion, transmision, estado);
+double cilindraje, boolean enchufable, boolean ligero, Combustion combustion, Transmision transmision) {
+super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, combustion, transmision);
 this.enchufable = enchufable;
 this.ligero = ligero;
 }

@@ -14,90 +14,91 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="843.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.AdministradorViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="843.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.AdministradorViewController">
    <children>
-      <SplitPane dividerPositions="0.675054704595186" layoutY="-70.0" orientation="VERTICAL" prefHeight="916.0" prefWidth="899.0">
+      <SplitPane dividerPositions="0.675054704595186" layoutY="-35.0" orientation="VERTICAL" prefHeight="878.0" prefWidth="977.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="413.0" prefWidth="897.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="572.0" prefWidth="972.0">
                <children>
-                  <Label layoutX="234.0" layoutY="14.0" text="Tu Carro UQ-Administrador" textAlignment="CENTER" textFill="#138111">
+                  <Label layoutX="279.0" layoutY="14.0" text="Tu Carro UQ-Administrador" textAlignment="CENTER" textFill="#138111">
                      <font>
                         <Font name="Berlin Sans FB" size="36.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnAgregarE" layoutX="158.0" layoutY="331.0" mnemonicParsing="false" onAction="#agregarEmpleado" prefHeight="31.0" prefWidth="153.0" text="Agregar Empleado" />
-                  <Button fx:id="btnBloquearE" layoutX="576.0" layoutY="331.0" mnemonicParsing="false" onAction="#bloquearCuenta" prefHeight="31.0" prefWidth="153.0" text="Bloquear Cuenta" />
-                  <TableView fx:id="tblClientes" layoutX="23.0" layoutY="426.0" prefHeight="176.0" prefWidth="856.0">
+                  <Button fx:id="btnAgregarE" layoutX="213.0" layoutY="331.0" mnemonicParsing="false" onAction="#agregarEmpleado" prefHeight="31.0" prefWidth="153.0" text="Agregar Empleado" />
+                  <Button fx:id="btnBloquearE" layoutX="612.0" layoutY="331.0" mnemonicParsing="false" onAction="#bloquearCuenta" prefHeight="31.0" prefWidth="153.0" text="Bloquear Cuenta" />
+                  <TableView fx:id="tblClientes" layoutX="23.0" layoutY="418.0" prefHeight="158.0" prefWidth="932.0">
                     <columns>
                         <TableColumn fx:id="clmCedulaC" prefWidth="105.0" text="Cédula" />
                       <TableColumn fx:id="clmNombreC" prefWidth="114.0" text="Nombre" />
                       <TableColumn fx:id="clmApellidoC" prefWidth="112.0" text="Apellido" />
                         <TableColumn fx:id="clmTelefonoC" prefWidth="117.0" text="Teléfono" />
-                        <TableColumn fx:id="clmCorreoC" prefWidth="135.0" text="Correo" />
-                        <TableColumn fx:id="clmDireccionC" prefWidth="147.0" text="Dirección" />
-                        <TableColumn fx:id="clmCuentaC" prefWidth="125.0" text="Cuenta" />
+                        <TableColumn fx:id="clmCorreoC" prefWidth="162.0" text="Correo" />
+                        <TableColumn fx:id="clmDireccionC" prefWidth="184.0" text="Dirección" />
+                        <TableColumn fx:id="clmCuentaC" prefWidth="137.0" text="Cuenta" />
                     </columns>
                   </TableView>
-                  <Label layoutX="350.0" layoutY="377.0" text="Tabla Clientes" textAlignment="CENTER" textFill="#138111">
+                  <Label layoutX="387.0" layoutY="377.0" text="Tabla Clientes" textAlignment="CENTER" textFill="#138111">
                      <font>
                         <Font name="Berlin Sans FB" size="34.0" />
                      </font>
                   </Label>
-                  <Separator layoutX="-6.0" layoutY="363.0" prefHeight="23.0" prefWidth="909.0" />
-                  <Separator layoutX="-12.0" layoutY="55.0" prefHeight="15.0" prefWidth="909.0" />
-                  <Label layoutX="320.0" layoutY="70.0" text="Tabla Empleados" textAlignment="CENTER" textFill="#138111">
+                  <Separator layoutX="-6.0" layoutY="363.0" prefHeight="23.0" prefWidth="984.0" />
+                  <Separator layoutX="-12.0" layoutY="55.0" prefHeight="15.0" prefWidth="991.0" />
+                  <Label layoutX="366.0" layoutY="70.0" text="Tabla Empleados" textAlignment="CENTER" textFill="#138111">
                      <font>
                         <Font name="Berlin Sans FB" size="34.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tblEmpleados" layoutX="23.0" layoutY="115.0" prefHeight="203.0" prefWidth="856.0">
+                  <TableView fx:id="tblEmpleados" layoutX="23.0" layoutY="115.0" prefHeight="203.0" prefWidth="932.0">
                      <columns>
+                        <TableColumn fx:id="clmCodigoE" prefWidth="147.0" text="Codigo Empleado" />
                         <TableColumn fx:id="clmCedulaE" prefWidth="105.0" text="Cédula" />
                         <TableColumn fx:id="clmNombreE" prefWidth="114.0" text="Nombre" />
                         <TableColumn fx:id="clmApellidoE" prefWidth="112.0" text="Apellido" />
-                        <TableColumn fx:id="clmTelefonoE" prefWidth="117.0" text="Teléfono" />
-                        <TableColumn fx:id="clmCorreoE" prefWidth="135.0" text="Correo" />
-                        <TableColumn fx:id="clmDireccionE" prefWidth="147.0" text="Dirección" />
-                        <TableColumn fx:id="clmCuentaE" prefWidth="125.0" text="Cuenta" />
+                        <TableColumn fx:id="clmTelefonoE" prefWidth="128.0" text="Teléfono" />
+                        <TableColumn fx:id="clmCorreoE" prefWidth="172.0" text="Correo" />
+                        <TableColumn fx:id="clmCuentaE" prefWidth="153.0" text="Cuenta" />
                      </columns>
                   </TableView>
-                  <Button fx:id="btnModificarE" layoutX="372.0" layoutY="331.0" mnemonicParsing="false" onAction="#modificarEmpleado" prefHeight="31.0" prefWidth="153.0" text="Modificar Empleado" />
+                  <Button fx:id="btnModificarE" layoutX="413.0" layoutY="331.0" mnemonicParsing="false" onAction="#modificarEmpleado" prefHeight="31.0" prefWidth="153.0" text="Modificar Empleado" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="897.0">
                <children>
-                  <TableView fx:id="tblReportes" layoutX="352.0" layoutY="58.0" prefHeight="164.0" prefWidth="519.0">
+                  <TableView fx:id="tblReportes" layoutX="309.0" layoutY="58.0" prefHeight="164.0" prefWidth="646.0">
                      <columns>
-                        <TableColumn fx:id="clmCodigoReportes" minWidth="4.79998779296875" prefWidth="155.19992065429688" text="Código" />
-                        <TableColumn fx:id="clmFechaReportes" prefWidth="188.79998970031738" text="Fecha" />
-                        <TableColumn fx:id="clmPrecioTotalReportes" minWidth="0.0" prefWidth="173.6000518798828" text="Precio Total" />
+                        <TableColumn fx:id="clmCodigoReportes" minWidth="4.79998779296875" prefWidth="123.0" text="Código" />
+                        <TableColumn fx:id="clmCodigoEmpleado" prefWidth="141.0" text="Codigo Empleado" />
+                        <TableColumn fx:id="clmFechaReportes" prefWidth="143.0" text="Fecha" />
+                        <TableColumn fx:id="clmPrecioTotalReportes" minWidth="0.0" prefWidth="238.0" text="Precio Total" />
                      </columns>
                   </TableView>
-                  <Label layoutX="498.0" layoutY="14.0" text="Tabla Reportes" textAlignment="CENTER" textFill="#138111">
+                  <Label layoutX="489.0" layoutY="14.0" text="Tabla Reportes" textAlignment="CENTER" textFill="#138111">
                      <font>
                         <Font name="Berlin Sans FB" size="34.0" />
                      </font>
                   </Label>
-                  <Label layoutX="163.0" layoutY="47.0" text="Reportes">
+                  <Label layoutX="110.0" layoutY="47.0" text="Reportes">
                      <font>
                         <Font name="Bauhaus 93" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblFceha1" layoutX="35.0" layoutY="94.0" text="Fecha 1">
+                  <Label fx:id="lblFceha1" layoutX="23.0" layoutY="94.0" text="Fecha 1">
                      <font>
                         <Font name="Bauhaus 93" size="13.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblFecha2" layoutX="35.0" layoutY="139.0" prefHeight="0.0" prefWidth="46.0" text="Fecha 2">
+                  <Label fx:id="lblFecha2" layoutX="23.0" layoutY="139.0" prefHeight="0.0" prefWidth="46.0" text="Fecha 2">
                      <font>
                         <Font name="Bauhaus 93" size="13.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="date1" layoutX="107.0" layoutY="86.0" promptText="Ingrese fecha inicial" />
-                  <DatePicker fx:id="date2" layoutX="107.0" layoutY="131.0" promptText="Ingrese fecha final" />
+                  <DatePicker fx:id="date1" layoutX="75.0" layoutY="86.0" promptText="Ingrese fecha inicial" />
+                  <DatePicker fx:id="date2" layoutX="75.0" layoutY="131.0" promptText="Ingrese fecha final" />
                   <Button fx:id="btnVerReportes" layoutX="147.0" layoutY="176.0" mnemonicParsing="false" onAction="#verReportesAction" text="Ver Reportes" />
-                  <Separator layoutX="-6.0" layoutY="228.0" prefHeight="23.0" prefWidth="909.0" />
-                  <Button fx:id="btnRegresar" layoutX="410.0" layoutY="251.0" mnemonicParsing="false" onAction="#regresarLogin" text="Regresar" />
+                  <Separator layoutX="-6.0" layoutY="223.0" prefHeight="23.0" prefWidth="984.0" />
+                  <Button fx:id="btnRegresar" layoutX="449.0" layoutY="241.0" mnemonicParsing="false" onAction="#regresarLogin" text="Regresar" />
                </children>
             </AnchorPane>
         </items>

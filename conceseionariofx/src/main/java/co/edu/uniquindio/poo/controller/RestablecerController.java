@@ -23,7 +23,7 @@ public class RestablecerController {
         return concesionario.getVendedores();
     }
 
-    public ArrayList<Administrador> obtenerListaAdministradores() {
-        return concesionario.getAdministradores();
+    public Administrador obtenerAdministrador() {
+        return concesionario.getAdministrador();
     }
 }

@@ -27,11 +27,11 @@ public abstract class VehiculoEstandar extends VehiculoBasico {
      * @param capacidadMaletero  la capacidad del maletero del vehículo
      */
     public VehiculoEstandar(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax,
-            double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, Negocio negocio,
-            Combustion combustion, Transmision transmision, Estado estado, boolean aireAcondicionado, boolean abs,
+            double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire,
+            Combustion combustion, Transmision transmision, boolean aireAcondicionado, boolean abs,
             boolean aireAcondicionado2, double capacidadMaletero) {
         super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas,
-                numeroBolsasAire, negocio, combustion, transmision, estado, aireAcondicionado, abs);
+                numeroBolsasAire, combustion, transmision, aireAcondicionado, abs);
         aireAcondicionado = aireAcondicionado2;
         this.capacidadMaletero = capacidadMaletero;
     }

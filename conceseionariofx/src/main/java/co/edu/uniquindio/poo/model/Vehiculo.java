@@ -39,7 +39,7 @@ public abstract class Vehiculo {
      */
 
     public Vehiculo(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax,
-            double cilindraje, Negocio negocio, Combustion combustion, Transmision transmision, Estado estado) {
+            double cilindraje, Combustion combustion, Transmision transmision) {
         this.codigo = codigo;
         this.marca = marca;
         this.modelo = modelo;
@@ -47,11 +47,8 @@ public abstract class Vehiculo {
         this.cambios = cambios;
         this.velMax = velMax;
         this.cilindraje = cilindraje;
-        this.negocio = negocio;
         this.combustion = combustion;
         this.transmision = transmision;
-        this.estado = estado;
-
     }
 
     /**

@@ -25,8 +25,8 @@ public abstract class VehiculoPasajero extends Vehiculo {
  * @param estado      estado del vehiculo
  */
 public VehiculoPasajero(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax,
-double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, Negocio negocio, Combustion combustion, Transmision transmision, Estado estado) {
-super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, negocio, combustion, transmision, estado);
+double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, Combustion combustion, Transmision transmision) {
+super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, combustion, transmision);
 this.numeroPasajeros = numeroPasajeros;
 this.numeroPuertas = numeroPuertas;
 this.numeroBolsasAire = numeroBolsasAire;

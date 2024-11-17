@@ -25,10 +25,10 @@ public abstract class VehiculoBasico extends VehiculoPasajero {
      * @param abs               indica si el vehículo tiene sistema de frenos ABS
      */
     public VehiculoBasico(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax,
-            double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, Negocio negocio,
-            Combustion combustion, Transmision transmision, Estado estado, boolean aireAcondicionado, boolean abs) {
+            double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire,
+            Combustion combustion, Transmision transmision, boolean aireAcondicionado, boolean abs) {
         super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas,
-                numeroBolsasAire, negocio, combustion, transmision, estado);
+                numeroBolsasAire, combustion, transmision);
         this.aireAcondicionado = aireAcondicionado;
         this.abs = abs;
     }
