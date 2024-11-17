@@ -110,7 +110,7 @@ public class AgregarEmpleadoViewController {
         alerta.setContentText("Por favor, rellena todos los campos antes de continuar.");
         alerta.showAndWait();
         }else{
-            Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, codigoEmpleado, "uq", "uq", "uq");
+            Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, codigoEmpleado,);
 
         }
 
