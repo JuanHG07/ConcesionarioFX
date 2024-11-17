@@ -5,7 +5,6 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.DatosEmpleadoController;
-import co.edu.uniquindio.poo.model.Cliente;
 import co.edu.uniquindio.poo.model.Vendedor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +18,9 @@ public class DatosEmpleadoViewController {
 
     @FXML
     private ResourceBundle resources;
+
+    @FXML
+    private Button btnCargar;
 
     @FXML
     private URL location;
@@ -45,9 +47,6 @@ public class DatosEmpleadoViewController {
     private TextField correoField;
 
     @FXML
-    private TextField direccionField;
-
-    @FXML
     private TextField nombreField;
 
     @FXML
@@ -66,6 +65,7 @@ public class DatosEmpleadoViewController {
     private TextField preguntaRecuperacionField;
 
     private App app;
+
     DatosEmpleadoController datosEmpleadoController;
 
     @FXML
@@ -85,7 +85,6 @@ public class DatosEmpleadoViewController {
         cedulaField.clear();
         telefonoField.clear();
         correoField.clear();
-        direccionField.clear();
         codigoEmpleadoField.clear();
         contrasenaField.clear();
         usuarioField.clear();
@@ -108,7 +107,6 @@ public class DatosEmpleadoViewController {
         String cedula = cedulaField.getText();
         String telefono = telefonoField.getText();
         String correo = correoField.getText();
-        String direccion = direccionField.getText();
         String codigoEmpleado = codigoEmpleadoField.getText();
         String contrasena = contrasenaField.getText();
         String usuario = usuarioField.getText();
@@ -116,7 +114,7 @@ public class DatosEmpleadoViewController {
         String respuestaRecuperacion = respuestaRecuperacionField.getText();
 
         if (nombre.isEmpty() || apellido.isEmpty() || cedula.isEmpty() ||
-                telefono.isEmpty() || correo.isEmpty() || direccion.isEmpty() || codigoEmpleado.isEmpty()) {
+                telefono.isEmpty() || correo.isEmpty() || codigoEmpleado.isEmpty()) {
 
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Campos incompletos");
@@ -145,73 +143,84 @@ public class DatosEmpleadoViewController {
         }
     }
 
+    @FXML
+    void cargarDatos(ActionEvent event) {
+        mostrarInformacionVendedor(app.getAdministradorViewController().getSelectedVendedor());
+    }
+
     private void modificarEmpleado() {
 
         Vendedor vendedor = app.getAdministradorViewController().getSelectedVendedor();
 
-        if (vendedor == null) {
+        String codigoEmpleado = codigoEmpleadoField.getText();
+        String cedula = cedulaField.getText();
+        String nombre = nombreField.getText();
+        String apellido = apellidoField.getText();
+        String telefono = telefonoField.getText();
+        String correo = correoField.getText();
+        String cuenta = usuarioField.getText();
+        contrasenaField.setEditable(false);
+        preguntaRecuperacionField.setEditable(false);
+        respuestaRecuperacionField.setEditable(false);
+
+        if (codigoEmpleado.isEmpty() || cedula.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty()
+                || correo.isEmpty() || cuenta.isEmpty()) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");
-            alert.setContentText("Debes seleccionar a un cliente.");
+            alert.setContentText("Debes rellenar los espacios.");
             alert.showAndWait();
 
         } else {
 
-            String codigoEmpleado = codigoEmpleadoField.getText();
-            String cedula = cedulaField.getText();
-            String nombre = nombreField.getText();
-            String apellido = apellidoField.getText();
-            String telefono = telefonoField.getText();
-            String correo = correoField.getText();
-            String cuenta = usuarioField.getText();
-            contrasenaField.setEditable(false);
-            preguntaRecuperacionField.setEditable(false);
-            respuestaRecuperacionField.setEditable(false);
+            Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, cuenta, telefono, correo, cuenta,
+                    codigoEmpleado);
 
-            if (codigoEmpleado.isEmpty() || cedula.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || correo.isEmpty() || cuenta.isEmpty()) {
+            if (vendedor.getCedula().equals(cedula) & vendedor.getCodigoEmpleado().equals(codigoEmpleado)) {
+
+                vendedor.setNombre(aux.getNombre());
+                vendedor.setApellido(aux.getApellido());
+                vendedor.setCedula(aux.getCedula());
+                vendedor.setTelefono(aux.getTelefono());
+                vendedor.setCorreo(aux.getCorreo());
+                vendedor.setCuenta(aux.getCuenta());
+                vendedor.setCodigoEmpleado(aux.getCodigoEmpleado());
+
+            } else if (datosEmpleadoController.recuperarVendedor(cedula, codigoEmpleado) != null) {
 
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setTitle("ERROR");
-                alert.setContentText("Debes rellenar los espacios.");
+                alert.setContentText("El cliente ya existe.");
                 alert.showAndWait();
 
             } else {
 
-                Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, cuenta, telefono, correo, cuenta, codigoEmpleado);
-
-                if (vendedor.getCedula().equals(cedula) & vendedor.getCodigoEmpleado().equals(codigoEmpleado)) {
-
-                    vendedor.setNombre(aux.getNombre());
-                    vendedor.setApellido(aux.getApellido());
-                    vendedor.setCedula(aux.getCedula());
-                    vendedor.setTelefono(aux.getTelefono());
-                    vendedor.setCorreo(aux.getCorreo());
-                    vendedor.setCuenta(aux.getCuenta());
-                    vendedor.setCodigoEmpleado(aux.getCodigoEmpleado());
-
-                } else if (datosEmpleadoController.recuperarVendedor(cedula, codigoEmpleado) != null) {
-
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText(null);
-                    alert.setTitle("ERROR");
-                    alert.setContentText("El cliente ya existe.");
-                    alert.showAndWait();
-
-                } else {
-
-                    vendedor.setNombre(aux.getNombre());
-                    vendedor.setApellido(aux.getApellido());
-                    vendedor.setCedula(aux.getCedula());
-                    vendedor.setTelefono(aux.getTelefono());
-                    vendedor.setCorreo(aux.getCorreo());
-                    vendedor.setCuenta(aux.getCuenta());
-                    vendedor.setCodigoEmpleado(aux.getCodigoEmpleado());
-                }
+                vendedor.setNombre(aux.getNombre());
+                vendedor.setApellido(aux.getApellido());
+                vendedor.setCedula(aux.getCedula());
+                vendedor.setTelefono(aux.getTelefono());
+                vendedor.setCorreo(aux.getCorreo());
+                vendedor.setCuenta(aux.getCuenta());
+                vendedor.setCodigoEmpleado(aux.getCodigoEmpleado());
             }
         }
+    }
+
+    private void mostrarInformacionVendedor(Vendedor vendedor) {
+        if (vendedor != null) {
+            nombreField.setText(vendedor.getNombre());
+            apellidoField.setText(vendedor.getApellido());
+            cedulaField.setText(vendedor.getCedula());
+            telefonoField.setText(vendedor.getTelefono());
+            correoField.setText(vendedor.getCorreo());
+            codigoEmpleadoField.setText(vendedor.getCodigoEmpleado());
+            usuarioField.setText(vendedor.getCuenta());
+            contrasenaField.setText(vendedor.getContrasenia());
+            preguntaRecuperacionField.setText(vendedor.getPreguntaRecuperacion());
+            respuestaRecuperacionField.setText(vendedor.getRespuestaRecuperacion());
+        } 
     }
 
     @FXML

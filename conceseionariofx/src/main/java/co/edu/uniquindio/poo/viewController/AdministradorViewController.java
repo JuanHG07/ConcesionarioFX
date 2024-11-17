@@ -4,10 +4,8 @@ import java.time.LocalDate;
 
 import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.AdministradorController;
-import co.edu.uniquindio.poo.controller.LoginController;
 import co.edu.uniquindio.poo.model.Cliente;
 import co.edu.uniquindio.poo.model.Transaccion;
-import co.edu.uniquindio.poo.model.Vehiculo;
 import co.edu.uniquindio.poo.model.Vendedor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class AdministradorViewController {
     @FXML
@@ -166,7 +165,7 @@ public class AdministradorViewController {
         clmCedulaE.setCellValueFactory(new PropertyValueFactory<>("cedula"));
         clmNombreE.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         clmApellidoE.setCellValueFactory(new PropertyValueFactory<>("apellido"));
-        clmApellidoE.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+        clmTelefonoE.setCellValueFactory(new PropertyValueFactory<>("telefono"));
         clmCorreoE.setCellValueFactory(new PropertyValueFactory<>("correo"));
         clmCuentaE.setCellValueFactory(new PropertyValueFactory<>("cuenta"));
     }
@@ -196,18 +195,38 @@ public class AdministradorViewController {
         });
     }
 
-
     @FXML
     void agregarEmpleado(ActionEvent event) {
         agregarEmpleado = true;
-        app.openDatosEmpleadoView();  
+        app.openDatosEmpleadoView();
         vendedores.setAll(administradorController.obtenerListaVendedores());
+    }
+
+    @FXML
+    void modificarEmpleado(ActionEvent event) {
+        selectedVendedor = tblEmpleados.getSelectionModel().getSelectedItem();
+
+        if (selectedVendedor == null) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("Debes seleccionar a un cliente.");
+            alert.showAndWait();
+
+        } else {
+            
+            modificarEmpleado = true;
+            app.openDatosEmpleadoView();
+            tblEmpleados.refresh();
+            tblEmpleados.getSelectionModel().clearSelection();
+        }
     }
 
     @FXML
     void bloquearCuenta(ActionEvent event) {
         Vendedor vendedor = tblEmpleados.getSelectionModel().getSelectedItem();
-        
+
         if (vendedor == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
@@ -215,6 +234,7 @@ public class AdministradorViewController {
             alert.setContentText("Debes seleccionar a un cliente.");
             alert.showAndWait();
         } else {
+
             administradorController.obtenerListaVendedores().remove(vendedor);
             vendedores.remove(vendedor);
 
@@ -223,22 +243,15 @@ public class AdministradorViewController {
     }
 
     @FXML
-    void modificarEmpleado(ActionEvent event) {
-        selectedVendedor = tblEmpleados.getSelectionModel().getSelectedItem();
-        modificarEmpleado = true;
-        app.openDatosEmpleadoView();
-        tblEmpleados.refresh();
-        tblEmpleados.getSelectionModel().clearSelection();
-    }
-
-    @FXML
     void verReportesAction(ActionEvent event) {
 
     }
-    
+
     @FXML
     void regresarLogin(ActionEvent event) {
-
+        Stage stage = (Stage) btnRegresar.getScene().getWindow();
+        stage.close();
+        app.openLoginView();
     }
 
     public Vendedor getSelectedVendedor() {
