@@ -23,12 +23,12 @@ public class App extends Application {
     private Stage loginStage;
     private Stage restablecerStage;
     private Stage administradorStage;
-    private Stage agregarEmpladoStage;
+    private Stage datosEmpleadoStage;
 
     LoginViewController loginViewController;
     RestablecerViewController restablecerViewController;
     AdministradorViewController administradorViewController;
-    DatosEmpleadoViewController agregarEmpleadoViewController;
+    DatosEmpleadoViewController datosEmpleadoViewController;
 
 
     public static Concesionario concesionario = new Concesionario("TU CARRO UQ");
@@ -112,18 +112,18 @@ public class App extends Application {
 
         try {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AgregarEmpleadoView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("DatosEmpleadoView.fxml"));
             Parent root = loader.load();
 
-            agregarEmpleadoViewController = loader.getController();
-            agregarEmpleadoViewController.setApp(this);
+            datosEmpleadoViewController = loader.getController();
+            datosEmpleadoViewController.setApp(this);
 
             Scene scene = new Scene(root);
-            agregarEmpladoStage = new Stage();
-            agregarEmpladoStage.initModality(Modality.WINDOW_MODAL);
-            agregarEmpladoStage.setScene(scene);
+            datosEmpleadoStage = new Stage();
+            datosEmpleadoStage.initModality(Modality.WINDOW_MODAL);
+            datosEmpleadoStage.setScene(scene);
 
-            restablecerStage.showAndWait();
+            datosEmpleadoStage.showAndWait();
 
         } catch (IOException e) {
             e.printStackTrace();

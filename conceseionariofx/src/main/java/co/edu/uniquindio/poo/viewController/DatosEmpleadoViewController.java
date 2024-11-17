@@ -61,7 +61,7 @@ public class DatosEmpleadoViewController {
     }
 
     @FXML
-    void limpiarCamposAction(ActionEvent event) {
+    void limpiarCampos(ActionEvent event) {
         limpiarEspacios();
     }
 
