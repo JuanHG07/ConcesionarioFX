@@ -62,19 +62,16 @@ public class App extends Application {
 
         try {
 
-            if (restablecerStage == null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("RestablecerView.fxml"));
+            Parent root = loader.load();
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("RestablecerView.fxml"));
-                Parent root = loader.load();
+            restablecerViewController = loader.getController();
+            restablecerViewController.setApp(this);
 
-                restablecerViewController = loader.getController();
-                restablecerViewController.setApp(this);
-
-                Scene scene = new Scene(root);
-                restablecerStage = new Stage();
-                restablecerStage.initModality(Modality.WINDOW_MODAL);
-                restablecerStage.setScene(scene);
-            }
+            Scene scene = new Scene(root);
+            restablecerStage = new Stage();
+            restablecerStage.initModality(Modality.WINDOW_MODAL);
+            restablecerStage.setScene(scene);
 
             restablecerStage.showAndWait();
 

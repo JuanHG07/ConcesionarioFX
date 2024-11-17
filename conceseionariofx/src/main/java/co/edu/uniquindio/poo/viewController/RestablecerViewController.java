@@ -39,11 +39,18 @@ public class RestablecerViewController {
     @FXML
     void initialize() {
         restablecerController = new RestablecerController(app.concesionario);
+        limpiarEspacios();
     }
 
     @FXML
     void cargarPregunta(ActionEvent event) {
         obtenerPregunta();
+    }
+
+    private void limpiarEspacios() {
+        txtContraseniaNueva.clear();
+        txtPregunta.clear();
+        txtRespuesta.clear();
     }
 
     private void obtenerPregunta() {
@@ -147,22 +154,38 @@ public class RestablecerViewController {
         } else {
             if (verificarRespuestaCliente()) {
                 for (Cliente cliente : restablecerController.obtenerListaClientes()) {
-                    if (cliente.getRespuestaRecuperacion().equals(usuario)) {
+                    if (cliente.getCuenta().equals(usuario)) {
+                        cliente.reestablecerContrasenia(contraseniaNueva);
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setHeaderText(null);
+                        alert.setTitle("INFO.");
+                        alert.setContentText("Se ha reestablecido la contraseña.");
+                        alert.showAndWait();
                     }
                 }
             } else if (verificarRespuestaVendedor()) {
                 for (Vendedor vendedor : restablecerController.obtenerListaVendedores()) {
-                    if (vendedor.getRespuestaRecuperacion().equals(usuario)) {
+                    if (vendedor.getCuenta().equals(usuario)) {
                         vendedor.reestablecerContrasenia(contraseniaNueva);
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setHeaderText(null);
+                        alert.setTitle("INFO.");
+                        alert.setContentText("Se ha reestablecido la contraseña.");
+                        alert.showAndWait();
                     }
                 }
             } else if (verificarRespuestaAdministrador()) {
                 for (Administrador administrador : restablecerController.obtenerListaAdministradores()) {
-                    if (administrador.getRespuestaRecuperacion().equals(usuario)) {
+                    if (administrador.getCuenta().equals(usuario)) {
                         administrador.reestablecerContrasenia(contraseniaNueva);
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setHeaderText(null);
+                        alert.setTitle("INFO.");
+                        alert.setContentText("Se ha reestablecido la contraseña.");
+                        alert.showAndWait();
                     }
                 }
-            } else if (verificarRespuestaCliente() & verificarRespuestaVendedor() & verificarRespuestaAdministrador()){
+            } else if (verificarRespuestaCliente() & verificarRespuestaVendedor() & verificarRespuestaAdministrador()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setTitle("ERROR.");
