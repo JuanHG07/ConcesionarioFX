@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -51,6 +52,18 @@ public class DatosEmpleadoViewController {
     @FXML
     private TextField telefonoField;
 
+    @FXML
+    private PasswordField contrasenaField;
+
+    @FXML
+    private TextField usuarioField;
+
+    @FXML
+    private TextField respuestaRecuperacionField;
+
+    @FXML
+    private TextField preguntaRecuperacionField;
+
     private App app;
     DatosEmpleadoController datosEmpleadoController;
     private Vendedor empleado;
@@ -74,6 +87,10 @@ public class DatosEmpleadoViewController {
         correoField.clear();
         direccionField.clear();
         codigoEmpleadoField.clear();
+        contrasenaField.clear();
+        usuarioField.clear();
+        preguntaRecuperacionField.clear();
+        respuestaRecuperacionField.clear();
     }
 
     @FXML
@@ -89,6 +106,10 @@ public class DatosEmpleadoViewController {
         String correo = correoField.getText();
         String direccion = direccionField.getText();
         String codigoEmpleado = codigoEmpleadoField.getText();
+        String contrasena = contrasenaField.getText();
+        String usuario = usuarioField.getText();
+        String preguntaRecuperacion = preguntaRecuperacionField.getText();
+        String respuestaRecuperacion = respuestaRecuperacionField.getText();
 
         if (nombre.isEmpty() || apellido.isEmpty() || cedula.isEmpty() ||
                 telefono.isEmpty() || correo.isEmpty() || direccion.isEmpty() || codigoEmpleado.isEmpty()) {
@@ -99,7 +120,8 @@ public class DatosEmpleadoViewController {
             alerta.setContentText("Por favor, rellena todos los campos antes de continuar.");
             alerta.showAndWait();
         } else {
-            Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, codigoEmpleado, null, null, null,
+            Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, usuario, contrasena,
+                    preguntaRecuperacion, respuestaRecuperacion,
                     codigoEmpleado);
             if (datosEmpleadoController.recuperarVendedor(codigoEmpleado) != null) {
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
