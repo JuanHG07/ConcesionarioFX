@@ -143,7 +143,7 @@ public class DatosClienteViewController {
 
     @FXML
     void cancelarAction(ActionEvent event) {
-        app.openVendedorView();
+        //app.openVendedorView();
         Stage stage = (Stage) btnCancelarAction.getScene().getWindow();
         stage.close();
     }

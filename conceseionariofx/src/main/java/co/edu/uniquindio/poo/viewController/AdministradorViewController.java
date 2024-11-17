@@ -133,18 +133,9 @@ public class AdministradorViewController {
         vendedores = FXCollections.observableArrayList();
         transacciones = FXCollections.observableArrayList();
 
-<<<<<<< Updated upstream
-        clientes.setAll(administradorController.obtenerListaClientes());
-        vendedores.setAll(administradorController.obtenerListaVendedores());
-
-        agregarEmpleado = false;
-        modificarEmpleado = false;
-        
-=======
         agregarEmpleado = false;
         modificarEmpleado = false;
 
->>>>>>> Stashed changes
         carga();
     }
 
@@ -205,17 +196,6 @@ public class AdministradorViewController {
         });
     }
 
-    private void cargarTablaVendedores() {
-        tblEmpleados.setItems(vendedores);
-    }
-
-    private void cargarTablaClientes() {
-        tblClientes.setItems(clientes);
-    }
-
-    private void cargarTablaTransacciones() {
-        tblReportes.setItems(transacciones);
-    }
 
     @FXML
     void agregarEmpleado(ActionEvent event) {
