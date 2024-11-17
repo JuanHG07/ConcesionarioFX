@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.DatosEmpleadoController;
+import co.edu.uniquindio.poo.model.Cliente;
 import co.edu.uniquindio.poo.model.Vendedor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -66,7 +67,6 @@ public class DatosEmpleadoViewController {
 
     private App app;
     DatosEmpleadoController datosEmpleadoController;
-    private Vendedor empleado;
 
     @FXML
     void initialize() {
@@ -95,7 +95,11 @@ public class DatosEmpleadoViewController {
 
     @FXML
     void guardarEmpleado(ActionEvent event) {
-        agregarEmpleado();
+        if (app.getAdministradorViewController().agregarEmpleado) {
+            agregarEmpleado();
+        } else if (app.getAdministradorViewController().modificarEmpleado) {
+            modificarEmpleado();
+        }
     }
 
     private void agregarEmpleado() {
@@ -123,7 +127,7 @@ public class DatosEmpleadoViewController {
             Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, usuario, contrasena,
                     preguntaRecuperacion, respuestaRecuperacion,
                     codigoEmpleado);
-            if (datosEmpleadoController.recuperarVendedor(codigoEmpleado) != null) {
+            if (datosEmpleadoController.recuperarVendedor(cedula, codigoEmpleado) != null) {
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setTitle("Usuario invalido");
                 alerta.setHeaderText("");
@@ -141,9 +145,77 @@ public class DatosEmpleadoViewController {
         }
     }
 
+    private void modificarEmpleado() {
+
+        Vendedor vendedor = app.getAdministradorViewController().getSelectedVendedor();
+
+        if (vendedor == null) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("Debes seleccionar a un cliente.");
+            alert.showAndWait();
+
+        } else {
+
+            String codigoEmpleado = codigoEmpleadoField.getText();
+            String cedula = cedulaField.getText();
+            String nombre = nombreField.getText();
+            String apellido = apellidoField.getText();
+            String telefono = telefonoField.getText();
+            String correo = correoField.getText();
+            String cuenta = usuarioField.getText();
+            contrasenaField.setEditable(false);
+            preguntaRecuperacionField.setEditable(false);
+            respuestaRecuperacionField.setEditable(false);
+
+            if (codigoEmpleado.isEmpty() || cedula.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || correo.isEmpty() || cuenta.isEmpty()) {
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("ERROR");
+                alert.setContentText("Debes rellenar los espacios.");
+                alert.showAndWait();
+
+            } else {
+
+                Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, cuenta, telefono, correo, cuenta, codigoEmpleado);
+
+                if (vendedor.getCedula().equals(cedula) & vendedor.getCodigoEmpleado().equals(codigoEmpleado)) {
+
+                    vendedor.setNombre(aux.getNombre());
+                    vendedor.setApellido(aux.getApellido());
+                    vendedor.setCedula(aux.getCedula());
+                    vendedor.setTelefono(aux.getTelefono());
+                    vendedor.setCorreo(aux.getCorreo());
+                    vendedor.setCuenta(aux.getCuenta());
+                    vendedor.setCodigoEmpleado(aux.getCodigoEmpleado());
+
+                } else if (datosEmpleadoController.recuperarVendedor(cedula, codigoEmpleado) != null) {
+
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setTitle("ERROR");
+                    alert.setContentText("El cliente ya existe.");
+                    alert.showAndWait();
+
+                } else {
+
+                    vendedor.setNombre(aux.getNombre());
+                    vendedor.setApellido(aux.getApellido());
+                    vendedor.setCedula(aux.getCedula());
+                    vendedor.setTelefono(aux.getTelefono());
+                    vendedor.setCorreo(aux.getCorreo());
+                    vendedor.setCuenta(aux.getCuenta());
+                    vendedor.setCodigoEmpleado(aux.getCodigoEmpleado());
+                }
+            }
+        }
+    }
+
     @FXML
     void cancelarAction(ActionEvent event) {
-        app.openAdministradorView();
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
     }
