@@ -33,7 +33,6 @@ public class App extends Application {
     DatosEmpleadoViewController datosEmpleadoViewController;
     DatosClienteViewController datosClienteViewController;
 
-
     public static Concesionario concesionario = new Concesionario("TU CARRO UQ");
 
     public static void main(String[] args) {
@@ -155,8 +154,24 @@ public class App extends Application {
         }
     }
 
-
     public LoginViewController getLoginViewController() {
         return loginViewController;
     }
+
+    public RestablecerViewController getRestablecerViewController() {
+        return restablecerViewController;
+    }
+
+    public AdministradorViewController getAdministradorViewController() {
+        return administradorViewController;
+    }
+
+    public DatosEmpleadoViewController getDatosEmpleadoViewController() {
+        return datosEmpleadoViewController;
+    }
+
+    public DatosClienteViewController getDatosClienteViewController() {
+        return datosClienteViewController;
+    }
+
 }
