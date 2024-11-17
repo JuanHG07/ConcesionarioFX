@@ -3,6 +3,7 @@ package co.edu.uniquindio.poo.viewController;
 import java.time.LocalDate;
 
 import co.edu.uniquindio.poo.App;
+import co.edu.uniquindio.poo.controller.AdministradorController;
 import co.edu.uniquindio.poo.controller.LoginController;
 import co.edu.uniquindio.poo.model.Cliente;
 import co.edu.uniquindio.poo.model.Transaccion;
@@ -109,7 +110,7 @@ public class AdministradorViewController {
 
     private App app;
 
-    LoginController loginController;
+    AdministradorController administradorController;
 
     private ObservableList<Cliente> clientes;
     private ObservableList<Vendedor> vendedores;
@@ -119,7 +120,7 @@ public class AdministradorViewController {
 
     @FXML
     void initialize() {
-        loginController = new LoginController(app.concesionario);
+        administradorController = new AdministradorController(app.concesionario);
 
         clientes = FXCollections.observableArrayList();
         vendedores = FXCollections.observableArrayList();
@@ -132,6 +133,10 @@ public class AdministradorViewController {
         enlaceDataCliente();
         enlaceDataVendedor();
         enlaceDataTransaccion();
+
+        cargarTablaVendedor();
+        cargarTablaClientes();
+        cargarTablaTransacciones();
 
         seleccionarVendedor();
     }
@@ -171,7 +176,7 @@ public class AdministradorViewController {
     @FXML
     void agregarEmpleado(ActionEvent event) {
         app.openDatosEmpleadoView();
-        
+        vendedores = administradorController.obtenerListaVendedores()
     }
 
     @FXML
