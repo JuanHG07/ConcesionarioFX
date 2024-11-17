@@ -9,7 +9,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import co.edu.uniquindio.poo.model.Concesionario;
+import co.edu.uniquindio.poo.model.Usuario;
 import co.edu.uniquindio.poo.viewController.LoginViewController;
+import co.edu.uniquindio.poo.viewController.RestablecerViewController;
 
 /**
  * JavaFX App
@@ -17,8 +19,10 @@ import co.edu.uniquindio.poo.viewController.LoginViewController;
 public class App extends Application {
 
     private Stage loginStage;
+    private Stage restablecerStage;
 
     LoginViewController loginViewController;
+    RestablecerViewController restablecerViewController;
 
     public static Concesionario concesionario = new Concesionario("TU CARRO UQ");
 
@@ -30,11 +34,13 @@ public class App extends Application {
     public void start(Stage loginStage) throws IOException {
         this.loginStage = loginStage;
         this.loginStage.setTitle("Gestion de la Empresa");
-        openViewLogin();
+        openLoginView();
     }
 
-    private void openViewLogin() {
+    public void openLoginView() {
+
         try {
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginView.fxml"));
             Parent root = loader.load();
 
@@ -42,8 +48,33 @@ public class App extends Application {
             loginViewController.setApp(this);
 
             Scene scene = new Scene(root);
+            loginStage = new Stage();
             loginStage.setScene(scene);
+
             loginStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openRestablecerView() {
+
+        try {
+
+            if (restablecerStage == null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("RestablecerView.fxml"));
+                Parent root = loader.load();
+
+                restablecerViewController = loader.getController();
+                restablecerViewController.setApp(this);
+
+                Scene scene = new Scene(root);
+                restablecerStage = new Stage();
+                restablecerStage.setScene(scene);
+            }
+
+            restablecerStage.showAndWait();
 
         } catch (IOException e) {
             e.printStackTrace();
