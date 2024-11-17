@@ -15,8 +15,8 @@ public class DatosEmpleadoController {
         concesionario.agregarVendedor(Vendedor);
     }
     
-    public Vendedor recuperarVendedor(String cedula, String codigo){
-        return concesionario.verificarVendedor(cedula, codigo);
+    public Vendedor recuperarVendedor(String codigo){
+        return concesionario.verificarVendedor(codigo);
     }
 
 }

@@ -191,9 +191,9 @@ public class Concesionario {
      * @param codigoEmpleado Código del vendedor.
      * @return Vendedor encontrado o null.
      */
-    public Vendedor verificarVendedor(String cedula, String codigoEmpleado) {
+    public Vendedor verificarVendedor(String codigoEmpleado) {
         for (Vendedor vendedor : vendedores) {
-            if (vendedor.getCodigoEmpleado().equals(codigoEmpleado) || vendedor.getCedula().equals(cedula)) {
+            if (vendedor.getCodigoEmpleado().equals(codigoEmpleado)) {
                 return vendedor;
             }
         }
