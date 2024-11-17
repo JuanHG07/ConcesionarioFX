@@ -2,6 +2,9 @@ package co.edu.uniquindio.poo.viewController;
 
 import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.RestablecerController;
+import co.edu.uniquindio.poo.model.Administrador;
+import co.edu.uniquindio.poo.model.Cliente;
+import co.edu.uniquindio.poo.model.Vendedor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -35,6 +38,19 @@ public class RestablecerViewController {
 
     private void obtenerPregunta() {
 
+        String usuario = app.getLoginViewController().getUsuario();
+
+        for (Cliente cliente : restablecerController.obtenerListaClientes()) {
+            if (cliente.getCuenta().equals(usuario)) {
+                txtPregunta.setText(cliente.getPreguntaRecuperacion());
+            }
+        } for (Vendedor vendedor : restablecerController.obtenerListaVendedores()) {
+            if (vendedor.getCuenta().equals(usuario)) {
+                txtPregunta.setText(vendedor.getPreguntaRecuperacion());
+            }
+        } for (Administrador administrador : restablecerController.obtenerListaAdministradores()) {
+
+        }
     }
 
     @FXML

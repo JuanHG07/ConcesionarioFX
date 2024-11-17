@@ -80,4 +80,8 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
+
+    public LoginViewController getLoginViewController() {
+        return loginViewController;
+    }
 }

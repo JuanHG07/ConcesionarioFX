@@ -12,6 +12,12 @@ public class Concesionario {
     private ArrayList<Vehiculo> vehiculos; // Lista de vehículos
     private ArrayList<Transaccion> transacciones; // Lista de transacciones
 
+    public void agregarGranAdministrador() {
+        Administrador administrador = new Administrador("Raul", "Rivera", "1034", "317", "raul@uqvirual.edu.co",
+                "Mz G Casa 3", "UQ", "UQ", "¿Cuando se fundo la universidad del Quindio", "1960", "Gerencia");
+        administradores.add(administrador);
+    }
+
     /**
      * Constructor que inicializa el concesionario con un nombre.
      * 
@@ -24,6 +30,7 @@ public class Concesionario {
         this.administradores = new ArrayList<>();
         this.vehiculos = new ArrayList<>();
         this.transacciones = new ArrayList<>();
+        agregarGranAdministrador();
     }
 
     // Métodos getter y setter para el atributo nombre

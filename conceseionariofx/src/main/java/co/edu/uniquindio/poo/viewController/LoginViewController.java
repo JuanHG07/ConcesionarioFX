@@ -2,6 +2,9 @@ package co.edu.uniquindio.poo.viewController;
 
 import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.LoginController;
+import co.edu.uniquindio.poo.model.Administrador;
+import co.edu.uniquindio.poo.model.Cliente;
+import co.edu.uniquindio.poo.model.Vendedor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -26,6 +29,8 @@ public class LoginViewController {
 
     LoginController loginController;
 
+    private String usuario;
+
     @FXML
     void initialize() {
         loginController = new LoginController(app.concesionario);
@@ -34,7 +39,7 @@ public class LoginViewController {
     @FXML
     void recuperarContrasenia(ActionEvent event) {
 
-        String usuario = txtUsuario.getText();
+        usuario = txtUsuario.getText();
 
         if (usuario.isEmpty()) {
 
@@ -51,15 +56,42 @@ public class LoginViewController {
 
     @FXML
     void ingresarAplicacion(ActionEvent event) {
-        if (iniciarSesion()) {
-            
+        iniciarSesion();
+    }
+
+    private void iniciarSesion() {
+        String usuario = txtUsuario.getText();
+        String contrasenia = txtContrasenia.getText();
+
+        for (Cliente cliente : loginController.obtenerListaClientes()) {
+            if (cliente.getCuenta().equals(usuario) & cliente.getContrasenia().equals(contrasenia)) {
+                //app.openClienteView();
+                break;
+            }
+        } for (Vendedor vendedor : loginController.obtenerListaVendedores()) {
+            if (vendedor.getCuenta().equals(usuario) & vendedor.getContrasenia().equals(contrasenia)) {
+                //app.openVendedorView();
+                break;
+            }
+        } for (Administrador administrador : loginController.obtenerListaAdministradores()) {
+            if (administrador.getCuenta().equals(usuario) & administrador.getContrasenia().equals(contrasenia)) {
+                //app.openAdministradorView();
+                System.out.println("xd");
+                break;
+            }
         }
+        
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setTitle("ERROR");
+        alert.setContentText("El usuario o contraseña no son validos.");
+        alert.showAndWait();
     }
 
-    private boolean iniciarSesion() {
-
+    public String getUsuario() {
+        return usuario;
     }
-    
+
     public void setApp(App app) {
         this.app = app;
     }
