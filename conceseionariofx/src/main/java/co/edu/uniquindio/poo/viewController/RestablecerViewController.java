@@ -4,7 +4,6 @@ import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.RestablecerController;
 import co.edu.uniquindio.poo.model.Administrador;
 import co.edu.uniquindio.poo.model.Cliente;
-import co.edu.uniquindio.poo.model.Usuario;
 import co.edu.uniquindio.poo.model.Vendedor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

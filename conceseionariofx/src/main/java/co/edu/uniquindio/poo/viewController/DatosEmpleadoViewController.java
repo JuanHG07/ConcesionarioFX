@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class DatosEmpleadoViewController {
 
@@ -121,6 +122,8 @@ public class DatosEmpleadoViewController {
     @FXML
     void cancelarAction(ActionEvent event) {
         app.openAdministradorView();
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
     }
 
     public void setApp(App app) {
