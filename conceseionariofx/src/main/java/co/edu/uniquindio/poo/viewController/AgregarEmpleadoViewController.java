@@ -66,6 +66,10 @@ public class AgregarEmpleadoViewController {
     private Vendedor empleado;
 
 
+    private void setApp(App app){
+        this.app=app;
+    }
+
     @FXML
     void initialize() {
         agregarEmpleadoController= new AgregarEmpleadoController(app.concesionario);
@@ -106,7 +110,7 @@ public class AgregarEmpleadoViewController {
         alerta.setContentText("Por favor, rellena todos los campos antes de continuar.");
         alerta.showAndWait();
         }else{
-            Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, codigoEmpleado,);
+            Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, codigoEmpleado, "uq", "uq", "uq");
 
         }
 
