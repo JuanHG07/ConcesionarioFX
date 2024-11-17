@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane style="-fx-background-color: #F7F9FC;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="co.edu.uniquindio.poo.controller.EmpleadoRegistroController">
+  <!-- Título de la ventana -->
+  <!-- Formulario para ingresar los datos del empleado -->
+  <!-- Barra inferior -->
+  <bottom>
+    <HBox alignment="CENTER" style="-fx-background-color: #3A6EA5; -fx-padding: 10px;">
+      <Label style="-fx-text-fill: white; -fx-font-size: 14px;" text="Ingrese los datos del empleado para registrarlo o actualizar su información." />
+    </HBox>
+  </bottom>
+  <center>
+    <VBox alignment="CENTER" spacing="20.0" style="-fx-padding: 20px;">
+      <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #34495E;" text="Formulario de Registro de Empleado" />
+      <GridPane hgap="15.0" style="-fx-background-color: #FFFFFF; -fx-padding: 20px; -fx-border-color: #B0C4DE; -fx-border-width: 2px; -fx-border-radius: 10px; -fx-background-radius: 10px;" vgap="15.0">
+        <!-- Fila 1 -->
+        <Label style="-fx-font-size: 14px;" text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="nombreField" promptText="Ingrese el nombre" style="-fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label style="-fx-font-size: 14px;" text="Apellido:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <TextField fx:id="apellidoField" promptText="Ingrese el apellido" style="-fx-font-size: 14px;" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+        <!-- Fila 2 -->
+        <Label style="-fx-font-size: 14px;" text="Cédula:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="cedulaField" promptText="Ingrese la cédula" style="-fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label style="-fx-font-size: 14px;" text="Teléfono:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <TextField fx:id="telefonoField" promptText="Ingrese el teléfono" style="-fx-font-size: 14px;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+        <!-- Fila 3 -->
+        <Label style="-fx-font-size: 14px;" text="Correo:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="correoField" promptText="Ingrese el correo" style="-fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label style="-fx-font-size: 14px;" text="Dirección:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <TextField fx:id="direccionField" promptText="Ingrese la dirección" style="-fx-font-size: 14px;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+        <!-- Fila 4 -->
+        <Label style="-fx-font-size: 14px;" text="Código de Empleado:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="codigoEmpleadoField" prefWidth="244.0" promptText="Ingrese el código del empleado" style="-fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      </GridPane>
+      <HBox alignment="CENTER" spacing="15.0">
+        <Button fx:id="btnGuardarEmpleado" onAction="#guardarEmpleado" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px 20px;" text="Guardar Empleado" />
+        <Button fx:id="btnLimpiarCampos" onAction="#limpiarCamposAction" style="-fx-background-color: #FFC107; -fx-text-fill: black; -fx-font-size: 14px; -fx-padding: 10px 20px;" text="Limpiar Campos" />
+        <Button fx:id="btnCancelar" onAction="#cancelarAction" style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px 20px;" text="Cancelar" />
+      </HBox>
+    </VBox>
+  </center>
+  <top>
+    <Label alignment="CENTER" prefWidth="734.0" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-background-color: #3A6EA5; -fx-text-fill: white; -fx-padding: 15px;" text="Gestión de Empleados" />
+  </top>
+</BorderPane>
