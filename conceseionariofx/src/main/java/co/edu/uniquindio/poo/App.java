@@ -4,12 +4,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 import co.edu.uniquindio.poo.model.Concesionario;
-import co.edu.uniquindio.poo.model.Usuario;
 import co.edu.uniquindio.poo.viewController.LoginViewController;
 import co.edu.uniquindio.poo.viewController.RestablecerViewController;
 
@@ -63,6 +63,7 @@ public class App extends Application {
         try {
 
             if (restablecerStage == null) {
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("RestablecerView.fxml"));
                 Parent root = loader.load();
 
@@ -71,6 +72,7 @@ public class App extends Application {
 
                 Scene scene = new Scene(root);
                 restablecerStage = new Stage();
+                restablecerStage.initModality(Modality.WINDOW_MODAL);
                 restablecerStage.setScene(scene);
             }
 

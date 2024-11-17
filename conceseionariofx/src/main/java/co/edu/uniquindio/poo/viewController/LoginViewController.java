@@ -4,6 +4,7 @@ import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.LoginController;
 import co.edu.uniquindio.poo.model.Administrador;
 import co.edu.uniquindio.poo.model.Cliente;
+import co.edu.uniquindio.poo.model.Usuario;
 import co.edu.uniquindio.poo.model.Vendedor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +30,7 @@ public class LoginViewController {
 
     LoginController loginController;
 
-    private String usuario;
+    private String usuarioText;
 
     @FXML
     void initialize() {
@@ -39,14 +40,38 @@ public class LoginViewController {
     @FXML
     void recuperarContrasenia(ActionEvent event) {
 
-        usuario = txtUsuario.getText();
+        usuarioText = txtUsuario.getText();
 
-        if (usuario.isEmpty()) {
+        Usuario usuario = null;
+        
+        for (Cliente cliente : loginController.obtenerListaClientes()) {
+            if (cliente.getCuenta().equals(usuarioText)) {
+                usuario = cliente;
+            }
+        } for (Vendedor vendedor : loginController.obtenerListaVendedores()) {
+            if (vendedor.getCuenta().equals(usuarioText)) {
+                usuario = vendedor;
+            }
+        } for (Administrador administrador : loginController.obtenerListaAdministradores()) {
+            if (administrador.getCuenta().equals(usuarioText)) {
+                usuario = administrador;
+            }
+        }
+
+        if (usuarioText.isEmpty()) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");
             alert.setContentText("Debes rellenar el usuario.");
+            alert.showAndWait();
+
+        } else if (usuario == null) {
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("El usuario a recuperar es invalido.");
             alert.showAndWait();
 
         } else {
@@ -64,17 +89,17 @@ public class LoginViewController {
         String contrasenia = txtContrasenia.getText();
 
         for (Cliente cliente : loginController.obtenerListaClientes()) {
-            if (cliente.getCuenta().equals(usuario) & cliente.getContrasenia().equals(contrasenia)) {
+            if (cliente.iniciarSesion(usuario, contrasenia)) {
                 //app.openClienteView();
                 break;
             }
         } for (Vendedor vendedor : loginController.obtenerListaVendedores()) {
-            if (vendedor.getCuenta().equals(usuario) & vendedor.getContrasenia().equals(contrasenia)) {
+            if (vendedor.iniciarSesion(usuario, contrasenia)) {
                 //app.openVendedorView();
                 break;
             }
         } for (Administrador administrador : loginController.obtenerListaAdministradores()) {
-            if (administrador.getCuenta().equals(usuario) & administrador.getContrasenia().equals(contrasenia)) {
+            if (administrador.iniciarSesion(usuario, contrasenia)) {
                 //app.openAdministradorView();
                 System.out.println("xd");
                 break;
@@ -89,7 +114,7 @@ public class LoginViewController {
     }
 
     public String getUsuario() {
-        return usuario;
+        return usuarioText;
     }
 
     public void setApp(App app) {
