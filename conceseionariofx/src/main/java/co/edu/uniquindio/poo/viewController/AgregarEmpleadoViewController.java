@@ -51,26 +51,14 @@ public class AgregarEmpleadoViewController {
     @FXML
     private TextField txtTelefono;
 
-   
-
     private App app;
     AgregarEmpleadoController agregarEmpleadoController;
     private Vendedor empleado;
-
-    private void setApp(App app) {
-        this.app = app;
-    }
-
-    @FXML
-    void cancelarAction(ActionEvent event) {
-        app.openAdministradorView;
-    }
 
     @FXML
     void initialize() {
         agregarEmpleadoController = new AgregarEmpleadoController(app.concesionario);
         limpiarEspacios();
-
     }
 
     @FXML
@@ -78,7 +66,7 @@ public class AgregarEmpleadoViewController {
         limpiarEspacios();
     }
 
-    private void limpiarEspacios(){
+    private void limpiarEspacios() {
         txtNombre.clear();
         txtApellido.clear();
         txtCedula.clear();
@@ -93,33 +81,34 @@ public class AgregarEmpleadoViewController {
         agregarEmpleado();
     }
 
-    private void agregarEmpleado(){
+    private void agregarEmpleado() {
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
-        String cedula= txtCedula.getText();
+        String cedula = txtCedula.getText();
         String telefono = txtTelefono.getText();
-        String correo= txtCorreo.getText();
+        String correo = txtCorreo.getText();
         String direccion = txtDireccion.getText();
         String codigoEmpleado = txtCodigoEmpleado.getText();
 
         if (nombre.isEmpty() || apellido.isEmpty() || cedula.isEmpty() ||
-        telefono.isEmpty() || correo.isEmpty() || direccion.isEmpty() || codigoEmpleado.isEmpty()) {
+                telefono.isEmpty() || correo.isEmpty() || direccion.isEmpty() || codigoEmpleado.isEmpty()) {
 
-        Alert alerta = new Alert(Alert.AlertType.ERROR);
-        alerta.setTitle("Campos incompletos");
-        alerta.setHeaderText("Todos los campos son obligatorios");
-        alerta.setContentText("Por favor, rellena todos los campos antes de continuar.");
-        alerta.showAndWait();
-        }else{
-            Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, codigoEmpleado, null, null, null, codigoEmpleado );
-            if (agregarEmpleadoController.recuperarVendedor(codigoEmpleado)!=null){
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Campos incompletos");
+            alerta.setHeaderText("Todos los campos son obligatorios");
+            alerta.setContentText("Por favor, rellena todos los campos antes de continuar.");
+            alerta.showAndWait();
+        } else {
+            Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, codigoEmpleado, null, null, null,
+                    codigoEmpleado);
+            if (agregarEmpleadoController.recuperarVendedor(codigoEmpleado) != null) {
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setTitle("Usuario invalido");
                 alerta.setHeaderText("");
                 alerta.setContentText("El vendedor ya existe");
                 alerta.showAndWait();
-            }else{
-        
+            } else {
+
                 agregarEmpleadoController.agregarVendedor(aux);
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                 alerta.setTitle("Usuario creado");
@@ -127,10 +116,16 @@ public class AgregarEmpleadoViewController {
                 alerta.setContentText("El vendedor se ha creado con exito");
                 alerta.showAndWait();
             }
-        
-            
-        
+        }
     }
-    
-}
+
+    @FXML
+    void cancelarAction(ActionEvent event) {
+        app.openAdministradorView();
+    }
+
+    public void setApp(App app) {
+        this.app = app;
+    }
+
 }

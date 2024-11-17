@@ -116,6 +116,7 @@ public class App extends Application {
             Parent root = loader.load();
 
             agregarEmpleadoViewController = loader.getController();
+            agregarEmpleadoViewController.setApp(this);
 
             Scene scene = new Scene(root);
             agregarEmpladoStage = new Stage();

@@ -45,6 +45,9 @@ public class AdministradorViewController {
     private Button btnAgregarE;
 
     @FXML
+    private Button btnRegresar;
+
+    @FXML
     private TableColumn<Transaccion, LocalDate> clmFechaReportes;
 
     @FXML
@@ -182,6 +185,11 @@ public class AdministradorViewController {
 
     @FXML
     void verReportesAction(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void regresarLogin(ActionEvent event) {
 
     }
 

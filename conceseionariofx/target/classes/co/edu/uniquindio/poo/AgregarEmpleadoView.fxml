@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane style="-fx-background-color: #F7F9FC;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="co.edu.uniquindio.poo.controller.AgregarEmpleadoViewController">
+<BorderPane style="-fx-background-color: #F7F9FC;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="co.edu.uniquindio.poo.controller.EmpleadoRegistroController">
   <!-- Título de la ventana -->
   <!-- Formulario para ingresar los datos del empleado -->
   <!-- Barra inferior -->

@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class LoginViewController {
     @FXML
@@ -36,7 +37,7 @@ public class LoginViewController {
     void initialize() {
         loginController = new LoginController(app.concesionario);
     }
-    
+
     @FXML
     void ingresarAplicacion(ActionEvent event) {
         iniciarSesion();
@@ -48,27 +49,46 @@ public class LoginViewController {
 
         for (Cliente cliente : loginController.obtenerListaClientes()) {
             if (cliente.iniciarSesion(usuario, contrasenia)) {
-                //app.openClienteView();
+                // app.openClienteView();
+                Stage stage = (Stage) btnIngresar.getScene().getWindow();
+                stage.close();
                 break;
-            }
-        } for (Vendedor vendedor : loginController.obtenerListaVendedores()) {
-            if (vendedor.iniciarSesion(usuario, contrasenia)) {
-                //app.openVendedorView();
-                break;
-            }
-        } for (Administrador administrador : loginController.obtenerListaAdministradores()) {
-            if (administrador.iniciarSesion(usuario, contrasenia)) {
-                //app.openAdministradorView();
-                System.out.println("xd");
-                break;
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("ERROR");
+                alert.setContentText("El usuario o contraseña no son validos.");
+                alert.showAndWait();
             }
         }
-        
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(null);
-        alert.setTitle("ERROR");
-        alert.setContentText("El usuario o contraseña no son validos.");
-        alert.showAndWait();
+        for (Vendedor vendedor : loginController.obtenerListaVendedores()) {
+            if (vendedor.iniciarSesion(usuario, contrasenia)) {
+                // app.openVendedorView();
+                Stage stage = (Stage) btnIngresar.getScene().getWindow();
+                stage.close();
+                break;
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("ERROR");
+                alert.setContentText("El usuario o contraseña no son validos.");
+                alert.showAndWait();
+            }
+        }
+        for (Administrador administrador : loginController.obtenerListaAdministradores()) {
+            if (administrador.iniciarSesion(usuario, contrasenia)) {
+                app.openAdministradorView();
+                Stage stage = (Stage) btnIngresar.getScene().getWindow();
+                stage.close();
+                break;
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("ERROR");
+                alert.setContentText("El usuario o contraseña no son validos.");
+                alert.showAndWait();
+            }
+        }
     }
 
     @FXML
@@ -77,16 +97,18 @@ public class LoginViewController {
         usuarioText = txtUsuario.getText();
 
         Usuario usuario = null;
-        
+
         for (Cliente cliente : loginController.obtenerListaClientes()) {
             if (cliente.getCuenta().equals(usuarioText)) {
                 usuario = cliente;
             }
-        } for (Vendedor vendedor : loginController.obtenerListaVendedores()) {
+        }
+        for (Vendedor vendedor : loginController.obtenerListaVendedores()) {
             if (vendedor.getCuenta().equals(usuarioText)) {
                 usuario = vendedor;
             }
-        } for (Administrador administrador : loginController.obtenerListaAdministradores()) {
+        }
+        for (Administrador administrador : loginController.obtenerListaAdministradores()) {
             if (administrador.getCuenta().equals(usuarioText)) {
                 usuario = administrador;
             }
@@ -101,7 +123,7 @@ public class LoginViewController {
             alert.showAndWait();
 
         } else if (usuario == null) {
-            
+
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR");
