@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="843.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.AdministradorViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="774.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.AdministradorViewController">
    <children>
-      <SplitPane dividerPositions="0.675054704595186" layoutY="-35.0" orientation="VERTICAL" prefHeight="878.0" prefWidth="977.0">
+      <SplitPane dividerPositions="0.62905317769131" layoutX="3.0" orientation="VERTICAL" prefHeight="773.0" prefWidth="977.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="566.0" prefWidth="975.0">
                <children>
