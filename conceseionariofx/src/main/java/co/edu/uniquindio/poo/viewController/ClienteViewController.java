@@ -42,6 +42,7 @@ public class ClienteViewController {
 
     @FXML
     private TextField telefonoField;
+    
 
 
     @FXML

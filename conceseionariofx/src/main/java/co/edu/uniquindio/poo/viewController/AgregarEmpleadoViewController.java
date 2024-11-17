@@ -3,9 +3,13 @@ package co.edu.uniquindio.poo.viewController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.poo.App;
+import co.edu.uniquindio.poo.controller.AgregarEmpleadoController;
 import co.edu.uniquindio.poo.controller.LoginController;
+import co.edu.uniquindio.poo.model.Vendedor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
@@ -19,7 +23,7 @@ public class AgregarEmpleadoViewController {
     private URL location;
 
     @FXML
-    private TextField apellidoField;
+    private TextField txtApellido;
 
     @FXML
     private Button btnCancelar;
@@ -31,41 +35,82 @@ public class AgregarEmpleadoViewController {
     private Button btnLimpiarCampos;
 
     @FXML
-    private TextField cedulaField;
+    private TextField txtCedula;
 
     @FXML
-    private TextField codigoEmpleadoField;
+    private TextField txtCodigoEmpleado;
 
     @FXML
-    private TextField correoField;
+    private TextField txtCorreo;
 
     @FXML
-    private TextField direccionField;
+    private TextField txtDireccion;
 
     @FXML
-    private TextField nombreField;
+    private TextField txtNombre;
 
     @FXML
-    private TextField telefonoField;
+    private TextField txtTelefono;
 
 
     @FXML
     void cancelarAction(ActionEvent event) {
     }
 
+    
+
+    
+
+    private App app;
+    AgregarEmpleadoController agregarEmpleadoController;
+    private Vendedor empleado;
+
+
     @FXML
-    void guardarEmpleado(ActionEvent event) {
+    void initialize() {
+        agregarEmpleadoController= new AgregarEmpleadoController(app.concesionario);
+
+
     }
 
     @FXML
     void limpiarCamposAction(ActionEvent event) {
+        txtNombre.clear();
+        txtApellido.clear();
+        txtCedula.clear();
+        txtTelefono.clear();
+        txtCorreo.clear();
+        txtDireccion.clear();
+        txtCodigoEmpleado.clear();
     }
 
     @FXML
-    void initialize() {
-
-
-
+    void guardarEmpleado(ActionEvent event) {
+         agregarEmpleado();
     }
+    private void agregarEmpleado(){
+        String nombre = txtNombre.getText();
+        String apellido = txtApellido.getText();
+        String cedula= txtCedula.getText();
+        String telefono = txtTelefono.getText();
+        String correo= txtCorreo.getText();
+        String direccion = txtDireccion.getText();
+        String codigoEmpleado = txtCodigoEmpleado.getText();
 
+        if (nombre.isEmpty() || apellido.isEmpty() || cedula.isEmpty() ||
+        telefono.isEmpty() || correo.isEmpty() || direccion.isEmpty() || codigoEmpleado.isEmpty()) {
+
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
+        alerta.setTitle("Campos incompletos");
+        alerta.setHeaderText("Todos los campos son obligatorios");
+        alerta.setContentText("Por favor, rellena todos los campos antes de continuar.");
+        alerta.showAndWait();
+        }else{
+            Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, codigoEmpleado,);
+
+        }
+
+        
+    }
+    
 }
