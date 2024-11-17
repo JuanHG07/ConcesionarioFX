@@ -41,15 +41,18 @@ public class App extends Application {
 
         try {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginView.fxml"));
-            Parent root = loader.load();
+            if (loginStage == null) {
+                
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginView.fxml"));
+                Parent root = loader.load();
 
-            loginViewController = loader.getController();
-            loginViewController.setApp(this);
+                loginViewController = loader.getController();
+                loginViewController.setApp(this);
 
-            Scene scene = new Scene(root);
-            loginStage = new Stage();
-            loginStage.setScene(scene);
+                Scene scene = new Scene(root);
+                loginStage = new Stage();
+                loginStage.setScene(scene);
+            }
 
             loginStage.show();
 

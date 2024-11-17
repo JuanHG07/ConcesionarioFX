@@ -38,6 +38,40 @@ public class LoginViewController {
     }
     
     @FXML
+    void ingresarAplicacion(ActionEvent event) {
+        iniciarSesion();
+    }
+
+    private void iniciarSesion() {
+        String usuario = txtUsuario.getText();
+        String contrasenia = txtContrasenia.getText();
+
+        for (Cliente cliente : loginController.obtenerListaClientes()) {
+            if (cliente.iniciarSesion(usuario, contrasenia)) {
+                //app.openClienteView();
+                break;
+            }
+        } for (Vendedor vendedor : loginController.obtenerListaVendedores()) {
+            if (vendedor.iniciarSesion(usuario, contrasenia)) {
+                //app.openVendedorView();
+                break;
+            }
+        } for (Administrador administrador : loginController.obtenerListaAdministradores()) {
+            if (administrador.iniciarSesion(usuario, contrasenia)) {
+                //app.openAdministradorView();
+                System.out.println("xd");
+                break;
+            }
+        }
+        
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setTitle("ERROR");
+        alert.setContentText("El usuario o contraseña no son validos.");
+        alert.showAndWait();
+    }
+
+    @FXML
     void recuperarContrasenia(ActionEvent event) {
 
         usuarioText = txtUsuario.getText();
@@ -77,40 +111,6 @@ public class LoginViewController {
         } else {
             app.openRestablecerView();
         }
-    }
-
-    @FXML
-    void ingresarAplicacion(ActionEvent event) {
-        iniciarSesion();
-    }
-
-    private void iniciarSesion() {
-        String usuario = txtUsuario.getText();
-        String contrasenia = txtContrasenia.getText();
-
-        for (Cliente cliente : loginController.obtenerListaClientes()) {
-            if (cliente.iniciarSesion(usuario, contrasenia)) {
-                //app.openClienteView();
-                break;
-            }
-        } for (Vendedor vendedor : loginController.obtenerListaVendedores()) {
-            if (vendedor.iniciarSesion(usuario, contrasenia)) {
-                //app.openVendedorView();
-                break;
-            }
-        } for (Administrador administrador : loginController.obtenerListaAdministradores()) {
-            if (administrador.iniciarSesion(usuario, contrasenia)) {
-                //app.openAdministradorView();
-                System.out.println("xd");
-                break;
-            }
-        }
-        
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(null);
-        alert.setTitle("ERROR");
-        alert.setContentText("El usuario o contraseña no son validos.");
-        alert.showAndWait();
     }
 
     public String getUsuario() {

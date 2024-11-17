@@ -21,7 +21,8 @@
       <Separator layoutY="332.0" prefHeight="3.0" prefWidth="667.0" />
       <Label alignment="CENTER" layoutX="264.0" layoutY="349.0" text="NUEVA CONTRASEÑA" />
       <TextField fx:id="txtContraseniaNueva" layoutX="211.0" layoutY="379.0" prefHeight="31.0" prefWidth="246.0" />
-      <Button fx:id="btnAceptar" layoutX="301.0" layoutY="428.0" mnemonicParsing="false" onAction="#regresarLogin" text="Aceptar" />
+      <Button fx:id="btnAceptar" layoutX="228.0" layoutY="428.0" mnemonicParsing="false" onAction="#reestablecerContra" text="Aceptar" />
       <Button fx:id="btnCargar" layoutX="302.0" layoutY="158.0" mnemonicParsing="false" onAction="#cargarPregunta" text="Cargar" />
+      <Button fx:id="btnRegresar" layoutX="375.0" layoutY="428.0" mnemonicParsing="false" onAction="#regresarLogin" text="Regresar" />
    </children>
 </AnchorPane>
