@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -119,6 +120,9 @@ public class AdministradorViewController {
     private ObservableList<Vendedor> vendedores;
     private ObservableList<Transaccion> transacciones;
 
+    public boolean agregarEmpleado;
+    public boolean modificarEmpleado;
+
     Vendedor selectedVendedor;
 
     @FXML
@@ -129,6 +133,12 @@ public class AdministradorViewController {
         vendedores = FXCollections.observableArrayList();
         transacciones = FXCollections.observableArrayList();
 
+        clientes.setAll(administradorController.obtenerListaClientes());
+        vendedores.setAll(administradorController.obtenerListaVendedores());
+
+        agregarEmpleado = false;
+        modificarEmpleado = false;
+        
         carga();
     }
 
@@ -137,7 +147,7 @@ public class AdministradorViewController {
         enlaceDataVendedor();
         enlaceDataTransaccion();
 
-        cargarTablaVendedor();
+        cargarTablaVendedores();
         cargarTablaClientes();
         cargarTablaTransacciones();
 
@@ -177,20 +187,50 @@ public class AdministradorViewController {
         });
     }
 
+    private void cargarTablaVendedores() {
+        tblEmpleados.setItems(vendedores);
+    }
+
+    private void cargarTablaClientes() {
+        tblClientes.setItems(clientes);
+    }
+
+    private void cargarTablaTransacciones() {
+        tblReportes.setItems(transacciones);
+    }
+
     @FXML
     void agregarEmpleado(ActionEvent event) {
-        app.openDatosEmpleadoView();
-        vendedores = administradorController.obtenerListaVendedores();
+        agregarEmpleado = true;
+        app.openDatosEmpleadoView();  
+        vendedores.setAll(administradorController.obtenerListaVendedores());
     }
 
     @FXML
     void bloquearCuenta(ActionEvent event) {
+        Vendedor vendedor = tblEmpleados.getSelectionModel().getSelectedItem();
         
+        if (vendedor == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("Debes seleccionar a un cliente.");
+            alert.showAndWait();
+        } else {
+            administradorController.obtenerListaVendedores().remove(vendedor);
+            vendedores.remove(vendedor);
+
+            tblEmpleados.refresh();
+        }
     }
 
     @FXML
     void modificarEmpleado(ActionEvent event) {
-
+        selectedVendedor = tblEmpleados.getSelectionModel().getSelectedItem();
+        modificarEmpleado = true;
+        app.openDatosEmpleadoView();
+        tblEmpleados.refresh();
+        tblEmpleados.getSelectionModel().clearSelection();
     }
 
     @FXML
@@ -201,6 +241,10 @@ public class AdministradorViewController {
     @FXML
     void regresarLogin(ActionEvent event) {
 
+    }
+
+    public Vendedor getSelectedVendedor() {
+        return selectedVendedor;
     }
 
     public void setApp(App app) {
