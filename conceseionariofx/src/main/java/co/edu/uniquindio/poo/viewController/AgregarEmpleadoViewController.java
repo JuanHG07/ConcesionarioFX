@@ -22,7 +22,7 @@ public class AgregarEmpleadoViewController {
     private URL location;
 
     @FXML
-    private TextField txtApellido;
+    private TextField apellidoField;
 
     @FXML
     private Button btnCancelar;
@@ -34,22 +34,22 @@ public class AgregarEmpleadoViewController {
     private Button btnLimpiarCampos;
 
     @FXML
-    private TextField txtCedula;
+    private TextField cedulaField;
 
     @FXML
-    private TextField txtCodigoEmpleado;
+    private TextField codigoEmpleadoField;
 
     @FXML
-    private TextField txtCorreo;
+    private TextField correoField;
 
     @FXML
-    private TextField txtDireccion;
+    private TextField direccionField;
 
     @FXML
-    private TextField txtNombre;
+    private TextField nombreField;
 
     @FXML
-    private TextField txtTelefono;
+    private TextField telefonoField;
 
     private App app;
     AgregarEmpleadoController agregarEmpleadoController;
@@ -67,13 +67,13 @@ public class AgregarEmpleadoViewController {
     }
 
     private void limpiarEspacios() {
-        txtNombre.clear();
-        txtApellido.clear();
-        txtCedula.clear();
-        txtTelefono.clear();
-        txtCorreo.clear();
-        txtDireccion.clear();
-        txtCodigoEmpleado.clear();
+        nombreField.clear();
+        apellidoField.clear();
+        cedulaField.clear();
+        telefonoField.clear();
+        correoField.clear();
+        direccionField.clear();
+        codigoEmpleadoField.clear();
     }
 
     @FXML
@@ -82,13 +82,13 @@ public class AgregarEmpleadoViewController {
     }
 
     private void agregarEmpleado() {
-        String nombre = txtNombre.getText();
-        String apellido = txtApellido.getText();
-        String cedula = txtCedula.getText();
-        String telefono = txtTelefono.getText();
-        String correo = txtCorreo.getText();
-        String direccion = txtDireccion.getText();
-        String codigoEmpleado = txtCodigoEmpleado.getText();
+        String nombre = nombreField.getText();
+        String apellido = apellidoField.getText();
+        String cedula = cedulaField.getText();
+        String telefono = telefonoField.getText();
+        String correo = correoField.getText();
+        String direccion = direccionField.getText();
+        String codigoEmpleado = codigoEmpleadoField.getText();
 
         if (nombre.isEmpty() || apellido.isEmpty() || cedula.isEmpty() ||
                 telefono.isEmpty() || correo.isEmpty() || direccion.isEmpty() || codigoEmpleado.isEmpty()) {
