@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import co.edu.uniquindio.poo.model.Concesionario;
 import co.edu.uniquindio.poo.viewController.AdministradorViewController;
-import co.edu.uniquindio.poo.viewController.AgregarEmpleadoViewController;
+import co.edu.uniquindio.poo.viewController.DatosEmpleadoViewController;
 import co.edu.uniquindio.poo.viewController.LoginViewController;
 import co.edu.uniquindio.poo.viewController.RestablecerViewController;
 
@@ -28,7 +28,7 @@ public class App extends Application {
     LoginViewController loginViewController;
     RestablecerViewController restablecerViewController;
     AdministradorViewController administradorViewController;
-    AgregarEmpleadoViewController agregarEmpleadoViewController;
+    DatosEmpleadoViewController agregarEmpleadoViewController;
 
 
     public static Concesionario concesionario = new Concesionario("TU CARRO UQ");
@@ -108,7 +108,7 @@ public class App extends Application {
         }
     }
 
-    public void openAgregarEmpleadoView() {
+    public void openDatosEmpleadoView() {
 
         try {
 

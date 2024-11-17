@@ -170,7 +170,7 @@ public class AdministradorViewController {
 
     @FXML
     void agregarEmpleado(ActionEvent event) {
-        app.openAgregarEmpleadoView();
+        app.openDatosEmpleadoView();
     }
 
     @FXML
