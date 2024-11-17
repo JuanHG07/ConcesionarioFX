@@ -13,7 +13,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-
 public class AgregarEmpleadoViewController {
 
     @FXML
@@ -52,33 +51,34 @@ public class AgregarEmpleadoViewController {
     @FXML
     private TextField txtTelefono;
 
-
-    @FXML
-    void cancelarAction(ActionEvent event) {
-    }
-
-    
-
-    
+   
 
     private App app;
     AgregarEmpleadoController agregarEmpleadoController;
     private Vendedor empleado;
 
+    private void setApp(App app) {
+        this.app = app;
+    }
 
-    private void setApp(App app){
-        this.app=app ;
+    @FXML
+    void cancelarAction(ActionEvent event) {
+        app.openAdministradorView;
     }
 
     @FXML
     void initialize() {
-        agregarEmpleadoController= new AgregarEmpleadoController(app.concesionario);
-
+        agregarEmpleadoController = new AgregarEmpleadoController(app.concesionario);
+        limpiarEspacios();
 
     }
 
     @FXML
     void limpiarCamposAction(ActionEvent event) {
+        limpiarEspacios();
+    }
+
+    private void limpiarEspacios(){
         txtNombre.clear();
         txtApellido.clear();
         txtCedula.clear();
@@ -90,8 +90,9 @@ public class AgregarEmpleadoViewController {
 
     @FXML
     void guardarEmpleado(ActionEvent event) {
-         agregarEmpleado();
+        agregarEmpleado();
     }
+
     private void agregarEmpleado(){
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
@@ -110,11 +111,26 @@ public class AgregarEmpleadoViewController {
         alerta.setContentText("Por favor, rellena todos los campos antes de continuar.");
         alerta.showAndWait();
         }else{
-            Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, codigoEmpleado, );
-
-        }
-
+            Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, codigoEmpleado, null, null, null, codigoEmpleado );
+            if (agregarEmpleadoController.recuperarVendedor(codigoEmpleado)!=null){
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Usuario invalido");
+                alerta.setHeaderText("");
+                alerta.setContentText("El vendedor ya existe");
+                alerta.showAndWait();
+            }else{
+        
+                agregarEmpleadoController.agregarVendedor(aux);
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("Usuario creado");
+                alerta.setHeaderText("");
+                alerta.setContentText("El vendedor se ha creado con exito");
+                alerta.showAndWait();
+            }
+        
+            
         
     }
     
+}
 }
