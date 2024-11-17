@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import co.edu.uniquindio.poo.model.Concesionario;
+import co.edu.uniquindio.poo.viewController.AdministradorViewController;
+import co.edu.uniquindio.poo.viewController.AgregarEmpleadoViewController;
 import co.edu.uniquindio.poo.viewController.LoginViewController;
 import co.edu.uniquindio.poo.viewController.RestablecerViewController;
 
@@ -20,9 +22,14 @@ public class App extends Application {
 
     private Stage loginStage;
     private Stage restablecerStage;
+    private Stage administradorStage;
+    private Stage agregarEmpladoStage;
 
     LoginViewController loginViewController;
     RestablecerViewController restablecerViewController;
+    AdministradorViewController administradorViewController;
+    AgregarEmpleadoViewController agregarEmpleadoViewController;
+
 
     public static Concesionario concesionario = new Concesionario("TU CARRO UQ");
 
@@ -72,6 +79,48 @@ public class App extends Application {
             restablecerStage = new Stage();
             restablecerStage.initModality(Modality.WINDOW_MODAL);
             restablecerStage.setScene(scene);
+
+            restablecerStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openAdministradorView() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdministradorView.fxml"));
+            Parent root = loader.load();
+
+            administradorViewController = loader.getController();
+            administradorViewController.setApp(this);
+
+            Scene scene = new Scene(root);
+            administradorStage = new Stage();
+            administradorStage.setScene(scene);
+
+            administradorStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openAgregarEmpleadoView() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AgregarEmpleadoView.fxml"));
+            Parent root = loader.load();
+
+            agregarEmpleadoViewController = loader.getController();
+
+            Scene scene = new Scene(root);
+            agregarEmpladoStage = new Stage();
+            agregarEmpladoStage.initModality(Modality.WINDOW_MODAL);
+            agregarEmpladoStage.setScene(scene);
 
             restablecerStage.showAndWait();
 

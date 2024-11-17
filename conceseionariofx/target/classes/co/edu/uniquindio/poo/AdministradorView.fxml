@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.AdministradorViewController">
+   <children>
+      <SplitPane dividerPositions="0.7110091743119266" layoutY="-70.0" orientation="VERTICAL" prefHeight="874.0" prefWidth="899.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="413.0" prefWidth="897.0">
+               <children>
+                  <Label layoutX="234.0" layoutY="14.0" text="Tu Carro UQ-Administrador" textAlignment="CENTER" textFill="#138111">
+                     <font>
+                        <Font name="Berlin Sans FB" size="36.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnAgregarE" layoutX="158.0" layoutY="331.0" mnemonicParsing="false" onAction="#agregarEmpleado" prefHeight="31.0" prefWidth="153.0" text="Agregar Empleado" />
+                  <Button fx:id="btnBloquearE" layoutX="576.0" layoutY="331.0" mnemonicParsing="false" onAction="#bloquearCuenta" prefHeight="31.0" prefWidth="153.0" text="Bloquear Cuenta" />
+                  <TableView fx:id="tblClientes" layoutX="23.0" layoutY="426.0" prefHeight="176.0" prefWidth="856.0">
+                    <columns>
+                        <TableColumn fx:id="clmCedulaC" prefWidth="105.0" text="Cédula" />
+                      <TableColumn fx:id="clmNombreC" prefWidth="114.0" text="Nombre" />
+                      <TableColumn fx:id="clmApellidoC" prefWidth="112.0" text="Apellido" />
+                        <TableColumn fx:id="clmTelefonoC" prefWidth="117.0" text="Teléfono" />
+                        <TableColumn fx:id="clmCorreoC" prefWidth="135.0" text="Correo" />
+                        <TableColumn fx:id="clmDireccionC" prefWidth="147.0" text="Dirección" />
+                        <TableColumn fx:id="clmCuentaC" prefWidth="125.0" text="Cuenta" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="350.0" layoutY="377.0" text="Tabla Clientes" textAlignment="CENTER" textFill="#138111">
+                     <font>
+                        <Font name="Berlin Sans FB" size="34.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="-6.0" layoutY="363.0" prefHeight="23.0" prefWidth="909.0" />
+                  <Separator layoutX="-12.0" layoutY="55.0" prefHeight="15.0" prefWidth="909.0" />
+                  <Label layoutX="320.0" layoutY="70.0" text="Tabla Empleados" textAlignment="CENTER" textFill="#138111">
+                     <font>
+                        <Font name="Berlin Sans FB" size="34.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="tblEmpleados" layoutX="23.0" layoutY="115.0" prefHeight="203.0" prefWidth="856.0">
+                     <columns>
+                        <TableColumn fx:id="clmCedulaE" prefWidth="105.0" text="Cédula" />
+                        <TableColumn fx:id="clmNombreE" prefWidth="114.0" text="Nombre" />
+                        <TableColumn fx:id="clmApellidoE" prefWidth="112.0" text="Apellido" />
+                        <TableColumn fx:id="clmTelefonoE" prefWidth="117.0" text="Teléfono" />
+                        <TableColumn fx:id="clmCorreoE" prefWidth="135.0" text="Correo" />
+                        <TableColumn fx:id="clmDireccionE" prefWidth="147.0" text="Dirección" />
+                        <TableColumn fx:id="clmCuentaE" prefWidth="125.0" text="Cuenta" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="btnModificarE" layoutX="366.0" layoutY="331.0" mnemonicParsing="false" onAction="#modificarEmpleado" text="Modificar Empleado" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="524.0" prefWidth="897.0">
+               <children>
+                  <TableView fx:id="tblReportes" layoutX="352.0" layoutY="58.0" prefHeight="164.0" prefWidth="519.0">
+                     <columns>
+                        <TableColumn fx:id="clmCodigoReportes" minWidth="4.79998779296875" prefWidth="155.19992065429688" text="Código" />
+                        <TableColumn fx:id="clmFechaReportes" prefWidth="188.79998970031738" text="Fecha" />
+                        <TableColumn fx:id="clmPrecioTotalReportes" minWidth="0.0" prefWidth="173.6000518798828" text="Precio Total" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="498.0" layoutY="14.0" text="Tabla Reportes" textAlignment="CENTER" textFill="#138111">
+                     <font>
+                        <Font name="Berlin Sans FB" size="34.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="163.0" layoutY="47.0" text="Reportes">
+                     <font>
+                        <Font name="Bauhaus 93" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblFceha1" layoutX="35.0" layoutY="94.0" text="Fecha 1">
+                     <font>
+                        <Font name="Bauhaus 93" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblFecha2" layoutX="35.0" layoutY="139.0" prefHeight="0.0" prefWidth="46.0" text="Fecha 2">
+                     <font>
+                        <Font name="Bauhaus 93" size="13.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="date1" layoutX="107.0" layoutY="86.0" promptText="Ingrese fecha inicial" />
+                  <DatePicker fx:id="date2" layoutX="107.0" layoutY="131.0" promptText="Ingrese fecha final" />
+                  <Button fx:id="btnVerReportes" layoutX="147.0" layoutY="176.0" mnemonicParsing="false" onAction="#verReportesAction" text="Ver Reportes" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
