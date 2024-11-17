@@ -69,59 +69,64 @@ public class RestablecerViewController {
 
     @FXML
     void confirmarRespuesta(ActionEvent event) {
-        verificarRespuesta();
+        if (verificarRespuestaCliente()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("INFO.");
+            alert.setContentText("La respuesta es correcta. Puede ingresar la nueva contraseña.");
+            alert.showAndWait();
+        } else if (verificarRespuestaVendedor()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("INFO.");
+            alert.setContentText("La respuesta es correcta. Puede ingresar la nueva contraseña.");
+            alert.showAndWait();
+        } else if (verificarRespuestaAdministrador()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("INFO.");
+            alert.setContentText("La respuesta es correcta. Puede ingresar la nueva contraseña.");
+            alert.showAndWait();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("INFO.");
+            alert.setContentText("La respuesta es incorrecta.");
+            alert.showAndWait();
+        }
     }
 
-    private boolean verificarRespuesta() {
+    private boolean verificarRespuestaCliente() {
         String respuesta = txtRespuesta.getText();
         boolean centinela = false;
 
         for (Cliente cliente : restablecerController.obtenerListaClientes()) {
             if (cliente.getRespuestaRecuperacion().equals(respuesta)) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("INFO.");
-                alert.setContentText("La respuesta es correcta. Puede ingresar la nueva contraseña.");
-                alert.showAndWait();
                 centinela = true;
-            } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("INFO.");
-                alert.setContentText("La respuesta es incorrecta.");
-                alert.showAndWait();
             }
         }
+        return centinela;
+    }
+
+    private boolean verificarRespuestaVendedor() {
+        String respuesta = txtRespuesta.getText();
+        boolean centinela = false;
+
         for (Vendedor vendedor : restablecerController.obtenerListaVendedores()) {
             if (vendedor.getRespuestaRecuperacion().equals(respuesta)) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("INFO.");
-                alert.setContentText("La respuesta es correcta. Puede ingresar la nueva contraseña.");
-                alert.showAndWait();
                 centinela = true;
-            } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("INFO.");
-                alert.setContentText("La respuesta es incorrecta.");
-                alert.showAndWait();
             }
         }
+        return centinela;
+    }
+
+    private boolean verificarRespuestaAdministrador() {
+        String respuesta = txtRespuesta.getText();
+        boolean centinela = false;
+
         for (Administrador administrador : restablecerController.obtenerListaAdministradores()) {
             if (administrador.getRespuestaRecuperacion().equals(respuesta)) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("INFO.");
-                alert.setContentText("La respuesta es correcta. Puede ingresar la nueva contraseña.");
-                alert.showAndWait();
                 centinela = true;
-            } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("INFO.");
-                alert.setContentText("La respuesta es incorrecta.");
-                alert.showAndWait();
             }
         }
         return centinela;
@@ -133,28 +138,37 @@ public class RestablecerViewController {
         String usuario = app.getLoginViewController().getUsuario();
         String contraseniaNueva = txtContraseniaNueva.getText();
 
-        if (verificarRespuesta()) {
-            for (Cliente cliente : restablecerController.obtenerListaClientes()) {
-                if (cliente.getRespuestaRecuperacion().equals(usuario)) {
-                    cliente.reestablecerContrasenia(contraseniaNueva);
-                }
-            }
-            for (Vendedor vendedor : restablecerController.obtenerListaVendedores()) {
-                if (vendedor.getRespuestaRecuperacion().equals(usuario)) {
-                    vendedor.reestablecerContrasenia(contraseniaNueva);
-                }
-            }
-            for (Administrador administrador : restablecerController.obtenerListaAdministradores()) {
-                if (administrador.getRespuestaRecuperacion().equals(usuario)) {
-                    administrador.reestablecerContrasenia(contraseniaNueva);
-                }
-            }
-        } else {
+        if (contraseniaNueva.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("ERROR.");
-            alert.setContentText("Verifica la respuesta.");
+            alert.setContentText("Debes rellenar el espacio.");
             alert.showAndWait();
+        } else {
+            if (verificarRespuestaCliente()) {
+                for (Cliente cliente : restablecerController.obtenerListaClientes()) {
+                    if (cliente.getRespuestaRecuperacion().equals(usuario)) {
+                    }
+                }
+            } else if (verificarRespuestaVendedor()) {
+                for (Vendedor vendedor : restablecerController.obtenerListaVendedores()) {
+                    if (vendedor.getRespuestaRecuperacion().equals(usuario)) {
+                        vendedor.reestablecerContrasenia(contraseniaNueva);
+                    }
+                }
+            } else if (verificarRespuestaAdministrador()) {
+                for (Administrador administrador : restablecerController.obtenerListaAdministradores()) {
+                    if (administrador.getRespuestaRecuperacion().equals(usuario)) {
+                        administrador.reestablecerContrasenia(contraseniaNueva);
+                    }
+                }
+            } else if (verificarRespuestaCliente() & verificarRespuestaVendedor() & verificarRespuestaAdministrador()){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("ERROR.");
+                alert.setContentText("Verifica la respuesta.");
+                alert.showAndWait();
+            }
         }
     }
 
