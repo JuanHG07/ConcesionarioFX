@@ -15,9 +15,9 @@
     <Font name="System Italic" size="20.0" />
   </font>
 </Label>
-<TextField fx:id="txtContrasenia" layoutX="106.0" layoutY="206.0" prefWidth="200.0" text="Contraseña" />
+<TextField fx:id="txtContrasenia" layoutX="106.0" layoutY="206.0" prefWidth="200.0" />
 <Label layoutX="158.0" layoutY="177.0" text="CONTRASEÑA" />
-<TextField id="textfiekdusuario" fx:id="txtUsuario" layoutX="104.0" layoutY="126.0" prefWidth="200.0" text="Usuario" />
+<TextField id="textfiekdusuario" fx:id="txtUsuario" layoutX="104.0" layoutY="126.0" prefWidth="200.0" />
       <Label layoutX="172.0" layoutY="95.0" text="USUARIO" />
       <Label layoutX="111.0" layoutY="31.0" text="TU CARRO UQ" textFill="#02941d">
          <font>
