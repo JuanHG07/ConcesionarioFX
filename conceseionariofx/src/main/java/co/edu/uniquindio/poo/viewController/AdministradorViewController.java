@@ -137,7 +137,7 @@ public class AdministradorViewController {
         enlaceDataVendedor();
         enlaceDataTransaccion();
 
-        cargarTablaVendedor();
+        cargarTablaVendedores();
         cargarTablaClientes();
         cargarTablaTransacciones();
 
