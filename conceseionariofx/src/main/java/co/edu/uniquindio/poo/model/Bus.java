@@ -31,10 +31,10 @@ public class Bus extends VehiculoEstandar {
      */
     public Bus(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax, double cilindraje,
             int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, Combustion combustion,
-            Transmision transmision, boolean aireAcondicionado, boolean abs, boolean aireAcondicionado2,
+            Transmision transmision, boolean aireAcondicionado, boolean abs,
             double capacidadMaletero, int numeroEjes, int numeroSalidasEmergencia) {
         super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas,
-                numeroBolsasAire, combustion, transmision, aireAcondicionado, abs, aireAcondicionado2,
+                numeroBolsasAire, combustion, transmision, aireAcondicionado, abs,
                 capacidadMaletero);
         this.numeroEjes = numeroEjes;
         this.numeroSalidasEmergencia = numeroSalidasEmergencia;

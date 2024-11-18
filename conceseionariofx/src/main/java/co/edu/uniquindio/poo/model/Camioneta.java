@@ -37,22 +37,13 @@ public class Camioneta extends VehiculoEquipado {
      *                                  tráfico cruzado
      * @param asitentePermanenciaCarril indica si el vehículo tiene asistente de
      *                                  permanencia en carril
-     * @param  traccion  
-     *                 indica si el vehículo tiene tracción en las
+     * @param traccion
+     *                                  indica si el vehículo tiene tracción en las
      *                                  4 ruedas
      */
-    public Camioneta(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax,
-            double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire,
-            Combustion combustion, Transmision transmision, boolean aireAcondicionado, boolean abs,
-            boolean aireAcondicionado2, double capacidadMaletero, boolean camaraReversa, double capacidadMaletero2,
-            int numeroBolsasAire2, boolean sensorColicion, boolean sensorTraficoCruzado,
-            boolean asitentePermanenciaCarril, boolean traccion) {
-        super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas,
-                numeroBolsasAire, combustion, transmision, aireAcondicionado, abs, aireAcondicionado2,
-                capacidadMaletero, camaraReversa, capacidadMaletero2, numeroBolsasAire2, sensorColicion,
-                sensorTraficoCruzado, asitentePermanenciaCarril);
-        this.traccion = traccion;
-    }
+
+
+    
 
     /**
      * Método para obtener si la camioneta tiene tracción en las 4 ruedas.
@@ -62,6 +53,17 @@ public class Camioneta extends VehiculoEquipado {
      */
     public boolean getTraccion() {
         return traccion;
+    }
+
+    public Camioneta(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax,
+            double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, Combustion combustion,
+            Transmision transmision, boolean aireAcondicionado, boolean abs, double capacidadMaletero,
+            boolean camaraReversa, boolean sensorColicion, boolean sensorTraficoCruzado,
+            boolean asitentePermanenciaCarril, boolean traccion) {
+        super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas,
+                numeroBolsasAire, combustion, transmision, aireAcondicionado, abs, capacidadMaletero, camaraReversa,
+                sensorColicion, sensorTraficoCruzado, asitentePermanenciaCarril);
+        this.traccion = traccion;
     }
 
     /**
