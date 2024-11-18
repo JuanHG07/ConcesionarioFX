@@ -357,7 +357,7 @@ public class ClienteViewController {
     void venderVehiculo(ActionEvent event) {
         Stage stage = (Stage) btnVender.getScene().getWindow();
         stage.close();
-        //app.openVentaClienteView();
+        app.openVentaClienteView();
     }
 
     @FXML

@@ -154,7 +154,7 @@ public class App extends Application {
             clienteStage = new Stage();
             clienteStage.setScene(scene);
 
-            datosClienteStage.show();
+            clienteStage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -176,7 +176,7 @@ public class App extends Application {
             ventaClienteStage.initModality(Modality.WINDOW_MODAL);
             ventaClienteStage.setScene(scene);
 
-            datosClienteStage.showAndWait();
+            ventaClienteStage.showAndWait();
 
         } catch (IOException e) {
             e.printStackTrace();
