@@ -137,6 +137,9 @@ public class AdministradorViewController {
         vendedores = FXCollections.observableArrayList();
         transacciones = FXCollections.observableArrayList();
 
+        clientes.addAll(administradorController.obtenerListaClientes());
+        vendedores.addAll(administradorController.obtenerListaVendedores());
+
         agregarEmpleado = false;
         modificarEmpleado = false;
 
@@ -150,7 +153,6 @@ public class AdministradorViewController {
 
         cargarTablaVendedores();
         cargarTablaClientes();
-        cargarTablaTransacciones();
 
         seleccionarVendedor();
 
@@ -190,10 +192,6 @@ public class AdministradorViewController {
 
     private void cargarTablaClientes() {
         tblClientes.setItems(clientes);
-    }
-
-    private void cargarTablaTransacciones() {
-        tblReportes.setItems(transacciones);
     }
 
     private void seleccionarVendedor() {

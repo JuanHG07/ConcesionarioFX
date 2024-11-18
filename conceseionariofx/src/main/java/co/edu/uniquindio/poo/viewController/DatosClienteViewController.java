@@ -65,7 +65,9 @@ public class DatosClienteViewController {
     }
 
     private App app;
-    DatosClienteController datosClienteController = new DatosClienteController(app.concesionario);
+
+    DatosClienteController datosClienteController;
+    
     private Cliente cliente;
 
     @FXML
