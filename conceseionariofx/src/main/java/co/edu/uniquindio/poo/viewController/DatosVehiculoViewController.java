@@ -13,6 +13,7 @@ import co.edu.uniquindio.poo.controller.DatosVehiculoController;
 import co.edu.uniquindio.poo.controller.LoginController;
 import co.edu.uniquindio.poo.model.Bus;
 import co.edu.uniquindio.poo.model.Camion;
+import co.edu.uniquindio.poo.model.Camioneta;
 import co.edu.uniquindio.poo.model.Combustion;
 import co.edu.uniquindio.poo.model.Deportivo;
 import co.edu.uniquindio.poo.model.Moto;
@@ -358,6 +359,7 @@ public class DatosVehiculoViewController {
         agruparTipoCombustionBtn();
         agruparTipoTransmisionBtn();
         agruparTipoCamionBtn();
+
     }
 
     private void agruparTipoCamionBtn() {
@@ -524,8 +526,8 @@ public class DatosVehiculoViewController {
                             "Numero Salidas de Emergencia");
                     int numEjes = ingresarEntero(txtNumeroEjesBus, "Número de Ejes");
                     auxVehiculo = new Bus(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numPasajeros,
-                            numBolsaAire, numBolsaAire, combustion,
-                            transmision, aireAcondicionado, abs, capacidadMaletero, numEjes, numeroSalidasEmergencia);
+                            numPuertas, numBolsaAire, combustion, transmision, aireAcondicionado, abs,
+                            velocidadCruceroBus, capacidadMaletero, numEjes, numeroSalidasEmergencia);
 
                 } else if (radioVan.isSelected()) {
 
@@ -571,9 +573,9 @@ public class DatosVehiculoViewController {
                     int numBolsaAire = ingresarEntero(txtNumeroBolsasAireSedan, "Numero de Bolsas de Aire");
                     boolean aireAcondicionado = ingresarBooleano(txtAireAcondicionadoSedan, "Aire Acondicionado");
                     boolean abs = ingresarBooleano(txtAbsSedan, "ABS");
-                    boolean velocidadCruceroBus = ingresarBooleano(txtVelocidadCruceroSedan, "Velocidad Crucero");
+                    boolean velocidadCrucero = ingresarBooleano(txtVelocidadCruceroSedan, "Velocidad Crucero");
                     double capacidadMaletero = ingresarDouble(txtCapacidadMaleteroSedan, "Capacidad Maletero");
-                    boolean camaraReversaVan = ingresarBooleano(txtCamaraReversaSedan, "Camara de Reversa");
+                    boolean camaraReversa = ingresarBooleano(txtCamaraReversaSedan, "Camara de Reversa");
                     boolean sensorColicion = ingresarBooleano(txtSensorColisionSedan, "Sensor de Colicion");
                     boolean sensorTraficoCruzado = ingresarBooleano(txtSensorTraficoCruzadoSedan,
                             "Sensor de Trafico Cruzado");
@@ -582,31 +584,30 @@ public class DatosVehiculoViewController {
                     boolean espejosElectricos = ingresarBooleano(txtEspejosElectricosSedan, "Espejos Electricos");
 
                     auxVehiculo = new Sedan(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numPasajeros,
-                            numPuertas, numBolsaAire, combustion, transmision, aireAcondicionado, abs,
-                            capacidadMaletero, camaraReversaVan, sensorColicion, sensorTraficoCruzado,
+                            numPuertas, numBolsaAire, combustion, transmision, aireAcondicionado, abs, velocidadCrucero,
+                            capacidadMaletero, camaraReversa, sensorColicion, sensorTraficoCruzado,
                             asistentePermanenciaCarril, espejosElectricos);
 
                 } else if (radioCamioneta.isSelected()) {
 
                     int numPasajeros = ingresarEntero(txtNumeroPasajerosCamioneta, "Número de Pasajeros");
                     int numPuertas = ingresarEntero(txtNumeroPuertasCamioneta, "Numero de Puertas");
-                    int numBolsaAire = ingresarEntero(txtNumeroBolsasAireCamioneta, "Numero de Bolsas de Aire");
+                    int numBolsasAire = ingresarEntero(txtNumeroBolsasAireCamioneta, "Numero de Bolsas de Aire");
                     boolean aireAcondicionado = ingresarBooleano(txtAireAcondicionadoCamioneta, "Aire Acondicionado");
                     boolean abs = ingresarBooleano(txtAbsCamioneta, "ABS");
-                    boolean velocidadCruceroBus = ingresarBooleano(txtVelocidadCruceroCamioneta, "Velocidad Crucero");
+                    boolean velocidadCrucero = ingresarBooleano(txtVelocidadCruceroCamioneta, "Velocidad Crucero");
                     double capacidadMaletero = ingresarDouble(txtCapacidadMaleteroCamioneta, "Capacidad Maletero");
-                    boolean camaraReversaVan = ingresarBooleano(txtCamaraReversaCamioneta, "Camara de Reversa");
-                    boolean sensorColicion = ingresarBooleano(txtSensorColisionCamioneta, "Sensor de Colicion");
+                    boolean camaraReversa = ingresarBooleano(txtCamaraReversaCamioneta, "Camara de Reversa");
+                    boolean sensorColision = ingresarBooleano(txtSensorColisionCamioneta, "Sensor de Colicion");
                     boolean sensorTraficoCruzado = ingresarBooleano(txtSensorTraficoCruzadoCamioneta,
                             "Sensor de Trafico Cruzado");
                     boolean asistentePermanenciaCarril = ingresarBooleano(txtAsistentePermanenciaCarrilCamioneta,
                             "Asistente de Permanencia en el Carril");
                     boolean traccion = ingresarBooleano(txtTraccionCamioneta, "Tracción");
 
-                    auxVehiculo = new Sedan(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numPasajeros,
-                            numPuertas, numBolsaAire, combustion, transmision, aireAcondicionado, abs,
-                            capacidadMaletero, camaraReversaVan, sensorColicion, sensorTraficoCruzado,
-                            asistentePermanenciaCarril, traccion);
+                    auxVehiculo = new Camioneta (codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numPasajeros, numPuertas,
+                    numBolsasAire, combustion, transmision, aireAcondicionado, abs, velocidadCrucero, capacidadMaletero,
+                    camaraReversa, sensorColision, sensorTraficoCruzado, asistentePermanenciaCarril, traccion);
 
                 } else if (radioElectrico.isSelected()) {
                     double autonomia = ingresarDouble(txtAutonomiaElectrico, "Autonomía");
@@ -734,6 +735,10 @@ public class DatosVehiculoViewController {
     @FXML
     void btnBuscarAction(ActionEvent event) {
 
+    }
+
+    public void setApp(App app) {
+        this.app = app;
     }
 
     @FXML
