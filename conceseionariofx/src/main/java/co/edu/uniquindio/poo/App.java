@@ -13,6 +13,7 @@ import co.edu.uniquindio.poo.model.Concesionario;
 import co.edu.uniquindio.poo.viewController.AdministradorViewController;
 import co.edu.uniquindio.poo.viewController.DatosClienteViewController;
 import co.edu.uniquindio.poo.viewController.DatosEmpleadoViewController;
+import co.edu.uniquindio.poo.viewController.EmpleadoViewController;
 import co.edu.uniquindio.poo.viewController.LoginViewController;
 import co.edu.uniquindio.poo.viewController.RestablecerViewController;
 
@@ -24,12 +25,14 @@ public class App extends Application {
     private Stage loginStage;
     private Stage restablecerStage;
     private Stage administradorStage;
+    private Stage empleadoStage;
     private Stage datosEmpleadoStage;
     private Stage datosClienteStage;
 
     LoginViewController loginViewController;
     RestablecerViewController restablecerViewController;
     AdministradorViewController administradorViewController;
+    EmpleadoViewController empleadoViewController;
     DatosEmpleadoViewController datosEmpleadoViewController;
     DatosClienteViewController datosClienteViewController;
 
@@ -110,6 +113,27 @@ public class App extends Application {
         }
     }
 
+    public void openEmpleadoView() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EmpleadoView.fxml"));
+            Parent root = loader.load();
+
+            empleadoViewController = loader.getController();
+            empleadoViewController.setApp(this);
+
+            Scene scene = new Scene(root);
+            empleadoStage = new Stage();
+            empleadoStage.setScene(scene);
+
+            empleadoStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void openDatosEmpleadoView() {
 
         try {
@@ -172,6 +196,10 @@ public class App extends Application {
 
     public DatosClienteViewController getDatosClienteViewController() {
         return datosClienteViewController;
+    }
+
+    public EmpleadoViewController getEmpleadoViewController() {
+        return empleadoViewController;
     }
 
 }

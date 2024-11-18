@@ -19,6 +19,12 @@ public class DatosClienteViewController {
     private TextField respuestaRecuperacionField;
 
     @FXML
+    private Button btnLimpiar;
+
+    @FXML
+    private Button btnCargar;
+
+    @FXML
     private TextField preguntaRecuperacionField;
 
     @FXML
@@ -34,6 +40,9 @@ public class DatosClienteViewController {
     private TextField cedulaField;
 
     @FXML
+    private Button btnGuadar;
+
+    @FXML
     private TextField telefonoField;
 
     @FXML
@@ -43,61 +52,28 @@ public class DatosClienteViewController {
     private TextField correoField;
 
     @FXML
+    private Button btnCancelar;
+
+    @FXML
     private PasswordField contrasenaField;
-
-    @FXML
-    private Button btnGuardarCliente;
-
-    @FXML
-    private Button btnCancelarAction;
-
-    @FXML
-    private Button btnLimpiarCampos;
-
-    @FXML
-    void limpiarCamposAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void cancelar(ActionEvent event) {
-
-    }
 
     private App app;
 
     DatosClienteController datosClienteController;
-    
-    private Cliente cliente;
 
     @FXML
-
     void initialize() {
         datosClienteController = new DatosClienteController(app.concesionario);
         limpiarEspacios();
     }
 
     @FXML
-    void limpiarCampos(ActionEvent event) {
-        limpiarEspacios();
-    }
-
-    private void limpiarEspacios() {
-        nombreField.clear();
-        apellidoField.clear();
-        cedulaField.clear();
-        telefonoField.clear();
-        correoField.clear();
-        direccionField.clear();
-        contrasenaField.clear();
-        cuentaField.clear();
-        preguntaRecuperacionField.clear();
-        respuestaRecuperacionField.clear();
-    }
-
-    @FXML
-    void guardarClienteAction(ActionEvent event) {
-        agregarCliente();
+    void guardarCliente(ActionEvent event) {
+        if (app.getEmpleadoViewController().agregarCliente) {
+            agregarCliente();
+        } else if (app.getEmpleadoViewController().modificarCliente) {
+            modificarCliente();
+        }
     }
 
     private void agregarCliente() {
@@ -143,10 +119,108 @@ public class DatosClienteViewController {
         }
     }
 
+    private void modificarCliente() {
+
+        Cliente cliente = app.getEmpleadoViewController().getSelectedCliente();
+
+        String nombre = nombreField.getText();
+        String apellido = apellidoField.getText();
+        String cedula = cedulaField.getText();
+        String telefono = telefonoField.getText();
+        String correo = correoField.getText();
+        String direccion = direccionField.getText();
+        String cuenta = cuentaField.getText();
+        contrasenaField.setEditable(false);
+        preguntaRecuperacionField.setEditable(false);
+        respuestaRecuperacionField.setEditable(false);
+
+        if (direccion.isEmpty() || cedula.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty()
+                || correo.isEmpty() || cuenta.isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("Debes rellenar los espacios.");
+            alert.showAndWait();
+
+        } else {
+
+            Cliente aux = new Cliente(nombre, apellido, cedula, telefono, correo, cuenta, contrasenaField.getText(),
+                    preguntaRecuperacionField.getText(), respuestaRecuperacionField.getText(),
+                    direccion);
+
+            if (cliente.getCedula().equals(cedula)) {
+
+                cliente.setNombre(aux.getNombre());
+                cliente.setApellido(aux.getApellido());
+                cliente.setCedula(aux.getCedula());
+                cliente.setTelefono(aux.getTelefono());
+                cliente.setCorreo(aux.getCorreo());
+                cliente.setCuenta(aux.getCuenta());
+                cliente.setDireccion(aux.getDireccion());
+
+            } else if (datosClienteController.recuperarCliente(cedula) != null) {
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("ERROR");
+                alert.setContentText("El cliente ya existe.");
+                alert.showAndWait();
+
+            } else {
+
+                cliente.setNombre(aux.getNombre());
+                cliente.setApellido(aux.getApellido());
+                cliente.setCedula(aux.getCedula());
+                cliente.setTelefono(aux.getTelefono());
+                cliente.setCorreo(aux.getCorreo());
+                cliente.setCuenta(aux.getCuenta());
+                cliente.setDireccion(aux.getDireccion());
+            }
+        }
+    }
+
     @FXML
-    void cancelarAction(ActionEvent event) {
-        //app.openVendedorView();
-        Stage stage = (Stage) btnCancelarAction.getScene().getWindow();
+    void cargarDatos(ActionEvent event) {
+        mostrarInformacionCliente(app.getEmpleadoViewController().getSelectedCliente());
+    }
+
+    private void mostrarInformacionCliente(Cliente cliente) {
+        if (cliente != null) {
+            nombreField.setText(cliente.getNombre());
+            apellidoField.setText(cliente.getApellido());
+            cedulaField.setText(cliente.getCedula());
+            telefonoField.setText(cliente.getTelefono());
+            correoField.setText(cliente.getCorreo());
+            direccionField.setText(cliente.getDireccion());
+            cuentaField.setText(cliente.getCuenta());
+            contrasenaField.setText(cliente.getContrasenia());
+            preguntaRecuperacionField.setText(cliente.getPreguntaRecuperacion());
+            respuestaRecuperacionField.setText(cliente.getRespuestaRecuperacion());
+        }
+    }
+
+    @FXML
+    void limpiarCampos(ActionEvent event) {
+        limpiarEspacios();
+    }
+
+    private void limpiarEspacios() {
+        nombreField.clear();
+        apellidoField.clear();
+        cedulaField.clear();
+        telefonoField.clear();
+        correoField.clear();
+        direccionField.clear();
+        contrasenaField.clear();
+        cuentaField.clear();
+        preguntaRecuperacionField.clear();
+        respuestaRecuperacionField.clear();
+    }
+
+    @FXML
+    void regresarEmpleado(ActionEvent event) {
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
     }
 

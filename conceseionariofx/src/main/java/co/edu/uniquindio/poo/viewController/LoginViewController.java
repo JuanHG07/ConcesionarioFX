@@ -47,36 +47,15 @@ public class LoginViewController {
         String usuario = txtUsuario.getText();
         String contrasenia = txtContrasenia.getText();
 
-        for (Cliente cliente : loginController.obtenerListaClientes()) {
-            if (cliente.iniciarSesion(usuario, contrasenia)) {
-                // app.openClienteView();
-                Stage stage = (Stage) btnIngresar.getScene().getWindow();
-                stage.close();
-                break;
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("ERROR");
-                alert.setContentText("El usuario o contraseña no son validos.");
-                alert.showAndWait();
-            }
-        }
-        for (Vendedor vendedor : loginController.obtenerListaVendedores()) {
-            if (vendedor.iniciarSesion(usuario, contrasenia)) {
-                // app.openVendedorView();
-                Stage stage = (Stage) btnIngresar.getScene().getWindow();
-                stage.close();
-                break;
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setTitle("ERROR");
-                alert.setContentText("El usuario o contraseña no son validos.");
-                alert.showAndWait();
-            }
-        }
-        Administrador administrador = loginController.obtenerAdministrador();
-        if (administrador.iniciarSesion(usuario, contrasenia)) {
+        if (verificarSesionCliente(usuario, contrasenia)) {
+            // app.openClienteView();
+            Stage stage = (Stage) btnIngresar.getScene().getWindow();
+            stage.close();
+        } else if (verificarSesionVendedor(usuario, contrasenia)) {
+            app.openEmpleadoView();
+            Stage stage = (Stage) btnIngresar.getScene().getWindow();
+            stage.close();
+        } else if (verificarSesionAdministrador(usuario, contrasenia)) {
             app.openAdministradorView();
             Stage stage = (Stage) btnIngresar.getScene().getWindow();
             stage.close();
@@ -87,6 +66,38 @@ public class LoginViewController {
             alert.setContentText("El usuario o contraseña no son validos.");
             alert.showAndWait();
         }
+    }
+
+    private boolean verificarSesionCliente(String usuario, String contrasenia) {
+        boolean centinela = false;
+        for (Cliente cliente : loginController.obtenerListaClientes()) {
+            if (cliente.iniciarSesion(usuario, contrasenia)) {
+                centinela = true;
+                break;
+            } 
+        }
+        return centinela;
+    }
+
+    private boolean verificarSesionVendedor(String usuario, String contrasenia) {
+        boolean centinela = false;
+        for (Vendedor vendedor : loginController.obtenerListaVendedores()) {
+            if (vendedor.iniciarSesion(usuario, contrasenia)) {
+                centinela = true;
+                break;
+            } 
+        }
+        return centinela;
+    }
+
+    private boolean verificarSesionAdministrador(String usuario, String contrasenia) {
+        Administrador administrador = loginController.obtenerAdministrador();
+        boolean centinela = false;
+
+        if (administrador.iniciarSesion(usuario, contrasenia)) {
+            centinela = true;
+        }
+        return centinela;
     }
 
     @FXML

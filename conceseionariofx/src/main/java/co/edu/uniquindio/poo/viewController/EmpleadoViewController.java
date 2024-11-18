@@ -192,7 +192,7 @@ public class EmpleadoViewController {
         clmFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         clmPrecioTotal.setCellValueFactory(new PropertyValueFactory<>("precioTotal"));
         clmCodigoV.setCellValueFactory(new PropertyValueFactory<>("codigoVehiculo"));
-        clmCedulaT.setCellValueFactory(new PropertyValueFactory<>("cedulaCliente"));      
+        clmCedulaT.setCellValueFactory(new PropertyValueFactory<>("cedulaCliente"));
         clmEstadoT.setCellValueFactory(new PropertyValueFactory<>("estadoTransaccion"));
     }
 
@@ -268,7 +268,7 @@ public class EmpleadoViewController {
             alert.showAndWait();
 
         } else {
-            
+
             modificarCliente = true;
             app.openDatosClienteView();
             tblClientes.refresh();
@@ -308,6 +308,18 @@ public class EmpleadoViewController {
     @FXML
     void eliminarTransaccion(ActionEvent event) {
 
+    }
+
+    public Cliente getSelectedCliente() {
+        return selectedCliente;
+    }
+
+    public Vehiculo getSelectedVehiculo() {
+        return selectedVehiculo;
+    }
+
+    public Transaccion getSelectedTransaccion() {
+        return selectedTransaccion;
     }
 
     public void setApp(App app) {

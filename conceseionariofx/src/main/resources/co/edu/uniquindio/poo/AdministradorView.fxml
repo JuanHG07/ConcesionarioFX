@@ -75,7 +75,7 @@
                               <DatePicker fx:id="date2" layoutX="150.0" layoutY="261.0" promptText="Fecha final" style="-fx-border-color: #1D8348;" />
                               <Button fx:id="btnVerReportes" layoutX="436.0" layoutY="229.0" mnemonicParsing="false" onAction="#verReportesAction" style="-fx-background-color: #58D68D; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15;" text="Ver Reportes" />
                               <Button fx:id="btnLimpiar" layoutX="587.0" layoutY="229.0" mnemonicParsing="false" onAction="#limpiarCasillas" style="-fx-background-color: #58D68D; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15;" text="Limpiar" />
-                              <Button fx:id="btnRegresar" layoutX="698.0" layoutY="229.0" mnemonicParsing="false" onAction="#regresarAction" style="-fx-background-color: #58D68D; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15;" text="Regresar" />
+                              <Button fx:id="btnRegresar" layoutX="698.0" layoutY="229.0" mnemonicParsing="false" onAction="#regresarLogin" style="-fx-background-color: #58D68D; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15;" text="Regresar" />
                            </children>
                         </AnchorPane>
                      </items>

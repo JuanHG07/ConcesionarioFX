@@ -143,11 +143,6 @@ public class DatosEmpleadoViewController {
         }
     }
 
-    @FXML
-    void cargarDatos(ActionEvent event) {
-        mostrarInformacionVendedor(app.getAdministradorViewController().getSelectedVendedor());
-    }
-
     private void modificarEmpleado() {
 
         Vendedor vendedor = app.getAdministradorViewController().getSelectedVendedor();
@@ -159,9 +154,6 @@ public class DatosEmpleadoViewController {
         String telefono = telefonoField.getText();
         String correo = correoField.getText();
         String cuenta = usuarioField.getText();
-        contrasenaField.setEditable(false);
-        preguntaRecuperacionField.setEditable(false);
-        respuestaRecuperacionField.setEditable(false);
 
         if (codigoEmpleado.isEmpty() || cedula.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty()
                 || correo.isEmpty() || cuenta.isEmpty()) {
@@ -174,7 +166,8 @@ public class DatosEmpleadoViewController {
 
         } else {
 
-            Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, cuenta, telefono, correo, cuenta,
+            Vendedor aux = new Vendedor(nombre, apellido, cedula, telefono, correo, cuenta, contrasenaField.getText(),
+                    preguntaRecuperacionField.getText(), respuestaRecuperacionField.getText(),
                     codigoEmpleado);
 
             if (vendedor.getCedula().equals(cedula) & vendedor.getCodigoEmpleado().equals(codigoEmpleado)) {
@@ -208,6 +201,14 @@ public class DatosEmpleadoViewController {
         }
     }
 
+    @FXML
+    void cargarDatos(ActionEvent event) {
+        mostrarInformacionVendedor(app.getAdministradorViewController().getSelectedVendedor());
+        contrasenaField.setEditable(false);
+        preguntaRecuperacionField.setEditable(false);
+        respuestaRecuperacionField.setEditable(false);
+    }
+
     private void mostrarInformacionVendedor(Vendedor vendedor) {
         if (vendedor != null) {
             nombreField.setText(vendedor.getNombre());
@@ -220,7 +221,7 @@ public class DatosEmpleadoViewController {
             contrasenaField.setText(vendedor.getContrasenia());
             preguntaRecuperacionField.setText(vendedor.getPreguntaRecuperacion());
             respuestaRecuperacionField.setText(vendedor.getRespuestaRecuperacion());
-        } 
+        }
     }
 
     @FXML
