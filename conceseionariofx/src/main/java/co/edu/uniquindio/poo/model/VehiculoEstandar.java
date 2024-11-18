@@ -23,16 +23,15 @@ public abstract class VehiculoEstandar extends VehiculoBasico {
      * @param estado             el estado del vehículo
      * @param aireAcondicionado  indica si el vehículo tiene aire acondicionado
      * @param abs                indica si el vehículo tiene frenos ABS
-     * @param aireAcondicionado2 otra propiedad de aire acondicionado
+
      * @param capacidadMaletero  la capacidad del maletero del vehículo
      */
     public VehiculoEstandar(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax,
             double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire,
-            Combustion combustion, Transmision transmision, boolean aireAcondicionado, boolean abs,
-            boolean aireAcondicionado2, double capacidadMaletero) {
+            Combustion combustion, Transmision transmision, boolean aireAcondicionado, boolean abs, double capacidadMaletero) {
         super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas,
                 numeroBolsasAire, combustion, transmision, aireAcondicionado, abs);
-        aireAcondicionado = aireAcondicionado2;
+       
         this.capacidadMaletero = capacidadMaletero;
     }
 

@@ -29,7 +29,6 @@ public class Sedan extends VehiculoEquipado {
      * @param capacidadMaletero         la capacidad del maletero del vehículo
      * @param camaraReversa             indica si el vehículo tiene cámara de
      *                                  reversa
-     * @param capacidadMaletero2        la capacidad del maletero adicional
      * @param numeroBolsasAire2         el número de bolsas de aire adicional
      * @param sensorColicion            indica si el vehículo tiene sensor de
      *                                  colisión
@@ -40,18 +39,7 @@ public class Sedan extends VehiculoEquipado {
      * @param espejosElectricos         indica si el vehículo tiene espejos
      *                                  eléctricos
      */
-    public Sedan(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax,
-            double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire,
-            Combustion combustion, Transmision transmision, boolean aireAcondicionado, boolean abs,
-            boolean aireAcondicionado2, double capacidadMaletero, boolean camaraReversa, double capacidadMaletero2,
-            int numeroBolsasAire2, boolean sensorColicion, boolean sensorTraficoCruzado,
-            boolean asitentePermanenciaCarril, boolean espejosElectricos) {
-        super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas,
-                numeroBolsasAire, combustion, transmision, aireAcondicionado, abs, aireAcondicionado2,
-                capacidadMaletero, camaraReversa, capacidadMaletero2, numeroBolsasAire2, sensorColicion,
-                sensorTraficoCruzado, asitentePermanenciaCarril);
-        this.espejosElectricos = espejosElectricos;
-    }
+    
 
     /**
      * Método para obtener si el vehículo tiene espejos eléctricos.
@@ -60,6 +48,17 @@ public class Sedan extends VehiculoEquipado {
      */
     public boolean getEspejosElectricos() {
         return espejosElectricos;
+    }
+
+    public Sedan(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax,
+            double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, Combustion combustion,
+            Transmision transmision, boolean aireAcondicionado, boolean abs, double capacidadMaletero,
+            boolean camaraReversa, boolean sensorColicion, boolean sensorTraficoCruzado,
+            boolean asitentePermanenciaCarril, boolean espejosElectricos) {
+        super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas,
+                numeroBolsasAire, combustion, transmision, aireAcondicionado, abs, capacidadMaletero, camaraReversa,
+                sensorColicion, sensorTraficoCruzado, asitentePermanenciaCarril);
+        this.espejosElectricos = espejosElectricos;
     }
 
     /**
