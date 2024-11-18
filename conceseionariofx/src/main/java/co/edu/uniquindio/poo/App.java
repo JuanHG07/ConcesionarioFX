@@ -239,13 +239,13 @@ public class App extends Application {
             Parent root = loader.load();
 
             datosVehiculoViewController= loader.getController();
-            datosClienteViewController.setApp(this);
+            datosVehiculoViewController.setApp(this);
 
             Scene scene = new Scene(root);
             datosVehiculo = new Stage();
             datosVehiculo.setScene(scene);
 
-            loginStage.show();
+            datosVehiculo.show();
 
         } catch (IOException e) {
             e.printStackTrace();
