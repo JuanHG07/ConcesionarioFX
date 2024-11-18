@@ -11,11 +11,13 @@ import java.io.IOException;
 
 import co.edu.uniquindio.poo.model.Concesionario;
 import co.edu.uniquindio.poo.viewController.AdministradorViewController;
+import co.edu.uniquindio.poo.viewController.ClienteViewController;
 import co.edu.uniquindio.poo.viewController.DatosClienteViewController;
 import co.edu.uniquindio.poo.viewController.DatosEmpleadoViewController;
 import co.edu.uniquindio.poo.viewController.EmpleadoViewController;
 import co.edu.uniquindio.poo.viewController.LoginViewController;
 import co.edu.uniquindio.poo.viewController.RestablecerViewController;
+import co.edu.uniquindio.poo.viewController.VentaClienteViewController;
 
 /**
  * JavaFX App
@@ -26,6 +28,8 @@ public class App extends Application {
     private Stage restablecerStage;
     private Stage administradorStage;
     private Stage empleadoStage;
+    private Stage clienteStage;
+    private Stage ventaClienteStage;
     private Stage datosEmpleadoStage;
     private Stage datosClienteStage;
 
@@ -33,6 +37,8 @@ public class App extends Application {
     RestablecerViewController restablecerViewController;
     AdministradorViewController administradorViewController;
     EmpleadoViewController empleadoViewController;
+    ClienteViewController clienteViewController;
+    VentaClienteViewController ventaClienteViewController;
     DatosEmpleadoViewController datosEmpleadoViewController;
     DatosClienteViewController datosClienteViewController;
 
@@ -128,6 +134,49 @@ public class App extends Application {
             empleadoStage.setScene(scene);
 
             empleadoStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openClienteView() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ClienteView.fxml"));
+            Parent root = loader.load();
+
+            clienteViewController = loader.getController();
+            clienteViewController.setApp(this);
+
+            Scene scene = new Scene(root);
+            clienteStage = new Stage();
+            clienteStage.setScene(scene);
+
+            datosClienteStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openVentaClienteView() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("VentaClienteView.fxml"));
+            Parent root = loader.load();
+
+            ventaClienteViewController = loader.getController();
+            ventaClienteViewController.setApp(this);
+
+            Scene scene = new Scene(root);
+            ventaClienteStage = new Stage();
+            ventaClienteStage.initModality(Modality.WINDOW_MODAL);
+            ventaClienteStage.setScene(scene);
+
+            datosClienteStage.showAndWait();
 
         } catch (IOException e) {
             e.printStackTrace();

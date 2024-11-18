@@ -51,6 +51,32 @@ public abstract class Vehiculo {
         this.transmision = transmision;
     }
 
+    public String getTipoVehiculo() {
+        String tipoVehiculo = null;
+        if (this instanceof Camion) {
+            tipoVehiculo = "Camion";
+        } if (this instanceof Moto) {
+            tipoVehiculo = "Moto";
+        } if (this instanceof VehiculoHibrido) {
+            tipoVehiculo = "Vehiculo Hibrido";
+        } if (this instanceof VehiculoElectrico) {
+            tipoVehiculo = "Vehiculo Electrico";
+        } if (this instanceof Deportivo) {
+            tipoVehiculo = "Deportivo";
+        } if (this instanceof PickUp) {
+            tipoVehiculo = "Pick Up";
+        } if (this instanceof Van) {
+            tipoVehiculo = "Van";
+        } if (this instanceof Bus) {
+            tipoVehiculo = "Bus";
+        } if (this instanceof Sedan) {
+            tipoVehiculo = "Sedan";
+        } if (this instanceof Camioneta) {
+            tipoVehiculo = "Camioneta";  
+        }
+        return tipoVehiculo;
+    }
+
     /**
      * Método para obtener el código del vehículo
      * 

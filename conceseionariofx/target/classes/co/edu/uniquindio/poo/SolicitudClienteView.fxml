@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="349.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="349.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.SolicitudClienteView">
    <children>
      
       <Rectangle fill="#004D40" height="80.0" width="700.0" />
@@ -61,12 +61,12 @@
                   <Font name="Arial" size="16.0" />
                </font>
             </Label>
-            <DatePicker prefWidth="300.0" style="-fx-border-color: #00796B; -fx-border-radius: 5; -fx-padding: 10; -fx-background-color: white;" />
+            <DatePicker fx:id="date1" prefWidth="300.0" style="-fx-border-color: #00796B; -fx-border-radius: 5; -fx-padding: 10; -fx-background-color: white;" />
    
             <HBox alignment="CENTER" spacing="50.0">
       <children>
-                  <Button prefWidth="120.0" style="-fx-background-color: #00796B; -fx-text-fill: white;" text="Aceptar" />
-                  <Button prefWidth="120.0" style="-fx-background-color: #A5D6A7; -fx-text-fill: white;" text="Regresar" />
+                  <Button fx:id="btnAceptar" onAction="#enviarTransaccion" prefWidth="120.0" style="-fx-background-color: #00796B; -fx-text-fill: white;" text="Aceptar" />
+                  <Button fx:id="btnCancelar" onAction="#cancelarAction" prefWidth="120.0" style="-fx-background-color: #A5D6A7; -fx-text-fill: white;" text="Cancelar" />
       </children>
             </HBox>
    </children>

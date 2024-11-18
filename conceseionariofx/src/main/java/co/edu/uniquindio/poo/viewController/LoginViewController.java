@@ -48,7 +48,7 @@ public class LoginViewController {
         String contrasenia = txtContrasenia.getText();
 
         if (verificarSesionCliente(usuario, contrasenia)) {
-            // app.openClienteView();
+            app.openClienteView();
             Stage stage = (Stage) btnIngresar.getScene().getWindow();
             stage.close();
         } else if (verificarSesionVendedor(usuario, contrasenia)) {
