@@ -101,7 +101,7 @@
                         <HBox alignment="CENTER" spacing="10.0">
                            <children>
                              <Button fx:id="btnConsultarTransaccion" onAction="#consultarTransaccion" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Consultar Transacción" />
-                             <Button fx:id="btnCrearTransaccion" onAction="#terminarTransaccion" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Terminar Transacción" />
+                             <Button fx:id="btnCrearTransaccion" onAction="#terminarTransaccion" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Liquidar Transacción" />
                              <Button id="btnModificarVehiculo" fx:id="btnModificarTransaccion" onAction="#eliminarTransaccion" style="-fx-background-color: #F44336; -fx-text-fill: white;" text="Eliminar Transacción" textFill="WHITE" />
                            </children>
                         </HBox>
