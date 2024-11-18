@@ -1,6 +1,7 @@
 package co.edu.uniquindio.poo.viewController;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
 
 import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.AdministradorController;
@@ -21,6 +22,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 public class AdministradorViewController {
+
+    @FXML
+    private Button btnLimpiar;
+
     @FXML
     private Button btnModificarE;
 
@@ -148,6 +153,8 @@ public class AdministradorViewController {
         cargarTablaTransacciones();
 
         seleccionarVendedor();
+
+        limpiarEspacios();
     }
 
     private void enlaceDataCliente() {
@@ -245,6 +252,31 @@ public class AdministradorViewController {
     @FXML
     void verReportesAction(ActionEvent event) {
 
+        LocalDate fechaInicio = date1.getValue();
+        LocalDate fechaFinal = date2.getValue();
+
+        if (fechaInicio == null || fechaFinal == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("Debes rellenar los espacios.");
+            alert.showAndWait();
+        } else if (fechaInicio.isAfter(fechaFinal)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("La fecha 1 debe ser anterior que la fecha 2.");
+            alert.showAndWait();
+        } else {
+            LinkedList<Vendedor> vendedoresFecha = administradorController.obtenerVendedoresFecha(fechaInicio, fechaFinal);
+
+            for (Vendedor vendedor : vendedoresFecha) {
+                for (Transaccion transaccion : vendedor.getTransacciones()) {
+                    transacciones.add(transaccion);
+                }
+                tblReportes.setItems(transacciones);
+            }
+        } 
     }
 
     @FXML
@@ -252,6 +284,16 @@ public class AdministradorViewController {
         Stage stage = (Stage) btnRegresar.getScene().getWindow();
         stage.close();
         app.openLoginView();
+    }
+
+    @FXML
+    void limpiarCasillas(ActionEvent event) {
+        limpiarEspacios();
+    }
+
+    private void limpiarEspacios() {
+        date1.setValue(null);
+        date2.setValue(null);
     }
 
     public Vendedor getSelectedVendedor() {

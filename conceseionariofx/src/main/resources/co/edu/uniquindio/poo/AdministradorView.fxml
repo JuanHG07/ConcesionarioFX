@@ -96,9 +96,10 @@
                   </Label>
                   <DatePicker fx:id="date1" layoutX="75.0" layoutY="86.0" promptText="Ingrese fecha inicial" />
                   <DatePicker fx:id="date2" layoutX="75.0" layoutY="131.0" promptText="Ingrese fecha final" />
-                  <Button fx:id="btnVerReportes" layoutX="147.0" layoutY="176.0" mnemonicParsing="false" onAction="#verReportesAction" text="Ver Reportes" />
+                  <Button fx:id="btnVerReportes" layoutX="46.0" layoutY="177.0" mnemonicParsing="false" onAction="#verReportesAction" text="Ver Reportes" />
                   <Separator layoutX="-6.0" layoutY="223.0" prefHeight="23.0" prefWidth="984.0" />
                   <Button fx:id="btnRegresar" layoutX="449.0" layoutY="241.0" mnemonicParsing="false" onAction="#regresarLogin" text="Regresar" />
+                  <Button fx:id="btnLimpiar" layoutX="184.0" layoutY="177.0" mnemonicParsing="false" onAction="#limpiarCasillas" text="Limpiar" />
                </children>
             </AnchorPane>
         </items>

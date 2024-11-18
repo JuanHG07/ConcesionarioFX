@@ -1,6 +1,8 @@
 package co.edu.uniquindio.poo.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import co.edu.uniquindio.poo.model.Cliente;
 import co.edu.uniquindio.poo.model.Concesionario;
@@ -19,5 +21,9 @@ public class AdministradorController {
 
     public ArrayList<Vendedor> obtenerListaVendedores() {
         return concesionario.getVendedores();
+    }
+
+    public LinkedList<Vendedor> obtenerVendedoresFecha(LocalDate fechaInicio, LocalDate fechaFinal) {
+        return concesionario.obtenerVendoresFecha(fechaInicio, fechaFinal);
     }
 }

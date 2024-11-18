@@ -71,6 +71,9 @@ public class Transaccion {
         this.vendedor = vendedor;
     }
 
+    public String getCodigoEmpeleado() {
+        return vendedor != null ? vendedor.getCodigoEmpleado() : null;
+    }
 
     public LinkedList<Negocio> getNegocios() {
         return negocios;
