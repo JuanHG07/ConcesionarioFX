@@ -32,6 +32,9 @@ public class ClienteViewController {
     private Label lblCambios;
 
     @FXML
+    private Label lblFrenosAire;
+
+    @FXML
     private Label lblNumeroSalidasEmergencia;
 
     @FXML
@@ -39,6 +42,9 @@ public class ClienteViewController {
 
     @FXML
     private Label lblVelocidadCrucero;
+    
+    @FXML
+    private TextField txtFrenosAire;
 
     @FXML
     private TextField txtNumeroSalidasEmergencia;
@@ -333,35 +339,35 @@ public class ClienteViewController {
                 txtNumeroBolsasAire.setText(((Bus)vehiculo).getNumeroBolsasAire() + "");
                 txtAireAcondicionado.setText(((Bus)vehiculo).isAireAcondicionado() == true ? "Si" : "No");
                 txtAbs.setText(((Bus)vehiculo).isAbs() == true ? "Si" : "No");
-                txtVelocidadCrucero.setText(((Bus)vehiculo));
+                txtVelocidadCrucero.setText(((Bus)vehiculo).isVelocidadCrucero() == true ? "Si" : "No");
                 txtCapacidadMaletero.setText(((Bus)vehiculo).getCapacidadMaletero() + "");
                 txtNumeroEjes.setText(((Bus)vehiculo).getNumeroEjes() + "");
-                //txtNumeroSalidasEmergencia FALTA
+                txtNumeroSalidasEmergencia.setText(((Bus)vehiculo).getNumeroSalidasEmergencia() + "");
             } if (vehiculo instanceof Sedan) {
                 txtNumeroPasajeros.setText(((Sedan)vehiculo).getNumeroPasajeros() + "");
                 txtNumeroPuertas.setText(((Sedan)vehiculo).getNumeroPuertas() + "");
                 txtNumeroBolsasAire.setText(((Sedan)vehiculo).getNumeroBolsasAire() + "");
                 txtAireAcondicionado.setText(((Sedan)vehiculo).isAireAcondicionado() == true ? "Si" : "No");
                 txtAbs.setText(((Sedan)vehiculo).isAbs() == true ? "Si" : "No");
-                //txtVelocidadCrucero FALTA
-                txtCamaraReversa.setText(((Sedan)vehiculo).getCamaraReversa() == true ? "Si" : "No");
+                txtVelocidadCrucero.setText(((Sedan)vehiculo).isVelocidadCrucero() == true ? "Si" : "No");
+                txtCamaraReversa.setText(((Sedan)vehiculo).isCamaraReversa() == true ? "Si" : "No");
                 txtNumeroBolsasAire.setText(((Sedan)vehiculo).getNumeroBolsasAire() + "");
-                txtSensorColision.setText(((Sedan)vehiculo).getSensorColicion() == true ? "Si" : "No");
-                txtSensorTraficoCruzado.setText(((Sedan)vehiculo).getSensorTraficoCruzado() == true ? "Si" : "No");
-                txtAsistentePermanenciaCarril.setText(((Sedan)vehiculo).getAsitentePermanenciaCarril() == true ? "Si" : "No");
-                //txtEspejosElectricos FALTA
+                txtSensorColision.setText(((Sedan)vehiculo).isSensorColision() == true ? "Si" : "No");
+                txtSensorTraficoCruzado.setText(((Sedan)vehiculo).isSensorTraficoCruzado() == true ? "Si" : "No");
+                txtAsistentePermanenciaCarril.setText(((Sedan)vehiculo).isAsistentePermanenciaCarril() == true ? "Si" : "No");
+                txtEspejosElectricos.setText(((Sedan)vehiculo).isEspejosElectricos() == true ? "Si" : "No");
             } if (vehiculo instanceof Camioneta) {
                 txtNumeroPasajeros.setText(((Camioneta)vehiculo).getNumeroPasajeros() + "");
                 txtNumeroPuertas.setText(((Camioneta)vehiculo).getNumeroPuertas() + "");
                 txtNumeroBolsasAire.setText(((Camioneta)vehiculo).getNumeroBolsasAire() + "");
                 txtAireAcondicionado.setText(((Camioneta)vehiculo).isAireAcondicionado() == true ? "Si" : "No");
                 txtAbs.setText(((Camioneta)vehiculo).isAbs() == true ? "Si" : "No");
-                //txtVelocidadCrucero FALTA
-                txtCamaraReversa.setText(((Camioneta)vehiculo).getCamaraReversa() == true ? "Si" : "No");
+                txtVelocidadCrucero.setText(((Camioneta)vehiculo).isVelocidadCrucero() == true ? "Si" : "No");
+                txtCamaraReversa.setText(((Camioneta)vehiculo).isCamaraReversa() == true ? "Si" : "No");
                 txtNumeroBolsasAire.setText(((Camioneta)vehiculo).getNumeroBolsasAire() + "");
-                txtSensorColision.setText(((Camioneta)vehiculo).getSensorColicion() == true ? "Si" : "No");
-                txtSensorTraficoCruzado.setText(((Camioneta)vehiculo).getSensorTraficoCruzado() == true ? "Si" : "No");
-                txtAsistentePermanenciaCarril.setText(((Camioneta)vehiculo).getAsitentePermanenciaCarril() == true ? "Si" : "No");
+                txtSensorColision.setText(((Camioneta)vehiculo).isSensorColision() == true ? "Si" : "No");
+                txtSensorTraficoCruzado.setText(((Camioneta)vehiculo).isSensorTraficoCruzado() == true ? "Si" : "No");
+                txtAsistentePermanenciaCarril.setText(((Camioneta)vehiculo).isAsistentePermanenciaCarril() == true ? "Si" : "No");
                 txtTraccion.setText(((Camioneta)vehiculo).getTraccion() == true ? "Si" : "No");
             }
         }

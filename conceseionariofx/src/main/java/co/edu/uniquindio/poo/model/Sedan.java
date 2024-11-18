@@ -53,6 +53,16 @@ public class Sedan extends VehiculoEquipado {
     }
 
     /**
+     * Método para obtener el estado de los espejos eléctricos del vehículo.
+     * 
+     * @return verdadero si el vehículo tiene espejos eléctricos, falso en caso
+     *         contrario
+     */
+    public boolean isEspejosElectricos() {
+        return espejosElectricos;
+    }
+
+    /**
      * Método para establecer si el vehículo tiene espejos eléctricos.
      * 
      * @param espejosElectricos true si el vehículo tiene espejos eléctricos, false

@@ -23,7 +23,28 @@ public class Concesionario {
         this.vendedores = new ArrayList<>();
         this.vehiculos = new ArrayList<>();
         this.transacciones = new ArrayList<>();
+        agregarDatos();
         administrador = agregarGranAdministrador();
+    }
+
+    /**
+     * Método para agregar un vendedor y un cliente con datos predefinidos.
+     * 
+     * Este método crea un objeto `Vendedor` y un objeto `Cliente` con datos
+     * predeterminados,
+     * luego los agrega a las colecciones correspondientes utilizando los métodos
+     * `agregarCliente` y `agregarVendedor`.
+     */
+    public void agregarDatos() {
+        Vendedor vendedor = new Vendedor("Juan", "Pérez", "1234567890", "0987654321", "juan.perez@email.com",
+                "juanperez", "secreta123", "nombre de tu madre", "María Pérez", "EMP001");
+        Cliente cliente = new Cliente("Ana", "Gómez", "9876543210", "0123456789", "ana.gomez@email.com", "anagomez",
+                "contraseña123", "nombre de tu mascota", "Rex", "Calle Ficticia 123");
+        Vehiculo sedan = new Sedan("S1234", "Toyota", "Corolla", true, 6, 180.0, 1800, 5, 4, 6, Combustion.GASOLINA, Transmision.MANUAL,
+                true, true, true, 450, true, true, true, true, true);
+        agregarVehiculo(sedan);
+        agregarCliente(cliente);
+        agregarVendedor(vendedor);
     }
 
     /**
