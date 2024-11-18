@@ -1,11 +1,7 @@
 package co.edu.uniquindio.poo.viewController;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.ClienteController;
-import co.edu.uniquindio.poo.controller.EmpleadoController;
 import co.edu.uniquindio.poo.model.Bus;
 import co.edu.uniquindio.poo.model.Camion;
 import co.edu.uniquindio.poo.model.Camioneta;
@@ -34,6 +30,24 @@ public class ClienteViewController {
 
     @FXML
     private Label lblCambios;
+
+    @FXML
+    private Label lblNumeroSalidasEmergencia;
+
+    @FXML
+    private Label lblEspejosElectricos;
+
+    @FXML
+    private Label lblVelocidadCrucero;
+
+    @FXML
+    private TextField txtNumeroSalidasEmergencia;
+
+    @FXML
+    private TextField txtEspejosElectricos;
+
+    @FXML
+    private TextField txtVelocidadCrucero;
 
     @FXML
     private TextField txtSensorTraficoCruzado;
@@ -294,13 +308,13 @@ public class ClienteViewController {
             } if (vehiculo instanceof Deportivo) {
                 txtNumeroPasajeros.setText(((Deportivo)vehiculo).getNumeroPasajeros() + "");
                 txtNumeroPuertas.setText(((Deportivo)vehiculo).getNumeroPuertas() + "");
-                //txtNumeroBolsasAire FALTA
+                txtNumeroBolsasAire.setText(((Deportivo)vehiculo).getNumeroBolsasAire() + "");
                 txtCaballosFuerza.setText(((Deportivo)vehiculo).getCaballosFuerza() + "");
                 txtTiempo0100.setText(((Deportivo)vehiculo).getTiempoCeroCien() + "");
             } if (vehiculo instanceof PickUp) {
                 txtNumeroPasajeros.setText(((PickUp)vehiculo).getNumeroPasajeros() + "");
                 txtNumeroPuertas.setText(((PickUp)vehiculo).getNumeroPuertas() + "");
-                //txtNumeroBolsasAire FALTA
+                txtNumeroBolsasAire.setText(((PickUp)vehiculo).getNumeroBolsasAire() + "");
                 txtAireAcondicionado.setText(((PickUp)vehiculo).isAireAcondicionado() == true ? "Si" : "No");
                 txtAbs.setText(((PickUp)vehiculo).isAbs() == true ? "Si" : "No");
                 txtTraccion.setText(((PickUp)vehiculo).isTraccion() == true ? "Si" : "No");
@@ -308,7 +322,7 @@ public class ClienteViewController {
             } if (vehiculo instanceof Van) {
                 txtNumeroPasajeros.setText(((Van)vehiculo).getNumeroPasajeros() + "");
                 txtNumeroPuertas.setText(((Van)vehiculo).getNumeroPuertas() + "");
-                //txtNumeroBolsasAire FALTA
+                txtNumeroBolsasAire.setText(((Van)vehiculo).getNumeroBolsasAire() + "");
                 txtAireAcondicionado.setText(((Van)vehiculo).isAireAcondicionado() == true ? "Si" : "No");
                 txtAbs.setText(((Van)vehiculo).isAbs() == true ? "Si" : "No");
                 txtCamaraReversa.setText(((Van)vehiculo).isCamaraReversa() == true ? "Si" : "No");
@@ -316,17 +330,17 @@ public class ClienteViewController {
             } if (vehiculo instanceof Bus) {
                 txtNumeroPasajeros.setText(((Bus)vehiculo).getNumeroPasajeros() + "");
                 txtNumeroPuertas.setText(((Bus)vehiculo).getNumeroPuertas() + "");
-                //txtNumeroBolsasAire FALTA
+                txtNumeroBolsasAire.setText(((Bus)vehiculo).getNumeroBolsasAire() + "");
                 txtAireAcondicionado.setText(((Bus)vehiculo).isAireAcondicionado() == true ? "Si" : "No");
                 txtAbs.setText(((Bus)vehiculo).isAbs() == true ? "Si" : "No");
-                //txtVelocidadCrucero FALTA
+                txtVelocidadCrucero.setText(((Bus)vehiculo));
                 txtCapacidadMaletero.setText(((Bus)vehiculo).getCapacidadMaletero() + "");
                 txtNumeroEjes.setText(((Bus)vehiculo).getNumeroEjes() + "");
                 //txtNumeroSalidasEmergencia FALTA
             } if (vehiculo instanceof Sedan) {
                 txtNumeroPasajeros.setText(((Sedan)vehiculo).getNumeroPasajeros() + "");
                 txtNumeroPuertas.setText(((Sedan)vehiculo).getNumeroPuertas() + "");
-                //txtNumeroBolsasAire FALTA
+                txtNumeroBolsasAire.setText(((Sedan)vehiculo).getNumeroBolsasAire() + "");
                 txtAireAcondicionado.setText(((Sedan)vehiculo).isAireAcondicionado() == true ? "Si" : "No");
                 txtAbs.setText(((Sedan)vehiculo).isAbs() == true ? "Si" : "No");
                 //txtVelocidadCrucero FALTA
@@ -339,7 +353,7 @@ public class ClienteViewController {
             } if (vehiculo instanceof Camioneta) {
                 txtNumeroPasajeros.setText(((Camioneta)vehiculo).getNumeroPasajeros() + "");
                 txtNumeroPuertas.setText(((Camioneta)vehiculo).getNumeroPuertas() + "");
-                //txtNumeroBolsasAire FALTA
+                txtNumeroBolsasAire.setText(((Camioneta)vehiculo).getNumeroBolsasAire() + "");
                 txtAireAcondicionado.setText(((Camioneta)vehiculo).isAireAcondicionado() == true ? "Si" : "No");
                 txtAbs.setText(((Camioneta)vehiculo).isAbs() == true ? "Si" : "No");
                 //txtVelocidadCrucero FALTA

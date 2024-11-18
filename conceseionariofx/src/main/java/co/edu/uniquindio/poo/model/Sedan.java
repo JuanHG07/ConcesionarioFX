@@ -5,59 +5,50 @@ public class Sedan extends VehiculoEquipado {
     private boolean espejosElectricos;
 
     /**
-     * Constructor de la clase Sedan.
+     * Constructor para crear un objeto Sedan con las características específicas de
+     * un sedán.
      * 
-     * @param codigo                    el código del vehículo
-     * @param marca                     la marca del vehículo
-     * @param modelo                    el modelo del vehículo
-     * @param nuevo                     indica si el vehículo es nuevo
-     * @param cambios                   el número de cambios de la transmisión
-     * @param velMax                    la velocidad máxima del vehículo
-     * @param cilindraje                el cilindraje del vehículo
-     * @param numeroPasajeros           el número de pasajeros del vehículo
-     * @param numeroPuertas             el número de puertas del vehículo
-     * @param numeroBolsasAire          el número de bolsas de aire del vehículo
-     * @param negocio                   el negocio asociado al vehículo
-     * @param combustion                el tipo de combustible del vehículo
-     * @param transmision               el tipo de transmisión del vehículo
-     * @param estado                    el estado del vehículo
-     * @param aireAcondicionado         indica si el vehículo tiene aire
-     *                                  acondicionado
-     * @param abs                       indica si el vehículo tiene frenos ABS
-     * @param aireAcondicionado2        indica si el vehículo tiene aire
-     *                                  acondicionado adicional
-     * @param capacidadMaletero         la capacidad del maletero del vehículo
-     * @param camaraReversa             indica si el vehículo tiene cámara de
-     *                                  reversa
-     * @param numeroBolsasAire2         el número de bolsas de aire adicional
-     * @param sensorColicion            indica si el vehículo tiene sensor de
-     *                                  colisión
-     * @param sensorTraficoCruzado      indica si el vehículo tiene sensor de
-     *                                  tráfico cruzado
-     * @param asitentePermanenciaCarril indica si el vehículo tiene asistente de
-     *                                  permanencia en carril
-     * @param espejosElectricos         indica si el vehículo tiene espejos
-     *                                  eléctricos
+     * @param codigo                     el código único del vehículo
+     * @param marca                      la marca del vehículo
+     * @param modelo                     el modelo del vehículo
+     * @param nuevo                      indica si el vehículo es nuevo o usado
+     * @param cambios                    el número de cambios (marchas) del vehículo
+     * @param velMax                     la velocidad máxima del vehículo
+     * @param cilindraje                 el cilindraje del motor del vehículo
+     * @param numeroPasajeros            el número máximo de pasajeros del vehículo
+     * @param numeroPuertas              el número de puertas del vehículo
+     * @param numeroBolsasAire           el número de bolsas de aire que tiene el
+     *                                   vehículo
+     * @param combustion                 el tipo de sistema de combustión del
+     *                                   vehículo
+     * @param transmision                el tipo de transmisión del vehículo
+     * @param aireAcondicionado          indica si el vehículo tiene aire
+     *                                   acondicionado
+     * @param abs                        indica si el vehículo tiene frenos ABS
+     * @param velocidadCrucero           indica si el vehículo tiene velocidad
+     *                                   crucero
+     * @param capacidadMaletero          la capacidad del maletero en litros
+     * @param camaraReversa              indica si el vehículo tiene cámara de
+     *                                   reversa
+     * @param sensorColision             indica si el vehículo tiene sensor de
+     *                                   colisión
+     * @param sensorTraficoCruzado       indica si el vehículo tiene sensor de
+     *                                   tráfico cruzado
+     * @param asistentePermanenciaCarril indica si el vehículo tiene asistente de
+     *                                   permanencia en el carril
+     * @param espejosElectricos          indica si el vehículo tiene espejos
+     *                                   eléctricos
      */
-    
-
-    /**
-     * Método para obtener si el vehículo tiene espejos eléctricos.
-     * 
-     * @return true si el vehículo tiene espejos eléctricos, false en caso contrario
-     */
-    public boolean getEspejosElectricos() {
-        return espejosElectricos;
-    }
-
     public Sedan(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax,
             double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, Combustion combustion,
-            Transmision transmision, boolean aireAcondicionado, boolean abs, double capacidadMaletero,
-            boolean camaraReversa, boolean sensorColicion, boolean sensorTraficoCruzado,
-            boolean asitentePermanenciaCarril, boolean espejosElectricos) {
+            Transmision transmision, boolean aireAcondicionado, boolean abs, boolean velocidadCrucero,
+            double capacidadMaletero, boolean camaraReversa, boolean sensorColision, boolean sensorTraficoCruzado,
+            boolean asistentePermanenciaCarril, boolean espejosElectricos) {
+
         super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas,
-                numeroBolsasAire, combustion, transmision, aireAcondicionado, abs, capacidadMaletero, camaraReversa,
-                sensorColicion, sensorTraficoCruzado, asitentePermanenciaCarril);
+                numeroBolsasAire, combustion, transmision, aireAcondicionado, abs, velocidadCrucero, capacidadMaletero,
+                camaraReversa, sensorColision, sensorTraficoCruzado, asistentePermanenciaCarril);
+
         this.espejosElectricos = espejosElectricos;
     }
 

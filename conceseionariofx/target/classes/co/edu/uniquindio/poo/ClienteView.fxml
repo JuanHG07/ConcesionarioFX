@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="1440.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.ClienteViewController">
+<BorderPane prefHeight="1545.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.controller.clienteVehiculoController">
   <center>
-    <ScrollPane prefHeight="1384.0" prefWidth="1151.0" style="-fx-background-color: #EAEAEA;">
+    <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="1584.0" prefWidth="1075.0" style="-fx-background-color: #EAEAEA;">
        <content>
          <VBox prefHeight="1496.0" prefWidth="1055.0" spacing="10.0" style="-fx-padding: 10;">
             <children>
               <Label fx:id="lblVehiculosDisponibles" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #3A6EA5;" text="Vehículos Disponibles" />
-              <TableView fx:id="tblVehiculos" prefHeight="98.0" prefWidth="1035.0" style="-fx-border-color: #CCCCCC; -fx-table-cell-border-color: #CCCCCC; -fx-alternate-row-fill-visible: true;">
+              <TableView fx:id="tblVehiculos" prefHeight="194.0" prefWidth="1035.0" style="-fx-border-color: #CCCCCC; -fx-table-cell-border-color: #CCCCCC; -fx-alternate-row-fill-visible: true;">
                 <columns>
                   <TableColumn fx:id="clmCodigo" maxWidth="5000.0" minWidth="10.0" prefWidth="248.0" style="-fx-alignment: CENTER;" text="Código" />
                   <TableColumn fx:id="clmMarca" maxWidth="5000.0" minWidth="10.0" prefWidth="246.0" style="-fx-alignment: CENTER_LEFT;" text="Marca" />
@@ -22,7 +22,7 @@
               </TableView>
               <Separator style="-fx-background-color: #3A6EA5;" />
               <Label fx:id="lblInfoVehiculo" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #3A6EA5;" text="Información del Vehículo" />
-              <GridPane id="txtCodigo" fx:id="gridVehiculo" alignment="CENTER" hgap="10.0" style="-fx-background-color: #F0F0F0; -fx-padding: 10; -fx-border-radius: 5; -fx-background-radius: 5;" vgap="10.0">
+              <GridPane id="txtCodigo" fx:id="gridVehiculo" alignment="CENTER" hgap="10.0" prefHeight="1249.0" prefWidth="1035.0" style="-fx-background-color: #F0F0F0; -fx-padding: 10; -fx-border-radius: 5; -fx-background-radius: 5;" vgap="10.0">
                  <children>
                   
                    <Label fx:id="lblNuevo" text="Nuevo (Sí/No):" GridPane.columnIndex="0" GridPane.rowIndex="3" />
@@ -77,12 +77,22 @@
                    <TextField fx:id="txtSensorTraficoCruzado" editable="false" promptText="Sí/No" GridPane.columnIndex="1" GridPane.rowIndex="27" />
                    <Label fx:id="lblAsistentePermanenciaCarril" text="Asistente de Permanencia en Carril (Sí/No):" GridPane.columnIndex="0" GridPane.rowIndex="28" />
                    <TextField fx:id="txtAsistentePermanenciaCarril" editable="false" promptText="Sí/No" GridPane.columnIndex="1" GridPane.rowIndex="28" />
+                   <Label fx:id="lblNumeroSalidasEmergencia" text="Numero salidas de emergencia:" GridPane.columnIndex="0" GridPane.rowIndex="30" />
+                   <TextField fx:id="txtNumeroSalidasEmergencia" editable="false" promptText="Numero salidas de emergencia" GridPane.columnIndex="1" GridPane.rowIndex="30" />
+                   <Label fx:id="lblEspejosElectricos" text="Tiene espejos eléctricos (Sí/No):" GridPane.rowIndex="31" />
+                   <TextField fx:id="txtEspejosElectricos" editable="false" promptText="Tiene espejos eléctricos (Sí/No)" GridPane.columnIndex="1" GridPane.rowIndex="31" />
+                   <Label fx:id="lblVelocidadCrucero" text="Tiene velocidad crucero (Sí/No):" GridPane.rowIndex="32" />
+                   <TextField fx:id="txtVelocidadCrucero" editable="false" promptText="Tiene velocidad crucero (Sí/No)" GridPane.columnIndex="1" GridPane.rowIndex="32" />
                  </children>
                      <columnConstraints>
                         <ColumnConstraints />
                         <ColumnConstraints />
                      </columnConstraints>
                      <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+                        <RowConstraints maxHeight="31.0" minHeight="31.0" prefHeight="31.0" />
                         <RowConstraints />
                         <RowConstraints />
                         <RowConstraints />
@@ -114,7 +124,7 @@
                         <RowConstraints />
                      </rowConstraints>
               </GridPane>
-              <HBox alignment="CENTER" prefHeight="46.0" prefWidth="1073.0" spacing="10.0" style="-fx-padding: 10; -fx-background-color: #3A6EA5;">
+              <HBox alignment="CENTER" prefHeight="158.0" prefWidth="1035.0" spacing="10.0" style="-fx-padding: 10; -fx-background-color: #3A6EA5;">
                  <children>
                    <Button id="btnGuardar" fx:id="btnVender" mnemonicParsing="false" onAction="#venderVehiculo" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Vender" />
                    <Button id="btnActualizar" fx:id="btnComprar" mnemonicParsing="false" onAction="#comprarVehiculo" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Comprar" />

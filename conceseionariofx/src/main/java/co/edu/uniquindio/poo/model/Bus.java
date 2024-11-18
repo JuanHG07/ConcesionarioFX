@@ -5,37 +5,37 @@ public class Bus extends VehiculoEstandar {
     private int numeroSalidasEmergencia;
 
     /**
-     * Constructor de la clase Bus.
+     * Constructor para crear un objeto Bus con las características específicas de
+     * un autobús.
      * 
-     * @param codigo                  el código del vehículo
+     * @param codigo                  el código único del vehículo
      * @param marca                   la marca del vehículo
      * @param modelo                  el modelo del vehículo
-     * @param nuevo                   indica si el vehículo es nuevo
-     * @param cambios                 el número de cambios de la transmisión
+     * @param nuevo                   indica si el vehículo es nuevo o usado
+     * @param cambios                 el número de cambios (marchas) del vehículo
      * @param velMax                  la velocidad máxima del vehículo
-     * @param cilindraje              el cilindraje del vehículo
-     * @param numeroPasajeros         el número de pasajeros del vehículo
+     * @param cilindraje              el cilindraje del motor del vehículo
+     * @param numeroPasajeros         el número máximo de pasajeros del vehículo
      * @param numeroPuertas           el número de puertas del vehículo
-     * @param numeroBolsasAire        el número de bolsas de aire del vehículo
-     * @param negocio                 el negocio asociado al vehículo
-     * @param combustion              el tipo de combustible del vehículo
+     * @param numeroBolsasAire        el número de bolsas de aire que tiene el
+     *                                vehículo
+     * @param combustion              el tipo de sistema de combustión del vehículo
      * @param transmision             el tipo de transmisión del vehículo
-     * @param estado                  el estado del vehículo
      * @param aireAcondicionado       indica si el vehículo tiene aire acondicionado
      * @param abs                     indica si el vehículo tiene frenos ABS
-     * @param aireAcondicionado2      indica si el vehículo tiene aire acondicionado
-     *                                adicional
-     * @param capacidadMaletero       la capacidad del maletero del vehículo
-     * @param numeroEjes              el número de ejes del bus
-     * @param numeroSalidasEmergencia el número de salidas de emergencia del bus
+     * @param velocidadCrucero        indica si el vehículo tiene velocidad crucero
+     * @param capacidadMaletero       la capacidad del maletero en litros
+     * @param numeroEjes              el número de ejes del autobús
+     * @param numeroSalidasEmergencia el número de salidas de emergencia del autobús
      */
     public Bus(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax, double cilindraje,
             int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, Combustion combustion,
-            Transmision transmision, boolean aireAcondicionado, boolean abs,
+            Transmision transmision, boolean aireAcondicionado, boolean abs, boolean velocidadCrucero,
             double capacidadMaletero, int numeroEjes, int numeroSalidasEmergencia) {
+
         super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas,
-                numeroBolsasAire, combustion, transmision, aireAcondicionado, abs,
-                capacidadMaletero);
+                numeroBolsasAire, combustion, transmision, aireAcondicionado, abs, velocidadCrucero, capacidadMaletero);
+
         this.numeroEjes = numeroEjes;
         this.numeroSalidasEmergencia = numeroSalidasEmergencia;
     }

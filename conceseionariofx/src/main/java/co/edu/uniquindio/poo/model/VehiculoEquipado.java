@@ -2,189 +2,136 @@ package co.edu.uniquindio.poo.model;
 
 public class VehiculoEquipado extends VehiculoEstandar {
     private boolean camaraReversa;
-    private double capacidadMaletero;
-    private int numeroBolsasAire;
-    private boolean sensorColicion;
+    private boolean sensorColision;
     private boolean sensorTraficoCruzado;
-    private boolean asitentePermanenciaCarril;
+    private boolean asistentePermanenciaCarril;
 
     /**
-     * Constructor de la clase VehiculoEquipado.
+     * Constructor para crear un objeto VehiculoEquipado con características
+     * avanzadas.
      * 
-     * @param codigo                    el código del vehículo
-     * @param marca                     la marca del vehículo
-     * @param modelo                    el modelo del vehículo
-     * @param nuevo                     indica si el vehículo es nuevo
-     * @param cambios                   el número de cambios de la transmisión
-     * @param velMax                    la velocidad máxima del vehículo
-     * @param cilindraje                el cilindraje del vehículo
-     * @param numeroPasajeros           el número de pasajeros del vehículo
-     * @param numeroPuertas             el número de puertas del vehículo
-     * @param numeroBolsasAire          el número de bolsas de aire del vehículo
-     * @param negocio                   el negocio asociado al vehículo
-     * @param combustion                el tipo de combustible del vehículo
-     * @param transmision               el tipo de transmisión del vehículo
-     * @param estado                    el estado del vehículo
-     * @param aireAcondicionado         indica si el vehículo tiene aire
-     *                                  acondicionado
-     * @param abs                       indica si el vehículo tiene frenos ABS
-     * @param aireAcondicionado2        indica si el vehículo tiene aire
-     *                                  acondicionado adicional
-     * @param capacidadMaletero         la capacidad del maletero del vehículo
-     * @param camaraReversa             indica si el vehículo tiene cámara de
-     *                                  reversa
-     * @param capacidadMaletero2        la capacidad del maletero adicional
-     * @param numeroBolsasAire2         el número de bolsas de aire adicional
-     * @param sensorColicion            indica si el vehículo tiene sensor de
-     *                                  colisión
-     * @param sensorTraficoCruzado      indica si el vehículo tiene sensor de
-     *                                  tráfico cruzado
-     * @param asitentePermanenciaCarril indica si el vehículo tiene asistente de
-     *                                  permanencia en carril
+     * @param codigo                     el código único del vehículo
+     * @param marca                      la marca del vehículo
+     * @param modelo                     el modelo del vehículo
+     * @param nuevo                      indica si el vehículo es nuevo o usado
+     * @param cambios                    el número de cambios (marchas) del vehículo
+     * @param velMax                     la velocidad máxima del vehículo
+     * @param cilindraje                 el cilindraje del motor del vehículo
+     * @param numeroPasajeros            el número máximo de pasajeros del vehículo
+     * @param numeroPuertas              el número de puertas del vehículo
+     * @param numeroBolsasAire           el número de bolsas de aire que tiene el
+     *                                   vehículo
+     * @param combustion                 el tipo de sistema de combustión del
+     *                                   vehículo
+     * @param transmision                el tipo de transmisión del vehículo
+     * @param aireAcondicionado          indica si el vehículo tiene aire
+     *                                   acondicionado
+     * @param abs                        indica si el vehículo tiene frenos ABS
+     * @param velocidadCrucero           indica si el vehículo tiene velocidad
+     *                                   crucero
+     * @param capacidadMaletero          la capacidad del maletero en litros
+     * @param camaraReversa              indica si el vehículo tiene cámara de
+     *                                   reversa
+     * @param sensorColision             indica si el vehículo tiene sensor de
+     *                                   colisión
+     * @param sensorTraficoCruzado       indica si el vehículo tiene sensor de
+     *                                   tráfico cruzado
+     * @param asistentePermanenciaCarril indica si el vehículo tiene asistente de
+     *                                   permanencia en el carril
      */
     public VehiculoEquipado(String codigo, String marca, String modelo, boolean nuevo, int cambios, double velMax,
-            double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire,
-            Combustion combustion, Transmision transmision, boolean aireAcondicionado, boolean abs,
-            double capacidadMaletero, boolean camaraReversa, boolean sensorColicion,
-            boolean sensorTraficoCruzado,
-            boolean asitentePermanenciaCarril) {
+            double cilindraje, int numeroPasajeros, int numeroPuertas, int numeroBolsasAire, Combustion combustion,
+            Transmision transmision, boolean aireAcondicionado, boolean abs, boolean velocidadCrucero,
+            double capacidadMaletero, boolean camaraReversa, boolean sensorColision, boolean sensorTraficoCruzado,
+            boolean asistentePermanenciaCarril) {
         super(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas,
-                numeroBolsasAire, combustion, transmision, aireAcondicionado, abs,
-                capacidadMaletero);
+                numeroBolsasAire, combustion, transmision, aireAcondicionado, abs, velocidadCrucero, capacidadMaletero);
         this.camaraReversa = camaraReversa;
-        this.sensorColicion = sensorColicion;
+        this.sensorColision = sensorColision;
         this.sensorTraficoCruzado = sensorTraficoCruzado;
-        this.asitentePermanenciaCarril = asitentePermanenciaCarril;
+        this.asistentePermanenciaCarril = asistentePermanenciaCarril;
     }
 
     /**
-     * Método para obtener si el vehículo tiene cámara de reversa.
+     * Método para obtener el estado de la cámara de reversa del vehículo.
      * 
-     * @return true si el vehículo tiene cámara de reversa, false en caso contrario
+     * @return {@code true} si el vehículo tiene cámara de reversa, {@code false} en
+     *         caso contrario.
      */
-    public boolean getCamaraReversa() {
+    public boolean isCamaraReversa() {
         return camaraReversa;
     }
 
     /**
-     * Método para establecer si el vehículo tiene cámara de reversa.
+     * Método para establecer el estado de la cámara de reversa del vehículo.
      * 
-     * @param camaraReversa true si el vehículo tiene cámara de reversa, false en
-     *                      caso contrario
+     * @param camaraReversa {@code true} para activar, {@code false} para
+     *                      desactivar.
      */
     public void setCamaraReversa(boolean camaraReversa) {
         this.camaraReversa = camaraReversa;
     }
 
     /**
-     * Método para obtener la capacidad del maletero del vehículo.
+     * Método para obtener el estado del sensor de colisión del vehículo.
      * 
-     * @return la capacidad del maletero del vehículo
+     * @return {@code true} si el vehículo tiene sensor de colisión, {@code false}
+     *         en caso contrario.
      */
-    public double getCapacidadMaletero() {
-        return capacidadMaletero;
+    public boolean isSensorColision() {
+        return sensorColision;
     }
 
     /**
-     * Método para establecer la capacidad del maletero del vehículo.
+     * Método para establecer el estado del sensor de colisión del vehículo.
      * 
-     * @param capacidadMaletero la nueva capacidad del maletero del vehículo
+     * @param sensorColision {@code true} para activar, {@code false} para
+     *                       desactivar.
      */
-    public void setCapacidadMaletero(double capacidadMaletero) {
-        this.capacidadMaletero = capacidadMaletero;
+    public void setSensorColision(boolean sensorColision) {
+        this.sensorColision = sensorColision;
     }
 
     /**
-     * Método para obtener el número de bolsas de aire del vehículo.
+     * Método para obtener el estado del sensor de tráfico cruzado del vehículo.
      * 
-     * @return el número de bolsas de aire del vehículo
+     * @return {@code true} si el vehículo tiene sensor de tráfico cruzado,
+     *         {@code false} en caso contrario.
      */
-    public int getNumeroBolsasAire() {
-        return numeroBolsasAire;
-    }
-
-    /**
-     * Método para establecer el número de bolsas de aire del vehículo.
-     * 
-     * @param numeroBolsasAire el nuevo número de bolsas de aire del vehículo
-     */
-    public void setNumeroBolsasAire(int numeroBolsasAire) {
-        this.numeroBolsasAire = numeroBolsasAire;
-    }
-
-    /**
-     * Método para obtener si el vehículo tiene sensor de colisión.
-     * 
-     * @return true si el vehículo tiene sensor de colisión, false en caso contrario
-     */
-    public boolean getSensorColicion() {
-        return sensorColicion;
-    }
-
-    /**
-     * Método para establecer si el vehículo tiene sensor de colisión.
-     * 
-     * @param sensorColicion true si el vehículo tiene sensor de colisión, false en
-     *                       caso contrario
-     */
-    public void setSensorColicion(boolean sensorColicion) {
-        this.sensorColicion = sensorColicion;
-    }
-
-    /**
-     * Método para obtener si el vehículo tiene sensor de tráfico cruzado.
-     * 
-     * @return true si el vehículo tiene sensor de tráfico cruzado, false en caso
-     *         contrario
-     */
-    public boolean getSensorTraficoCruzado() {
+    public boolean isSensorTraficoCruzado() {
         return sensorTraficoCruzado;
     }
 
     /**
-     * Método para establecer si el vehículo tiene sensor de tráfico cruzado.
+     * Método para establecer el estado del sensor de tráfico cruzado del vehículo.
      * 
-     * @param sensorTraficoCruzado true si el vehículo tiene sensor de tráfico
-     *                             cruzado, false en caso contrario
+     * @param sensorTraficoCruzado {@code true} para activar, {@code false} para
+     *                             desactivar.
      */
     public void setSensorTraficoCruzado(boolean sensorTraficoCruzado) {
         this.sensorTraficoCruzado = sensorTraficoCruzado;
     }
 
     /**
-     * Método para obtener si el vehículo tiene asistente de permanencia en carril.
+     * Método para obtener el estado del asistente de permanencia en el carril del
+     * vehículo.
      * 
-     * @return true si el vehículo tiene asistente de permanencia en carril, false
-     *         en caso contrario
+     * @return {@code true} si el vehículo tiene asistente de permanencia en el
+     *         carril, {@code false} en caso contrario.
      */
-    public boolean getAsitentePermanenciaCarril() {
-        return asitentePermanenciaCarril;
+    public boolean isAsistentePermanenciaCarril() {
+        return asistentePermanenciaCarril;
     }
 
     /**
-     * Método para establecer si el vehículo tiene asistente de permanencia en
-     * carril.
+     * Método para establecer el estado del asistente de permanencia en el carril
+     * del vehículo.
      * 
-     * @param asitentePermanenciaCarril true si el vehículo tiene asistente de
-     *                                  permanencia en carril, false en caso
-     *                                  contrario
+     * @param asistentePermanenciaCarril {@code true} para activar, {@code false}
+     *                                   para desactivar.
      */
-    public void setAsitentePermanenciaCarril(boolean asitentePermanenciaCarril) {
-        this.asitentePermanenciaCarril = asitentePermanenciaCarril;
-    }
-
-    /**
-     * Método toString para representar la clase VehiculoEquipado como una cadena de
-     * texto.
-     * 
-     * @return la representación textual del objeto VehiculoEquipado
-     */
-    @Override
-    public String toString() {
-        return "VehiculoEquipado [camaraReversa=" + camaraReversa + ", capacidadMaletero=" + capacidadMaletero
-                + ", numeroBolsasAire=" + numeroBolsasAire + ", sensorColicion=" + sensorColicion
-                + ", sensorTraficoCruzado=" + sensorTraficoCruzado + ", asitentePermanenciaCarril="
-                + asitentePermanenciaCarril + "]";
+    public void setAsistentePermanenciaCarril(boolean asistentePermanenciaCarril) {
+        this.asistentePermanenciaCarril = asistentePermanenciaCarril;
     }
 
 }
