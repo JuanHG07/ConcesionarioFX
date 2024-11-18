@@ -4,6 +4,7 @@ import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.ClienteController;
 import co.edu.uniquindio.poo.controller.VentaClienteController;
 import co.edu.uniquindio.poo.model.Combustion;
+import co.edu.uniquindio.poo.model.Estado;
 import co.edu.uniquindio.poo.model.Moto;
 import co.edu.uniquindio.poo.model.Transmision;
 import co.edu.uniquindio.poo.model.Vehiculo;
@@ -21,6 +22,30 @@ import javafx.scene.layout.VBox;
 public class VentaClienteViewController {
     @FXML
     private Label lblCambios;
+
+    @FXML
+    private Label lblNumeroSalidasEmergencia;
+
+    @FXML
+    private Label lblEspejosElectricos;
+
+    @FXML
+    private Label lblVelocidadCrucero;
+
+    @FXML
+    private Label lblFrenosAire;
+
+    @FXML
+    private TextField txtNumeroSalidasEmergencia;
+
+    @FXML
+    private TextField txtEspejosElectricos;
+
+    @FXML
+    private TextField txtVelocidadCrucero;
+
+    @FXML
+    private TextField txtFrenosAire;
 
     @FXML
     private TextField txtSensorTraficoCruzado;
@@ -272,18 +297,18 @@ public class VentaClienteViewController {
                     lblTraccion.setStyle("-fx-text-fill: red;");
                     lblCapacidadCarga.setStyle("-fx-text-fill: red;");
                 } else {
-                    //lblVelocidadCrucero FALTA
+                    // lblVelocidadCrucero FALTA
                     lblCapacidadMaletero.setStyle("-fx-text-fill: red;");
                     if (radioBus.isSelected()) {
                         lblNumeroEjes.setStyle("-fx-text-fill: red;");
-                        ///lblNumeroSalidasEmergencia FALTA
+                        /// lblNumeroSalidasEmergencia FALTA
                     } else {
                         lblCamaraReversa.setStyle("-fx-text-fill: red;");
                         lblSensorColision.setStyle("-fx-text-fill: red;");
                         lblSensorTraficoCruzado.setStyle("-fx-text-fill: red;");
                         lblAsistentePermanenciaCarril.setStyle("-fx-text-fill: red;");
                         if (radioSedan.isSelected()) {
-                            //lblEspejosElectricos FALTA
+                            // lblEspejosElectricos FALTA
                         } else if (radioCamioneta.isSelected()) {
                             lblTraccion.setStyle("-fx-text-fill: red;");
                         }
@@ -299,57 +324,99 @@ public class VentaClienteViewController {
             String codigo = txtCodigo.getText();
             String marca = txtMarca.getText();
             String modelo = txtModelo.getText();
-            String nuevoString = txtNuevo.getText().toLowerCase();
+            String nuevoString = txtNuevo.getText();
             String cambiosString = txtCambios.getText();
             String velMaxString = txtVelMax.getText();
             String cilindrajeString = txtCilindraje.getText();
-            String defensasString = txtDefensas.getText().toLowerCase();
+            String defensasString = txtDefensas.getText();
             String capacidadCargaString = txtCapacidadCarga.getText();
-            String aireAcondicionadoString = txtAireAcondicionado.getText().toLowerCase();
-            String absString = txtAbs.getText().toLowerCase();
+            String aireAcondicionadoString = txtAireAcondicionado.getText();
+            String absString = txtAbs.getText();
             String numeroEjesString = txtNumeroEjes.getText();
             String numeroPasajerosString = txtNumeroPasajeros.getText();
             String numeroPuertasString = txtNumeroPuertas.getText();
             String numeroBolsasAireString = txtNumeroBolsasAire.getText();
             String caballosFuerzaString = txtCaballosFuerza.getText();
             String tiempoCeroCienString = txtTiempo0100.getText();
-            String traccionString = txtTraccion.getText().toLowerCase();
+            String traccionString = txtTraccion.getText();
             String autonomiaString = txtAutonomia.getText();
             String tiempoCargaString = txtTiempoCarga.getText();
-            String enchufableString = txtEnchufable.getText().toLowerCase();
-            String ligeroString = txtLigero.getText().toLowerCase();
-            String tipoCombustionString = txtTipoCombustion.getText().toLowerCase();
-            String tipoTransmisionString = txtTipoTransmision.getText().toLowerCase();
-            String camaraReversaString = txtCamaraReversa.getText().toLowerCase();
-            String capacidadMaleteroString = txtCapacidadMaletero.getText().toLowerCase();
-            String sensorColisionString = txtSensorColision.getText().toLowerCase();
-            String sensorTraficoCruzadoString = txtSensorTraficoCruzado.getText().toLowerCase();
-            String asistentePermanenciaCarrilString = txtAsistentePermanenciaCarril.getText().toLowerCase();
+            String enchufableString = txtEnchufable.getText();
+            String ligeroString = txtLigero.getText();
+            String tipoCombustionString = txtTipoCombustion.getText();
+            String tipoTransmisionString = txtTipoTransmision.getText();
+            String camaraReversaString = txtCamaraReversa.getText();
+            String capacidadMaleteroString = txtCapacidadMaletero.getText();
+            String sensorColisionString = txtSensorColision.getText();
+            String sensorTraficoCruzadoString = txtSensorTraficoCruzado.getText();
+            String asistentePermanenciaCarrilString = txtAsistentePermanenciaCarril.getText();
+            String numeroSalidasEmergenciaString = txtNumeroSalidasEmergencia.getText();
+            String espejosElectricoString = txtAsistentePermanenciaCarril.getText();
+            String velocidadCruceroString = txtVelocidadCrucero.getText();
+            String frenosAireString = txtFrenosAire.getText();
 
-            if (codigo.isEmpty() || marca.isEmpty() || modelo.isEmpty() || nuevoString.isEmpty() || cambiosString.isEmpty() || velMaxString.isEmpty() || cilindrajeString.isEmpty() || tipoTransmisionString.isEmpty() || tipoCombustionString.isEmpty()) {
+            if (codigo.isEmpty() || marca.isEmpty() || modelo.isEmpty() || nuevoString.isEmpty()
+                    || cambiosString.isEmpty() || velMaxString.isEmpty() || cilindrajeString.isEmpty()
+                    || tipoTransmisionString.isEmpty() || tipoCombustionString.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setTitle("ERROR");
                 alert.setContentText("Debes rellenar los espacios: Nuevo, Cambios, Velocidad Maxima o Cilindraje.");
                 alert.showAndWait();
             } else {
-                boolean nuevo = nuevoString == "si" ? true : false;
+                boolean nuevo = ingresarBooleano(txtNuevo, "Nuevo");
                 int cambios = Integer.parseInt(cambiosString);
                 double velMax = Integer.parseInt(velMaxString);
                 double cilindraje = Integer.parseInt(cilindrajeString);
                 Transmision transmision = determinarTransmision(tipoTransmisionString);
                 Combustion combustion = determinarCombustion(tipoCombustionString);
-                if (radioMoto.isSelected()) {
-                    if (defensasString.isEmpty()) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setHeaderText(null);
-                        alert.setTitle("ERROR");
-                        alert.setContentText("Debes rellenar los espacios: Defensas.");
-                        alert.showAndWait();
-                    } else {
-                        boolean defensas = defensasString == "si" ? true : false;
-                        Vehiculo vehiculo = new Moto(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, defensas, null, null);
+                if (transmision == null || combustion == null) {
+                    if (radioMoto.isSelected()) {
+                        if (defensasString.isEmpty()) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setHeaderText(null);
+                            alert.setTitle("ERROR");
+                            alert.setContentText("Debes rellenar los espacios: Defensas.");
+                            alert.showAndWait();
+                        } else {
+                            boolean defensas = ingresarBooleano(txtDefensas, "Defensas");
+                            Vehiculo vehiculo = new Moto(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje,
+                                    defensas, combustion, transmision);
+                            if (ventaClienteController.verificarVehiculo(codigo) == null) {
+                                ventaClienteController.agregarVehiculoVenta(vehiculo);
+                                vehiculo.setEstado(Estado.NODISPONIBLE);
+                                generarSolicitudTransaccion();
+                            } else {
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setHeaderText(null);
+                                alert.setTitle("ERROR");
+                                alert.setContentText("Por favor cambia el codigo del vehiculo.");
+                                alert.showAndWait();
+                            }
+                        }
+                    } else if (radioCamion.isSelected()) {
+                        if (capacidadCargaString.isEmpty() || aireAcondicionadoString.isEmpty()
+                                || frenosAireString.isEmpty() || absString.isEmpty() || numeroEjesString.isEmpty()) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setHeaderText(null);
+                            alert.setTitle("ERROR");
+                            alert.setContentText(
+                                    "Debes rellenar los espacios: Capacidad Carga, Aire Acondicionado, Frenos Aire, Abs o Numero Ejes.");
+                            alert.showAndWait();
+                        } else {
+                            double capacidadCarga = Double.parseDouble(capacidadCargaString);
+                            boolean aireAcondicionado = ingresarBooleano(txtAireAcondicionado, "Aire Acondicionado");
+                            boolean frenosAire = ingresarBooleano(txtFrenosAire, "Frenos Aire");
+                            boolean abs = ingresarBooleano(txtAbs, "Abs");
+                            int numeroEjes = Integer.parseInt(numeroEjesString);
+                        }
                     }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setTitle("ERROR");
+                    alert.setContentText("Verifique los campos: Tipo de Transmision o Tipo de Combustion.");
+                    alert.showAndWait();
                 }
             }
         } catch (NumberFormatException e) {
@@ -357,7 +424,46 @@ public class VentaClienteViewController {
         }
     }
 
-    private Transmision determinarTransmision(Transmision transmision) {
+    private boolean ingresarBooleano(TextField textField, String nombreCampo) {
+        String valor = textField.getText().trim().toLowerCase();
+
+        if (valor.equals("si")) {
+            return true;
+        } else if (valor.equals("no")) {
+            return false;
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Valor no válido");
+            alerta.setHeaderText("El campo " + nombreCampo + " contiene un valor no válido.");
+            alerta.setContentText("Por favor, ingrese 'si' o 'no'.");
+            alerta.showAndWait();
+            throw new IllegalArgumentException("Valor no válido para el campo " + nombreCampo);
+        }
+    }
+
+    private Transmision determinarTransmision(String transmisionString) {
+        Transmision transmision = null;
+        if (transmisionString.equals("automatico")) {
+            transmision = Transmision.AUTOMATICO;
+        } else if (transmisionString.equals("manual")) {
+            transmision = Transmision.MANUAL;
+        }
+        return transmision;
+    }
+
+    private Combustion determinarCombustion(String combustionString) {
+        Combustion combustion = null;
+        if (combustionString.equals("gasolina")) {
+            combustion = Combustion.GASOLINA;
+        } else if (combustionString.equals("diesel")) {
+            combustion = Combustion.DIESEL;
+        } else if (combustionString.contains("sin combustion")) {
+            combustion = Combustion.SINCOMBUSTION;
+        }
+        return combustion;
+    }
+
+    private void generarSolicitudTransaccion() {
 
     }
 
@@ -371,4 +477,3 @@ public class VentaClienteViewController {
     }
 
 }
-

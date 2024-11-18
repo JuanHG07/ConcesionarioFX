@@ -1,11 +1,16 @@
 package co.edu.uniquindio.poo.viewController;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.ClienteController;
 import co.edu.uniquindio.poo.model.Bus;
 import co.edu.uniquindio.poo.model.Camion;
 import co.edu.uniquindio.poo.model.Camioneta;
 import co.edu.uniquindio.poo.model.Deportivo;
+import co.edu.uniquindio.poo.model.Estado;
 import co.edu.uniquindio.poo.model.Moto;
 import co.edu.uniquindio.poo.model.PickUp;
 import co.edu.uniquindio.poo.model.Sedan;
@@ -260,7 +265,6 @@ public class ClienteViewController {
         clienteController = new ClienteController(app.concesionario);
 
         vehiculos = FXCollections.observableArrayList();
-        vehiculos.addAll(clienteController.obtenerListaVehiculos());
 
         carga();
     }
@@ -281,6 +285,12 @@ public class ClienteViewController {
     }
 
     private void cargarTablaVehiculos() {
+        ArrayList<Vehiculo> vehiculosList = clienteController.obtenerListaVehiculos();
+        for (Vehiculo vehiculo : vehiculosList) {
+            if (vehiculo.getEstado() == Estado.DISPONIBLE) {
+                vehiculos.add(vehiculo);
+            }
+        }
         tblVehiculos.setItems(vehiculos);
     }
 
