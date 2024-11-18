@@ -95,7 +95,7 @@
 
                
               
-               <Label style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Moto" />
+               <Label fx:id="labelMoto" style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Moto" />
                <VBox spacing="10.0" style="-fx-background-color: #34495E; - fx-border-radius: 10; -fx-padding: 10;">
                   <children>
                     <Label style="-fx-text-fill: #ECF0F1;" text="Defensas:" />
@@ -103,7 +103,7 @@
                   </children>
                </VBox>
               
-               <Label style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Camión" />
+               <Label fx:id="labelCamion" style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Camión" />
                <VBox prefHeight="485.0" prefWidth="541.0" spacing="10.0" style="-fx-background-color: #34495E; -fx-border-radius: 10; -fx-padding: 10;">
                   <children>
                     <Label style="-fx-text-fill: #ECF0F1;" text="Capacidad de Carga:" />
@@ -129,7 +129,7 @@
                   </children>
                </VBox>
                
-               <Label style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Bus" />
+               <Label fx:id="labelBus" style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Bus" />
                <VBox spacing="10.0" style="-fx-background-color: #34495E; -fx-border-radius: 10; -fx-padding: 10;">
                   <children>
                     <Label style="-fx-text-fill: #ECF0F1;" text="Número de Pasajeros:" />
@@ -153,7 +153,7 @@
                   </children>
                </VBox>
                
-               <Label style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Van" />
+               <Label fx:id="labelVan" style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Van" />
                <VBox spacing="10.0" style="-fx-background-color: #34495E; -fx-border-radius: 10; -fx-padding:  10;">
                   <children>
                     <Label style="-fx-text-fill: #ECF0F1;" text="Número de Pasajeros:" />
@@ -173,7 +173,7 @@
                   </children>
                </VBox>
               
-               <Label style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="PickUp" />
+               <Label fx:id="labelPickUp" style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="PickUp" />
                <VBox spacing="10.0" style="-fx-background-color: #34495E; -fx-border-radius: 10; -fx-padding: 10;">
                   <children>
                     <Label style="-fx-text-fill: #ECF0F1;" text="Número de Pasajeros:" />
@@ -193,7 +193,7 @@
                   </children>
                </VBox>
              
-               <Label style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Deportivo" />
+               <Label fx:id="labelDeportivo" style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Deportivo" />
                <VBox spacing="10.0" style="-fx-background-color: #34495E; -fx-border-radius: 10; -fx-padding: 10;">
                   <children>
                     <Label style="-fx-text-fill: #ECF0F1;" text="Número de Pasajeros:" />
@@ -209,7 +209,7 @@
                   </children>
                </VBox>
                
-               <Label style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Sedan" />
+               <Label fx:id="labelSedan" style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Sedan" />
                <VBox spacing="10.0" style="-fx-background-color: #34495E; -fx-border-radius: 10; -fx-padding: 10;">
                   <children>
                     <Label style="-fx-text-fill: #ECF0F1;" text="Número de Pasajeros:" />
@@ -239,7 +239,7 @@
                   </children>
                </VBox>
                
-               <Label style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Camioneta" />
+               <Label fx:id="labelCamioneta" style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Camioneta" />
                <VBox spacing="10.0" style="-fx-background-color: #34495E; -fx-border-radius: 10; -fx-padding: 10;">
                   <children>
                     <Label style="-fx-text-fill: #ECF0F1;" text="Número de Pasajeros:" />
@@ -269,7 +269,7 @@
                   </children>
                </VBox>
               
-               <Label style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Vehículo Eléctrico" />
+               <Label fx:id="labelElectrico" style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Vehículo Eléctrico" />
                <VBox spacing="10.0" style="-fx-background-color: #34495E; -fx-border-radius: 10; -fx-padding: 10;">
                   <children>
                     <Label style="-fx-text-fill: #ECF0F1;" text="Autonomía:" />
@@ -279,7 +279,7 @@
                   </children>
                </VBox>
                
-               <Label style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Vehículo Híbrido" />
+               <Label fx:id="labelHibrido" style="-fx-font-size: 20px; -fx-text-fill: #ECF0F1; -fx-font-weight: bold;" text="Vehículo Híbrido" />
                <VBox spacing="10.0" style="-fx-background-color: #34495E; -fx-border-radius: 10; -fx-padding: 10;">
                   <children>
                     <Label style="-fx-text-fill: #ECF0F1;" text="Enchufable:" />

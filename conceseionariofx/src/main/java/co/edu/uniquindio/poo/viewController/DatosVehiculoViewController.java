@@ -8,6 +8,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.DatosVehiculoController;
 import co.edu.uniquindio.poo.controller.LoginController;
@@ -245,6 +247,7 @@ public class DatosVehiculoViewController {
     @FXML
     private Label labelCamion;
 
+
     @FXML
     private TextField txtAireAcondicionadoBus;
 
@@ -285,7 +288,7 @@ public class DatosVehiculoViewController {
     private TextField txtAsistentePermanenciaCarrilCamioneta;
 
     @FXML
-    private Label labelPickIp;
+    private Label labelPickUp;
 
     @FXML
     private TextField txtAireAcondicionadoCamioneta;
@@ -395,24 +398,38 @@ public class DatosVehiculoViewController {
 
     @FXML
     void determinarVehiculo(ActionEvent event) {
+
+        labelMoto.setTextFill(Color.WHITE);
+        labelCamion.setTextFill(Color.WHITE);
+        labelCamioneta.setTextFill(Color.WHITE);
+        labelBus.setTextFill(Color.WHITE);
+        labelVan.setTextFill(Color.WHITE);
+        labelPickUp.setTextFill(Color.WHITE);
+        labelDeportivo.setTextFill(Color.WHITE);
+        labelSedan.setTextFill(Color.WHITE);
+        labelElectrico.setTextFill(Color.WHITE);
+        labelHibrido.setTextFill(Color.WHITE);
+
         if (radioMoto.isSelected()) {
-            labelMoto.setStyle("-fx-text-fill: red;");
+            labelMoto.setTextFill(Color.RED);
+        }else if(radioCamion.isSelected()){
+            labelCamion.setTextFill(Color.RED);
         } else if (radioCamion.isSelected()) {
-            labelCamioneta.setStyle("-fx-text-fill: red;");
+            labelCamioneta.setTextFill(Color.RED);
         } else if (radioBus.isSelected()) {
-            labelBus.setStyle("-fx-text-fill: red;");
+            labelBus.setTextFill(Color.RED);
         } else if (radioVan.isSelected()) {
-            labelVan.setStyle("-fx-text-fill: red;");
+            labelVan.setTextFill(Color.RED);
         } else if (radioPickUp.isSelected()) {
-            labelPickIp.setStyle("-fx-text-fill: red;");
+            labelPickUp.setTextFill(Color.RED);
         } else if (radioDeportivo.isSelected()) {
-            labelDeportivo.setStyle("-fx-text-fill: red;");
+            labelDeportivo.setTextFill(Color.RED);
         } else if (radioSedan.isSelected()) {
-            labelSedan.setStyle("-fx-text-fill: red;");
+            labelSedan.setTextFill(Color.RED);
         } else if (radioElectrico.isSelected()) {
-            labelElectrico.setStyle("-fx-text-fill: red;");
+            labelElectrico.setTextFill(Color.RED);
         } else if (radioHibrido.isSelected()) {
-            labelHibrido.setStyle("-fx-text-fill: red;");
+            labelHibrido.setTextFill(Color.RED);
         }
     }
 
