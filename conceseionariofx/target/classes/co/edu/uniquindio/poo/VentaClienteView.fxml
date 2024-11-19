@@ -107,14 +107,16 @@
                    <TextField fx:id="txtSensorTraficoCruzado" editable="true" prefHeight="13.0" prefWidth="277.0" promptText="Sí/No" GridPane.columnIndex="1" GridPane.rowIndex="28" />
                    <Label fx:id="lblAsistentePermanenciaCarril" text="Asistente de Permanencia en Carril (Sí/No):" GridPane.rowIndex="29" />
                    <TextField fx:id="txtAsistentePermanenciaCarril" editable="true" promptText="Sí/No" GridPane.columnIndex="1" GridPane.rowIndex="29" />
-                   <Label fx:id="lblNumeroSalidasDeEmergencias" text="Numero salidas de emergencia:" GridPane.columnIndex="0" GridPane.rowIndex="30" />
-                   <TextField fx:id="txtNumeroSalidasDeEmergencias" editable="true" promptText="Numero salidas de emergencia" GridPane.columnIndex="1" GridPane.rowIndex="30" />
-                   <Label fx:id="lblEspejosElectricos" text="Tiene espejos eléctricos (Sí/No):" GridPane.rowIndex="31" />
-                   <TextField fx:id="txtEspejosElectricos" editable="true" promptText="Tiene espejos eléctricos (Sí/No)" GridPane.columnIndex="1" GridPane.rowIndex="31" />
-                   <Label fx:id="lblVelocidadCrucero" text="Tiene velocidad crucero (Sí/No):" GridPane.rowIndex="32" />
-                   <TextField fx:id="txtVelocidadCrucero" editable="true" promptText="Tiene velocidad crucero (Sí/No)" GridPane.columnIndex="1" GridPane.rowIndex="32" />
-                   <Label fx:id="lblFrenosAire" text="Tiene frenos de aire(Sí/No):" GridPane.rowIndex="33" />
-                   <TextField fx:id="txtFrenosAire" editable="true" promptText="Tiene frenos de aire (Sí/No)" GridPane.columnIndex="1" GridPane.rowIndex="33" />
+                   <Label fx:id="lblNumeroSalidasEmergencia" text="Numero salidas de emergencia:" GridPane.columnIndex="0" GridPane.rowIndex="30" />
+                   <TextField fx:id="txtNumeroSalidasDeEmergencias" editable="true" promptText="Ingrese Numero salidas de emergencia" GridPane.columnIndex="1" GridPane.rowIndex="30" />
+                   <Label fx:id="lblEspejosElectricos" text="Espejos eléctricos (Sí/No):" GridPane.rowIndex="31" />
+                   <TextField fx:id="txtEspejosElectricos" editable="true" promptText="Sí/No" GridPane.columnIndex="1" GridPane.rowIndex="31" />
+                   <Label fx:id="lblVelocidadCrucero" text="Velocidad crucero (Sí/No):" GridPane.rowIndex="32" />
+                   <TextField fx:id="txtVelocidadCrucero" editable="true" promptText="Sí/No" GridPane.columnIndex="1" GridPane.rowIndex="32" />
+                   <Label fx:id="lblFrenosAire" text="Frenos de aire(Sí/No):" GridPane.rowIndex="33" />
+                   <TextField fx:id="txtFrenosAire" editable="true" promptText="Sí/No" GridPane.columnIndex="1" GridPane.rowIndex="33" />
+                   <Label fx:id="lblTipoCamion" text="Tipo de Camión (Ligero, Mediano ,Pesado):" GridPane.columnIndex="0" GridPane.rowIndex="34" />
+                   <TextField fx:id="txtTipoCamion" editable="true" promptText="Ingrese el tipo de camión" GridPane.columnIndex="1" GridPane.rowIndex="34" />
                  </children>
                      <columnConstraints>
                         <ColumnConstraints />
@@ -148,6 +150,7 @@
                         <RowConstraints />
                         <RowConstraints maxHeight="62.0" minHeight="37.0" prefHeight="62.0" />
                         <RowConstraints maxHeight="25.0" minHeight="0.0" prefHeight="0.0" />
+                        <RowConstraints />
                         <RowConstraints />
                         <RowConstraints />
                         <RowConstraints />

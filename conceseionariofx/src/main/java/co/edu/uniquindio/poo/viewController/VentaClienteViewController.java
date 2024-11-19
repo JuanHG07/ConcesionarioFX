@@ -3,11 +3,21 @@ package co.edu.uniquindio.poo.viewController;
 import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.ClienteController;
 import co.edu.uniquindio.poo.controller.VentaClienteController;
+import co.edu.uniquindio.poo.model.Bus;
+import co.edu.uniquindio.poo.model.Camion;
+import co.edu.uniquindio.poo.model.Camioneta;
 import co.edu.uniquindio.poo.model.Combustion;
+import co.edu.uniquindio.poo.model.Deportivo;
 import co.edu.uniquindio.poo.model.Estado;
 import co.edu.uniquindio.poo.model.Moto;
+import co.edu.uniquindio.poo.model.PickUp;
+import co.edu.uniquindio.poo.model.Sedan;
+import co.edu.uniquindio.poo.model.TipoCamion;
 import co.edu.uniquindio.poo.model.Transmision;
+import co.edu.uniquindio.poo.model.Van;
 import co.edu.uniquindio.poo.model.Vehiculo;
+import co.edu.uniquindio.poo.model.VehiculoElectrico;
+import co.edu.uniquindio.poo.model.VehiculoHibrido;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -177,6 +187,9 @@ public class VentaClienteViewController {
     private Label lblBolsasAire;
 
     @FXML
+    private Label lblTipoCamion;
+
+    @FXML
     private TextField txtTraccion;
 
     @FXML
@@ -246,6 +259,9 @@ public class VentaClienteViewController {
     private TextField txtMarca;
 
     @FXML
+    private TextField txtTipoCamion;
+
+    @FXML
     private RadioButton radioDeportivo;
 
     @FXML
@@ -261,6 +277,8 @@ public class VentaClienteViewController {
 
     @FXML
     void seleccionarVehiculo(ActionEvent event) {
+
+        limpiarSeleccion();
         lblNuevo.setStyle("-fx-text-fill: red;");
         lblCambios.setStyle("-fx-text-fill: red;");
         lblVelMax.setStyle("-fx-text-fill: red;");
@@ -271,9 +289,10 @@ public class VentaClienteViewController {
         } else if (radioCamion.isSelected()) {
             lblCapacidadCarga.setStyle("-fx-text-fill: red;");
             lblAireAcondicionado.setStyle("-fx-text-fill: red;");
-            // lblFrenosAire FALTA
+            lblFrenosAire.setStyle("-fx-text-fill: red;");
             lblAbs.setStyle("-fx-text-fill: red;");
             lblNumeroEjes.setStyle("-fx-text-fill: red;");
+            lblTipoCamion.setStyle("-fx-text-fill: red;");
         } else if (radioHibrido.isSelected()) {
             lblEnchufable.setStyle("-fx-text-fill: red;");
             lblLigero.setStyle("-fx-text-fill: red;");
@@ -297,18 +316,18 @@ public class VentaClienteViewController {
                     lblTraccion.setStyle("-fx-text-fill: red;");
                     lblCapacidadCarga.setStyle("-fx-text-fill: red;");
                 } else {
-                    // lblVelocidadCrucero FALTA
+                    lblVelocidadCrucero.setStyle("-fx-text-fill: red;");
                     lblCapacidadMaletero.setStyle("-fx-text-fill: red;");
                     if (radioBus.isSelected()) {
                         lblNumeroEjes.setStyle("-fx-text-fill: red;");
-                        /// lblNumeroSalidasEmergencia FALTA
+                        lblNumeroSalidasEmergencia.setStyle("-fx-text-fill: red;");
                     } else {
                         lblCamaraReversa.setStyle("-fx-text-fill: red;");
                         lblSensorColision.setStyle("-fx-text-fill: red;");
                         lblSensorTraficoCruzado.setStyle("-fx-text-fill: red;");
                         lblAsistentePermanenciaCarril.setStyle("-fx-text-fill: red;");
                         if (radioSedan.isSelected()) {
-                            // lblEspejosElectricos FALTA
+                            lblEspejosElectricos.setStyle("-fx-text-fill: red;");
                         } else if (radioCamioneta.isSelected()) {
                             lblTraccion.setStyle("-fx-text-fill: red;");
                         }
@@ -316,6 +335,40 @@ public class VentaClienteViewController {
                 }
             }
         }
+    }
+
+    private void limpiarSeleccion() {
+        lblNuevo.setStyle("-fx-text-fill: black;");
+        lblCambios.setStyle("-fx-text-fill: black;");
+        lblVelMax.setStyle("-fx-text-fill: black;");
+        lblCilindraje.setStyle("-fx-text-fill: black;");
+        lblDefensas.setStyle("-fx-text-fill: black;");
+        lblCapacidadCarga.setStyle("-fx-text-fill: black;");
+        lblAireAcondicionado.setStyle("-fx-text-fill: black;");
+        lblAbs.setStyle("-fx-text-fill: black;");
+        lblNumeroEjes.setStyle("-fx-text-fill: black;");
+        lblNumeroPasajeros.setStyle("-fx-text-fill: black;");
+        lblNumeroPuertas.setStyle("-fx-text-fill: black;");
+        lblBolsasAire.setStyle("-fx-text-fill: black;");
+        lblCaballosFuerza.setStyle("-fx-text-fill: black;");
+        lblTiempo.setStyle("-fx-text-fill: black;");
+        lblTraccion.setStyle("-fx-text-fill: black;");
+        lblAutonomia.setStyle("-fx-text-fill: black;");
+        lblCarga.setStyle("-fx-text-fill: black;");
+        lblEnchufable.setStyle("-fx-text-fill: black;");
+        lblLigero.setStyle("-fx-text-fill: black;");
+        lblTipoCombustion.setStyle("-fx-text-fill: black;");
+        lblTipoTransmision.setStyle("-fx-text-fill: black;");
+        lblCamaraReversa.setStyle("-fx-text-fill: black;");
+        lblCapacidadMaletero.setStyle("-fx-text-fill: black;");
+        lblSensorColision.setStyle("-fx-text-fill: black;");
+        lblSensorTraficoCruzado.setStyle("-fx-text-fill: black;");
+        lblAsistentePermanenciaCarril.setStyle("-fx-text-fill: black;");
+        lblNumeroSalidasEmergencia.setStyle("-fx-text-fill: black;");
+        lblEspejosElectricos.setStyle("-fx-text-fill: black;");
+        lblVelocidadCrucero.setStyle("-fx-text-fill: black;");
+        lblFrenosAire.setStyle("-fx-text-fill: black;");
+        lblTipoCamion.setStyle("-fx-text-fill: black;");
     }
 
     @FXML
@@ -354,6 +407,7 @@ public class VentaClienteViewController {
             String espejosElectricoString = txtAsistentePermanenciaCarril.getText();
             String velocidadCruceroString = txtVelocidadCrucero.getText();
             String frenosAireString = txtFrenosAire.getText();
+            String tipoCamionString = txtTipoCamion.getText();
 
             if (codigo.isEmpty() || marca.isEmpty() || modelo.isEmpty() || nuevoString.isEmpty()
                     || cambiosString.isEmpty() || velMaxString.isEmpty() || cilindrajeString.isEmpty()
@@ -361,7 +415,7 @@ public class VentaClienteViewController {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setTitle("ERROR");
-                alert.setContentText("Debes rellenar los espacios: Nuevo, Cambios, Velocidad Maxima o Cilindraje.");
+                alert.setContentText("Debes rellenar los espacios: Codigo, Marca, Modelo, Nuevo, Cambios, Velocidad Maxima o Cilindraje.");
                 alert.showAndWait();
             } else {
                 boolean nuevo = ingresarBooleano(txtNuevo, "Nuevo");
@@ -370,7 +424,7 @@ public class VentaClienteViewController {
                 double cilindraje = Integer.parseInt(cilindrajeString);
                 Transmision transmision = determinarTransmision(tipoTransmisionString);
                 Combustion combustion = determinarCombustion(tipoCombustionString);
-                if (transmision == null || combustion == null) {
+                if (transmision != null & combustion != null) {
                     if (radioMoto.isSelected()) {
                         if (defensasString.isEmpty()) {
                             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -408,7 +462,313 @@ public class VentaClienteViewController {
                             boolean aireAcondicionado = ingresarBooleano(txtAireAcondicionado, "Aire Acondicionado");
                             boolean frenosAire = ingresarBooleano(txtFrenosAire, "Frenos Aire");
                             boolean abs = ingresarBooleano(txtAbs, "Abs");
+                            TipoCamion tipoCamion = determinarCamion(tipoCamionString);
                             int numeroEjes = Integer.parseInt(numeroEjesString);
+                            if (tipoCamion != null) {
+                                Vehiculo vehiculo = new Camion(codigo, marca, modelo, nuevo, cambios, velMax,
+                                        cilindraje,
+                                        capacidadCarga, aireAcondicionado, frenosAire, abs, numeroEjes, tipoCamion,
+                                        combustion,
+                                        transmision);
+                                if (ventaClienteController.verificarVehiculo(codigo) == null) {
+                                    ventaClienteController.agregarVehiculoVenta(vehiculo);
+                                    vehiculo.setEstado(Estado.NODISPONIBLE);
+                                    generarSolicitudTransaccion();
+                                } else {
+                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                    alert.setHeaderText(null);
+                                    alert.setTitle("ERROR");
+                                    alert.setContentText("Por favor cambia el codigo del vehiculo.");
+                                    alert.showAndWait();
+                                }
+                            } else {
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setHeaderText(null);
+                                alert.setTitle("ERROR");
+                                alert.setContentText("Verifique el campo: Tipo Camion.");
+                                alert.showAndWait();
+                            }
+                        }
+                    } else if (radioHibrido.isSelected()) {
+                        if (enchufableString.isEmpty() || ligeroString.isEmpty()) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setHeaderText(null);
+                            alert.setTitle("ERROR");
+                            alert.setContentText("Verifique los campos: Enchufable o Ligero.");
+                            alert.showAndWait();
+                        } else {
+                            boolean enchufable = ingresarBooleano(txtEnchufable, "Enchufable");
+                            boolean ligero = ingresarBooleano(txtLigero, "Ligero");
+                            Vehiculo vehiculo = new VehiculoHibrido(codigo, marca, modelo, nuevo, cambios, velMax,
+                                    cilindraje, enchufable, ligero, combustion, transmision);
+                            if (ventaClienteController.verificarVehiculo(codigo) == null) {
+                                ventaClienteController.agregarVehiculoVenta(vehiculo);
+                                vehiculo.setEstado(Estado.NODISPONIBLE);
+                                generarSolicitudTransaccion();
+                            } else {
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setHeaderText(null);
+                                alert.setTitle("ERROR");
+                                alert.setContentText("Por favor cambia el codigo del vehiculo.");
+                                alert.showAndWait();
+                            }
+                        }
+                    } else if (radioElectrico.isSelected()) {
+                        if (autonomiaString.isEmpty() || tiempoCargaString.isEmpty()) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setHeaderText(null);
+                            alert.setTitle("ERROR");
+                            alert.setContentText("Verifique los campos: Autonomia o Tiempo Carga.");
+                            alert.showAndWait();
+                        } else {
+                            double autonomia = Double.parseDouble(autonomiaString);
+                            double tiempoCarga = Double.parseDouble(tiempoCargaString);
+                            Vehiculo vehiculo = new VehiculoElectrico(codigo, marca, modelo, nuevo, cambios, velMax,
+                                    cilindraje, autonomia, tiempoCarga, Combustion.SINCOMBUSTION, transmision);
+                            if (ventaClienteController.verificarVehiculo(codigo) == null) {
+                                ventaClienteController.agregarVehiculoVenta(vehiculo);
+                                vehiculo.setEstado(Estado.NODISPONIBLE);
+                                generarSolicitudTransaccion();
+                            } else {
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setHeaderText(null);
+                                alert.setTitle("ERROR");
+                                alert.setContentText("Por favor cambia el codigo del vehiculo.");
+                                alert.showAndWait();
+                            }
+                        }
+                    } else {
+                        if (numeroPasajerosString.isEmpty() || numeroPuertasString.isEmpty()
+                                || numeroBolsasAireString.isEmpty()) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setHeaderText(null);
+                            alert.setTitle("ERROR");
+                            alert.setContentText(
+                                    "Debes rellenar los espacios: Numero Pasajeros, Numero Puertas o Numero Bolsas Aire.");
+                            alert.showAndWait();
+                        } else {
+                            int numeroPasajeros = Integer.parseInt(numeroPasajerosString);
+                            int numeroPuertas = Integer.parseInt(numeroPuertasString);
+                            int numeroBolsasAire = Integer.parseInt(numeroBolsasAireString);
+                            if (radioDeportivo.isSelected()) {
+                                if (caballosFuerzaString.isEmpty() || tiempoCeroCienString.isEmpty()) {
+                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                    alert.setHeaderText(null);
+                                    alert.setTitle("ERROR");
+                                    alert.setContentText("Verifique los campos: Caballos Fuerza o Tiempo Cero a Cien.");
+                                    alert.showAndWait();
+                                } else {
+                                    int caballosFuerza = Integer.parseInt(caballosFuerzaString);
+                                    double tiempoCeroCien = Double.parseDouble(tiempoCeroCienString);
+                                    Vehiculo vehiculo = new Deportivo(codigo, marca, modelo, nuevo, cambios, velMax,
+                                            cilindraje, numeroPasajeros, numeroPuertas, numeroBolsasAire, combustion,
+                                            transmision, caballosFuerza, tiempoCeroCien);
+                                    if (ventaClienteController.verificarVehiculo(codigo) == null) {
+                                        ventaClienteController.agregarVehiculoVenta(vehiculo);
+                                        vehiculo.setEstado(Estado.NODISPONIBLE);
+                                        generarSolicitudTransaccion();
+                                    } else {
+                                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                                        alert.setHeaderText(null);
+                                        alert.setTitle("ERROR");
+                                        alert.setContentText("Por favor cambia el codigo del vehiculo.");
+                                        alert.showAndWait();
+                                    }
+                                }
+                            } else {
+                                if (aireAcondicionadoString.isEmpty() || absString.isEmpty()) {
+                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                    alert.setHeaderText(null);
+                                    alert.setTitle("ERROR");
+                                    alert.setContentText(
+                                            "Debes rellenar los espacios: Aire Acondicionado o Abs.");
+                                    alert.showAndWait();
+                                } else {
+                                    boolean aireAcondicionado = ingresarBooleano(txtAireAcondicionado,
+                                            "Aire Acondicionado");
+                                    boolean abs = ingresarBooleano(txtAbs, "Abs");
+                                    if (radioPickUp.isSelected()) {
+                                        if (traccionString.isEmpty() || capacidadCargaString.isEmpty()) {
+                                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                                            alert.setHeaderText(null);
+                                            alert.setTitle("ERROR");
+                                            alert.setContentText(
+                                                    "Verifique los campos: Traccion o Capacidad Carga.");
+                                            alert.showAndWait();
+                                        } else {
+                                            boolean traccion = ingresarBooleano(txtTraccion, "Traccion");
+                                            double capacidadCarga = Double.parseDouble(capacidadCargaString);
+                                            Vehiculo vehiculo = new PickUp(codigo, marca, modelo, nuevo, cambios,
+                                                    velMax, cilindraje, numeroPasajeros, numeroPuertas,
+                                                    numeroBolsasAire, combustion, transmision, aireAcondicionado, abs,
+                                                    traccion, capacidadCarga);
+                                            if (ventaClienteController.verificarVehiculo(codigo) == null) {
+                                                ventaClienteController.agregarVehiculoVenta(vehiculo);
+                                                vehiculo.setEstado(Estado.NODISPONIBLE);
+                                                generarSolicitudTransaccion();
+                                            } else {
+                                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                                alert.setHeaderText(null);
+                                                alert.setTitle("ERROR");
+                                                alert.setContentText("Por favor cambia el codigo del vehiculo.");
+                                                alert.showAndWait();
+                                            }
+                                        }
+                                    } else if (radioVan.isSelected()) {
+                                        if (camaraReversaString.isEmpty() || capacidadMaleteroString.isEmpty()) {
+                                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                                            alert.setHeaderText(null);
+                                            alert.setTitle("ERROR");
+                                            alert.setContentText(
+                                                    "Verifique los campos: Camara Reversa o Capacidad Maletero.");
+                                            alert.showAndWait();
+                                        } else {
+                                            boolean camaraReversa = ingresarBooleano(txtCamaraReversa,
+                                                    "Camara Reversa");
+                                            double capacidadMaletero = Double.parseDouble(capacidadMaleteroString);
+                                            Vehiculo vehiculo = new Van(codigo, marca, modelo, nuevo, cambios, velMax,
+                                                    cilindraje, numeroPasajeros, numeroPuertas, numeroBolsasAire,
+                                                    combustion, transmision, aireAcondicionado, abs, camaraReversa,
+                                                    capacidadMaletero);
+                                            if (ventaClienteController.verificarVehiculo(codigo) == null) {
+                                                ventaClienteController.agregarVehiculoVenta(vehiculo);
+                                                vehiculo.setEstado(Estado.NODISPONIBLE);
+                                                generarSolicitudTransaccion();
+                                            } else {
+                                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                                alert.setHeaderText(null);
+                                                alert.setTitle("ERROR");
+                                                alert.setContentText("Por favor cambia el codigo del vehiculo.");
+                                                alert.showAndWait();
+                                            }
+                                        }
+                                    } else {
+                                        if (velocidadCruceroString.isEmpty() || capacidadMaleteroString.isEmpty()) {
+                                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                                            alert.setHeaderText(null);
+                                            alert.setTitle("ERROR");
+                                            alert.setContentText(
+                                                    "Debes rellenar los espacios: Velocidad Crucero o Capacidad Maletero.");
+                                            alert.showAndWait();
+                                        } else {
+                                            boolean velocidadCrucero = ingresarBooleano(txtVelocidadCrucero,
+                                                    "Velocidad Crucero");
+                                            double capacidadMaletero = Double.parseDouble(capacidadMaleteroString);
+                                            if (radioBus.isSelected()) {
+                                                if (numeroEjesString.isEmpty()
+                                                        || numeroSalidasEmergenciaString.isEmpty()) {
+                                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                                    alert.setHeaderText(null);
+                                                    alert.setTitle("ERROR");
+                                                    alert.setContentText(
+                                                            "Verifique los campos: Numero Ejes o Numero Salidas de Emergencia.");
+                                                    alert.showAndWait();
+                                                } else {
+                                                    int numeroEjes = Integer.parseInt(numeroEjesString);
+                                                    int numeroSalidasEmergencia = Integer
+                                                            .parseInt(numeroSalidasEmergenciaString);
+                                                    Vehiculo vehiculo = new Bus(codigo, marca, modelo, nuevo, cambios,
+                                                            velMax, cilindraje, numeroPasajeros, numeroPuertas,
+                                                            numeroBolsasAire, combustion, transmision,
+                                                            aireAcondicionado, abs, velocidadCrucero, capacidadMaletero,
+                                                            numeroEjes, numeroSalidasEmergencia);
+                                                    if (ventaClienteController.verificarVehiculo(codigo) == null) {
+                                                        ventaClienteController.agregarVehiculoVenta(vehiculo);
+                                                        vehiculo.setEstado(Estado.NODISPONIBLE);
+                                                        generarSolicitudTransaccion();
+                                                    } else {
+                                                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                                                        alert.setHeaderText(null);
+                                                        alert.setTitle("ERROR");
+                                                        alert.setContentText(
+                                                                "Por favor cambia el codigo del vehiculo.");
+                                                        alert.showAndWait();
+                                                    }
+                                                }
+                                            } else {
+                                                if (camaraReversaString.isEmpty() || sensorColisionString.isEmpty()
+                                                        || sensorTraficoCruzadoString.isEmpty()
+                                                        || asistentePermanenciaCarrilString.isEmpty()) {
+                                                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                                                    alert.setHeaderText(null);
+                                                    alert.setTitle("ERROR");
+                                                    alert.setContentText(
+                                                            "Debes rellenar los espacios: Camara Reversa, Sensor Colision, Sensor Trafico Cruzado o Asistente Permanencia Carril.");
+                                                    alert.showAndWait();
+                                                } else {
+                                                    boolean camaraReversa = ingresarBooleano(txtCamaraReversa,
+                                                            "Camara Reversa");
+                                                    boolean sensorColision = ingresarBooleano(txtSensorColision,
+                                                            "Sensor Colision");
+                                                    boolean sensorTraficoCruzado = ingresarBooleano(
+                                                            txtSensorTraficoCruzado, "Sensor Trafico Cruzado");
+                                                    boolean asistentePermanenciaCarril = ingresarBooleano(
+                                                            txtAsistentePermanenciaCarril,
+                                                            "Asistente Permanencia Carril");
+                                                    if (radioSedan.isSelected()) {
+                                                        if (espejosElectricoString.isEmpty()) {
+                                                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                                                            alert.setHeaderText(null);
+                                                            alert.setTitle("ERROR");
+                                                            alert.setContentText(
+                                                                    "Verifique los campos: Espejos Electricos.");
+                                                            alert.showAndWait();
+                                                        } else {
+                                                            boolean espejosElectricos = ingresarBooleano(
+                                                                    txtEspejosElectricos, "Espejos Electricos");
+                                                            Vehiculo vehiculo = new Sedan(codigo, marca, modelo, nuevo,
+                                                                    cambios, velMax, cilindraje, numeroPasajeros,
+                                                                    numeroPuertas, numeroBolsasAire, combustion,
+                                                                    transmision, aireAcondicionado, abs,
+                                                                    velocidadCrucero, capacidadMaletero, camaraReversa,
+                                                                    sensorColision, sensorTraficoCruzado,
+                                                                    asistentePermanenciaCarril, espejosElectricos);
+                                                            if (ventaClienteController
+                                                                    .verificarVehiculo(codigo) == null) {
+                                                                ventaClienteController.agregarVehiculoVenta(vehiculo);
+                                                                vehiculo.setEstado(Estado.NODISPONIBLE);
+                                                                generarSolicitudTransaccion();
+                                                            } else {
+                                                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                                                alert.setHeaderText(null);
+                                                                alert.setTitle("ERROR");
+                                                                alert.setContentText(
+                                                                        "Por favor cambia el codigo del vehiculo.");
+                                                                alert.showAndWait();
+                                                            }
+                                                        }
+                                                    } else if (radioCamioneta.isSelected()) {
+                                                        if (traccionString.isEmpty()) {
+                                                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                                                            alert.setHeaderText(null);
+                                                            alert.setTitle("ERROR");
+                                                            alert.setContentText(
+                                                                    "Verifique los campos: Traccion.");
+                                                            alert.showAndWait();
+                                                        } else {
+                                                            boolean traccion = ingresarBooleano(txtTraccion, "Traccion");
+                                                            Vehiculo vehiculo = new Camioneta(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas, numeroBolsasAire, combustion, transmision, aireAcondicionado, abs, velocidadCrucero, capacidadMaletero, camaraReversa, sensorColision, sensorTraficoCruzado, asistentePermanenciaCarril, traccion);
+                                                            if (ventaClienteController
+                                                                    .verificarVehiculo(codigo) == null) {
+                                                                ventaClienteController.agregarVehiculoVenta(vehiculo);
+                                                                vehiculo.setEstado(Estado.NODISPONIBLE);
+                                                                generarSolicitudTransaccion();
+                                                            } else {
+                                                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                                                alert.setHeaderText(null);
+                                                                alert.setTitle("ERROR");
+                                                                alert.setContentText(
+                                                                        "Por favor cambia el codigo del vehiculo.");
+                                                                alert.showAndWait();
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 } else {
@@ -461,6 +821,18 @@ public class VentaClienteViewController {
             combustion = Combustion.SINCOMBUSTION;
         }
         return combustion;
+    }
+
+    private TipoCamion determinarCamion(String tipoCamionString) {
+        TipoCamion tipoCamion = null;
+        if (tipoCamionString.equals("ligero")) {
+            tipoCamion = TipoCamion.LIGERO;
+        } else if (tipoCamionString.equals("mediano")) {
+            tipoCamion = TipoCamion.MEDIANO;
+        } else if (tipoCamionString.equals("pesado")) {
+            tipoCamion = TipoCamion.PESADO;
+        }
+        return tipoCamion;
     }
 
     private void generarSolicitudTransaccion() {
