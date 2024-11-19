@@ -13,6 +13,7 @@ import co.edu.uniquindio.poo.controller.DatosVehiculoController;
 import co.edu.uniquindio.poo.model.Concesionario;
 import co.edu.uniquindio.poo.viewController.AdministradorViewController;
 import co.edu.uniquindio.poo.viewController.ClienteViewController;
+import co.edu.uniquindio.poo.viewController.ConsultaTransaccionViewController;
 import co.edu.uniquindio.poo.viewController.DatosClienteViewController;
 import co.edu.uniquindio.poo.viewController.DatosEmpleadoViewController;
 import co.edu.uniquindio.poo.viewController.DatosVehiculoViewController;
@@ -31,6 +32,7 @@ public class App extends Application {
     private Stage restablecerStage;
     private Stage administradorStage;
     private Stage empleadoStage;
+    private Stage consultaTransaccionStage;
     private Stage clienteStage;
     private Stage ventaClienteStage;
     private Stage solicitudClienteStage;
@@ -42,6 +44,7 @@ public class App extends Application {
     RestablecerViewController restablecerViewController;
     AdministradorViewController administradorViewController;
     EmpleadoViewController empleadoViewController;
+    ConsultaTransaccionViewController consultaTransaccionViewController;
     ClienteViewController clienteViewController;
     VentaClienteViewController ventaClienteViewController;
     SolicitudClienteViewController solicitudClienteViewController;
@@ -141,6 +144,28 @@ public class App extends Application {
             empleadoStage.setScene(scene);
 
             empleadoStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openConsultaTransaccionView() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ConsultaTransaccionView.fxml"));
+            Parent root = loader.load();
+
+            consultaTransaccionViewController = loader.getController();
+            consultaTransaccionViewController.setApp(this);
+
+            Scene scene = new Scene(root);
+            consultaTransaccionStage = new Stage();
+            consultaTransaccionStage.initModality(Modality.WINDOW_MODAL);
+            consultaTransaccionStage.setScene(scene);
+
+            consultaTransaccionStage.showAndWait();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -268,9 +293,10 @@ public class App extends Application {
 
             Scene scene = new Scene(root);
             datosVehiculo = new Stage();
+            datosClienteStage.initModality(Modality.WINDOW_MODAL);
             datosVehiculo.setScene(scene);
 
-            datosVehiculo.show();
+            datosVehiculo.showAndWait();
 
         } catch (IOException e) {
             e.printStackTrace();
