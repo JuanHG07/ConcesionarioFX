@@ -62,8 +62,18 @@ public class Transaccion {
         this.vendedor = vendedor;
     }
 
-    public String getCodigoEmpeleado() {
-        return vendedor != null ? vendedor.getCodigoEmpleado() : null;
+    public String getCedulaCliente() {
+        return cliente != null ? cliente.getCedula() : null;
+    }
+
+    public String getCodigoVehiculo() {
+        String codigoVehiculo = null;
+        for (Negocio negocio : negocios) {
+            if (negocio.getVehiculo() != null) {
+                codigoVehiculo = negocio.getVehiculo().getCodigo();
+            } 
+        }
+        return codigoVehiculo;
     }
 
     public LinkedList<Negocio> getNegocios() {

@@ -19,6 +19,7 @@ import co.edu.uniquindio.poo.viewController.DatosVehiculoViewController;
 import co.edu.uniquindio.poo.viewController.EmpleadoViewController;
 import co.edu.uniquindio.poo.viewController.LoginViewController;
 import co.edu.uniquindio.poo.viewController.RestablecerViewController;
+import co.edu.uniquindio.poo.viewController.SolicitudClienteViewController;
 import co.edu.uniquindio.poo.viewController.VentaClienteViewController;
 
 /**
@@ -32,6 +33,7 @@ public class App extends Application {
     private Stage empleadoStage;
     private Stage clienteStage;
     private Stage ventaClienteStage;
+    private Stage solicitudClienteStage;
     private Stage datosEmpleadoStage;
     private Stage datosClienteStage;
     private Stage datosVehiculo;
@@ -42,6 +44,7 @@ public class App extends Application {
     EmpleadoViewController empleadoViewController;
     ClienteViewController clienteViewController;
     VentaClienteViewController ventaClienteViewController;
+    SolicitudClienteViewController solicitudClienteViewController;
     DatosEmpleadoViewController datosEmpleadoViewController;
     DatosClienteViewController datosClienteViewController;
     DatosVehiculoViewController datosVehiculoViewController;
@@ -187,6 +190,28 @@ public class App extends Application {
         }
     }
 
+    public void openSolicitudClienteView() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("SolicitudClienteView.fxml"));
+            Parent root = loader.load();
+
+            solicitudClienteViewController = loader.getController();
+            solicitudClienteViewController.setApp(this);
+
+            Scene scene = new Scene(root);
+            solicitudClienteStage = new Stage();
+            solicitudClienteStage.initModality(Modality.WINDOW_MODAL);
+            solicitudClienteStage.setScene(scene);
+
+            solicitudClienteStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void openDatosEmpleadoView() {
 
         try {
@@ -238,7 +263,7 @@ public class App extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DatosVehiculoView.fxml"));
             Parent root = loader.load();
 
-            datosVehiculoViewController= loader.getController();
+            datosVehiculoViewController = loader.getController();
             datosVehiculoViewController.setApp(this);
 
             Scene scene = new Scene(root);
@@ -274,6 +299,22 @@ public class App extends Application {
 
     public EmpleadoViewController getEmpleadoViewController() {
         return empleadoViewController;
+    }
+
+    public ClienteViewController getClienteViewController() {
+        return clienteViewController;
+    }
+
+    public VentaClienteViewController getVentaClienteViewController() {
+        return ventaClienteViewController;
+    }
+
+    public SolicitudClienteViewController getSolicitudClienteViewController() {
+        return solicitudClienteViewController;
+    }
+
+    public DatosVehiculoViewController getDatosVehiculoViewController() {
+        return datosVehiculoViewController;
     }
 
 }

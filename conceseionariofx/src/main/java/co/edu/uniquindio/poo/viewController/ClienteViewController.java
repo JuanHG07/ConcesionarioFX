@@ -47,7 +47,7 @@ public class ClienteViewController {
 
     @FXML
     private Label lblVelocidadCrucero;
-    
+
     @FXML
     private TextField txtFrenosAire;
 
@@ -260,11 +260,17 @@ public class ClienteViewController {
 
     Vehiculo selectedVehiculo;
 
+    public boolean comprarVehiculo;
+    public boolean alquilarVehiculo;
+
     @FXML
     void initialize() {
         clienteController = new ClienteController(app.concesionario);
 
         vehiculos = FXCollections.observableArrayList();
+
+        comprarVehiculo = false;
+        alquilarVehiculo = false;
 
         carga();
     }
@@ -273,7 +279,7 @@ public class ClienteViewController {
         enlaceDataVehiculo();
 
         cargarTablaVehiculos();
-        
+
         seleccionarVehiculo();
     }
 
@@ -308,77 +314,88 @@ public class ClienteViewController {
             txtVelMax.setText(vehiculo.getVelMax() + "");
             txtCilindraje.setText(vehiculo.getCilindraje() + "");
             if (vehiculo instanceof Camion) {
-                txtCapacidadCarga.setText(((Camion)vehiculo).getCapacidadCarga() + "");
-                txtAireAcondicionado.setText(((Camion)vehiculo).isAireAcondicionado() == true ? "Si" : "No");
-                //txtFrenosAire FALTA
-                txtAbs.setText(((Camion)vehiculo).isAbs() == true ? "Si" : "No");
-                txtNumeroEjes.setText(((Camion)vehiculo).getNumeroEjes() + "");
-            } if (vehiculo instanceof Moto) {
-                txtDefensas.setText(((Moto)vehiculo).isDefensas() == true ? "Si" : "No");
-            } if (vehiculo instanceof VehiculoHibrido) {
-                txtEnchufable.setText(((VehiculoHibrido)vehiculo).Enchufable() == true ? "Si" : "No");
-                txtLigero.setText(((VehiculoHibrido)vehiculo).Ligero() ==  true ? "Si" : "No");
-            } if (vehiculo instanceof VehiculoElectrico) {
-                txtAutonomia.setText(((VehiculoElectrico)vehiculo).getAutonomia() + "");
-                txtTiempoCarga.setText(((VehiculoElectrico)vehiculo).getTiempoCarga() + "");
-            } if (vehiculo instanceof Deportivo) {
-                txtNumeroPasajeros.setText(((Deportivo)vehiculo).getNumeroPasajeros() + "");
-                txtNumeroPuertas.setText(((Deportivo)vehiculo).getNumeroPuertas() + "");
-                txtNumeroBolsasAire.setText(((Deportivo)vehiculo).getNumeroBolsasAire() + "");
-                txtCaballosFuerza.setText(((Deportivo)vehiculo).getCaballosFuerza() + "");
-                txtTiempo0100.setText(((Deportivo)vehiculo).getTiempoCeroCien() + "");
-            } if (vehiculo instanceof PickUp) {
-                txtNumeroPasajeros.setText(((PickUp)vehiculo).getNumeroPasajeros() + "");
-                txtNumeroPuertas.setText(((PickUp)vehiculo).getNumeroPuertas() + "");
-                txtNumeroBolsasAire.setText(((PickUp)vehiculo).getNumeroBolsasAire() + "");
-                txtAireAcondicionado.setText(((PickUp)vehiculo).isAireAcondicionado() == true ? "Si" : "No");
-                txtAbs.setText(((PickUp)vehiculo).isAbs() == true ? "Si" : "No");
-                txtTraccion.setText(((PickUp)vehiculo).isTraccion() == true ? "Si" : "No");
-                txtCapacidadCarga.setText(((PickUp)vehiculo).getCapacidadCarga() + "");
-            } if (vehiculo instanceof Van) {
-                txtNumeroPasajeros.setText(((Van)vehiculo).getNumeroPasajeros() + "");
-                txtNumeroPuertas.setText(((Van)vehiculo).getNumeroPuertas() + "");
-                txtNumeroBolsasAire.setText(((Van)vehiculo).getNumeroBolsasAire() + "");
-                txtAireAcondicionado.setText(((Van)vehiculo).isAireAcondicionado() == true ? "Si" : "No");
-                txtAbs.setText(((Van)vehiculo).isAbs() == true ? "Si" : "No");
-                txtCamaraReversa.setText(((Van)vehiculo).isCamaraReversa() == true ? "Si" : "No");
-                txtCapacidadMaletero.setText(((Van)vehiculo).getCapacidadMaletero() + "");
-            } if (vehiculo instanceof Bus) {
-                txtNumeroPasajeros.setText(((Bus)vehiculo).getNumeroPasajeros() + "");
-                txtNumeroPuertas.setText(((Bus)vehiculo).getNumeroPuertas() + "");
-                txtNumeroBolsasAire.setText(((Bus)vehiculo).getNumeroBolsasAire() + "");
-                txtAireAcondicionado.setText(((Bus)vehiculo).isAireAcondicionado() == true ? "Si" : "No");
-                txtAbs.setText(((Bus)vehiculo).isAbs() == true ? "Si" : "No");
-                txtVelocidadCrucero.setText(((Bus)vehiculo).isVelocidadCrucero() == true ? "Si" : "No");
-                txtCapacidadMaletero.setText(((Bus)vehiculo).getCapacidadMaletero() + "");
-                txtNumeroEjes.setText(((Bus)vehiculo).getNumeroEjes() + "");
-                txtNumeroSalidasEmergencia.setText(((Bus)vehiculo).getNumeroSalidasEmergencia() + "");
-            } if (vehiculo instanceof Sedan) {
-                txtNumeroPasajeros.setText(((Sedan)vehiculo).getNumeroPasajeros() + "");
-                txtNumeroPuertas.setText(((Sedan)vehiculo).getNumeroPuertas() + "");
-                txtNumeroBolsasAire.setText(((Sedan)vehiculo).getNumeroBolsasAire() + "");
-                txtAireAcondicionado.setText(((Sedan)vehiculo).isAireAcondicionado() == true ? "Si" : "No");
-                txtAbs.setText(((Sedan)vehiculo).isAbs() == true ? "Si" : "No");
-                txtVelocidadCrucero.setText(((Sedan)vehiculo).isVelocidadCrucero() == true ? "Si" : "No");
-                txtCamaraReversa.setText(((Sedan)vehiculo).isCamaraReversa() == true ? "Si" : "No");
-                txtNumeroBolsasAire.setText(((Sedan)vehiculo).getNumeroBolsasAire() + "");
-                txtSensorColision.setText(((Sedan)vehiculo).isSensorColision() == true ? "Si" : "No");
-                txtSensorTraficoCruzado.setText(((Sedan)vehiculo).isSensorTraficoCruzado() == true ? "Si" : "No");
-                txtAsistentePermanenciaCarril.setText(((Sedan)vehiculo).isAsistentePermanenciaCarril() == true ? "Si" : "No");
-                txtEspejosElectricos.setText(((Sedan)vehiculo).isEspejosElectricos() == true ? "Si" : "No");
-            } if (vehiculo instanceof Camioneta) {
-                txtNumeroPasajeros.setText(((Camioneta)vehiculo).getNumeroPasajeros() + "");
-                txtNumeroPuertas.setText(((Camioneta)vehiculo).getNumeroPuertas() + "");
-                txtNumeroBolsasAire.setText(((Camioneta)vehiculo).getNumeroBolsasAire() + "");
-                txtAireAcondicionado.setText(((Camioneta)vehiculo).isAireAcondicionado() == true ? "Si" : "No");
-                txtAbs.setText(((Camioneta)vehiculo).isAbs() == true ? "Si" : "No");
-                txtVelocidadCrucero.setText(((Camioneta)vehiculo).isVelocidadCrucero() == true ? "Si" : "No");
-                txtCamaraReversa.setText(((Camioneta)vehiculo).isCamaraReversa() == true ? "Si" : "No");
-                txtNumeroBolsasAire.setText(((Camioneta)vehiculo).getNumeroBolsasAire() + "");
-                txtSensorColision.setText(((Camioneta)vehiculo).isSensorColision() == true ? "Si" : "No");
-                txtSensorTraficoCruzado.setText(((Camioneta)vehiculo).isSensorTraficoCruzado() == true ? "Si" : "No");
-                txtAsistentePermanenciaCarril.setText(((Camioneta)vehiculo).isAsistentePermanenciaCarril() == true ? "Si" : "No");
-                txtTraccion.setText(((Camioneta)vehiculo).getTraccion() == true ? "Si" : "No");
+                txtCapacidadCarga.setText(((Camion) vehiculo).getCapacidadCarga() + "");
+                txtAireAcondicionado.setText(((Camion) vehiculo).isAireAcondicionado() == true ? "Si" : "No");
+                // txtFrenosAire FALTA
+                txtAbs.setText(((Camion) vehiculo).isAbs() == true ? "Si" : "No");
+                txtNumeroEjes.setText(((Camion) vehiculo).getNumeroEjes() + "");
+            }
+            if (vehiculo instanceof Moto) {
+                txtDefensas.setText(((Moto) vehiculo).isDefensas() == true ? "Si" : "No");
+            }
+            if (vehiculo instanceof VehiculoHibrido) {
+                txtEnchufable.setText(((VehiculoHibrido) vehiculo).Enchufable() == true ? "Si" : "No");
+                txtLigero.setText(((VehiculoHibrido) vehiculo).Ligero() == true ? "Si" : "No");
+            }
+            if (vehiculo instanceof VehiculoElectrico) {
+                txtAutonomia.setText(((VehiculoElectrico) vehiculo).getAutonomia() + "");
+                txtTiempoCarga.setText(((VehiculoElectrico) vehiculo).getTiempoCarga() + "");
+            }
+            if (vehiculo instanceof Deportivo) {
+                txtNumeroPasajeros.setText(((Deportivo) vehiculo).getNumeroPasajeros() + "");
+                txtNumeroPuertas.setText(((Deportivo) vehiculo).getNumeroPuertas() + "");
+                txtNumeroBolsasAire.setText(((Deportivo) vehiculo).getNumeroBolsasAire() + "");
+                txtCaballosFuerza.setText(((Deportivo) vehiculo).getCaballosFuerza() + "");
+                txtTiempo0100.setText(((Deportivo) vehiculo).getTiempoCeroCien() + "");
+            }
+            if (vehiculo instanceof PickUp) {
+                txtNumeroPasajeros.setText(((PickUp) vehiculo).getNumeroPasajeros() + "");
+                txtNumeroPuertas.setText(((PickUp) vehiculo).getNumeroPuertas() + "");
+                txtNumeroBolsasAire.setText(((PickUp) vehiculo).getNumeroBolsasAire() + "");
+                txtAireAcondicionado.setText(((PickUp) vehiculo).isAireAcondicionado() == true ? "Si" : "No");
+                txtAbs.setText(((PickUp) vehiculo).isAbs() == true ? "Si" : "No");
+                txtTraccion.setText(((PickUp) vehiculo).isTraccion() == true ? "Si" : "No");
+                txtCapacidadCarga.setText(((PickUp) vehiculo).getCapacidadCarga() + "");
+            }
+            if (vehiculo instanceof Van) {
+                txtNumeroPasajeros.setText(((Van) vehiculo).getNumeroPasajeros() + "");
+                txtNumeroPuertas.setText(((Van) vehiculo).getNumeroPuertas() + "");
+                txtNumeroBolsasAire.setText(((Van) vehiculo).getNumeroBolsasAire() + "");
+                txtAireAcondicionado.setText(((Van) vehiculo).isAireAcondicionado() == true ? "Si" : "No");
+                txtAbs.setText(((Van) vehiculo).isAbs() == true ? "Si" : "No");
+                txtCamaraReversa.setText(((Van) vehiculo).isCamaraReversa() == true ? "Si" : "No");
+                txtCapacidadMaletero.setText(((Van) vehiculo).getCapacidadMaletero() + "");
+            }
+            if (vehiculo instanceof Bus) {
+                txtNumeroPasajeros.setText(((Bus) vehiculo).getNumeroPasajeros() + "");
+                txtNumeroPuertas.setText(((Bus) vehiculo).getNumeroPuertas() + "");
+                txtNumeroBolsasAire.setText(((Bus) vehiculo).getNumeroBolsasAire() + "");
+                txtAireAcondicionado.setText(((Bus) vehiculo).isAireAcondicionado() == true ? "Si" : "No");
+                txtAbs.setText(((Bus) vehiculo).isAbs() == true ? "Si" : "No");
+                txtVelocidadCrucero.setText(((Bus) vehiculo).isVelocidadCrucero() == true ? "Si" : "No");
+                txtCapacidadMaletero.setText(((Bus) vehiculo).getCapacidadMaletero() + "");
+                txtNumeroEjes.setText(((Bus) vehiculo).getNumeroEjes() + "");
+                txtNumeroSalidasEmergencia.setText(((Bus) vehiculo).getNumeroSalidasEmergencia() + "");
+            }
+            if (vehiculo instanceof Sedan) {
+                txtNumeroPasajeros.setText(((Sedan) vehiculo).getNumeroPasajeros() + "");
+                txtNumeroPuertas.setText(((Sedan) vehiculo).getNumeroPuertas() + "");
+                txtNumeroBolsasAire.setText(((Sedan) vehiculo).getNumeroBolsasAire() + "");
+                txtAireAcondicionado.setText(((Sedan) vehiculo).isAireAcondicionado() == true ? "Si" : "No");
+                txtAbs.setText(((Sedan) vehiculo).isAbs() == true ? "Si" : "No");
+                txtVelocidadCrucero.setText(((Sedan) vehiculo).isVelocidadCrucero() == true ? "Si" : "No");
+                txtCamaraReversa.setText(((Sedan) vehiculo).isCamaraReversa() == true ? "Si" : "No");
+                txtNumeroBolsasAire.setText(((Sedan) vehiculo).getNumeroBolsasAire() + "");
+                txtSensorColision.setText(((Sedan) vehiculo).isSensorColision() == true ? "Si" : "No");
+                txtSensorTraficoCruzado.setText(((Sedan) vehiculo).isSensorTraficoCruzado() == true ? "Si" : "No");
+                txtAsistentePermanenciaCarril
+                        .setText(((Sedan) vehiculo).isAsistentePermanenciaCarril() == true ? "Si" : "No");
+                txtEspejosElectricos.setText(((Sedan) vehiculo).isEspejosElectricos() == true ? "Si" : "No");
+            }
+            if (vehiculo instanceof Camioneta) {
+                txtNumeroPasajeros.setText(((Camioneta) vehiculo).getNumeroPasajeros() + "");
+                txtNumeroPuertas.setText(((Camioneta) vehiculo).getNumeroPuertas() + "");
+                txtNumeroBolsasAire.setText(((Camioneta) vehiculo).getNumeroBolsasAire() + "");
+                txtAireAcondicionado.setText(((Camioneta) vehiculo).isAireAcondicionado() == true ? "Si" : "No");
+                txtAbs.setText(((Camioneta) vehiculo).isAbs() == true ? "Si" : "No");
+                txtVelocidadCrucero.setText(((Camioneta) vehiculo).isVelocidadCrucero() == true ? "Si" : "No");
+                txtCamaraReversa.setText(((Camioneta) vehiculo).isCamaraReversa() == true ? "Si" : "No");
+                txtNumeroBolsasAire.setText(((Camioneta) vehiculo).getNumeroBolsasAire() + "");
+                txtSensorColision.setText(((Camioneta) vehiculo).isSensorColision() == true ? "Si" : "No");
+                txtSensorTraficoCruzado.setText(((Camioneta) vehiculo).isSensorTraficoCruzado() == true ? "Si" : "No");
+                txtAsistentePermanenciaCarril
+                        .setText(((Camioneta) vehiculo).isAsistentePermanenciaCarril() == true ? "Si" : "No");
+                txtTraccion.setText(((Camioneta) vehiculo).getTraccion() == true ? "Si" : "No");
             }
         }
     }
@@ -392,17 +409,25 @@ public class ClienteViewController {
 
     @FXML
     void comprarVehiculo(ActionEvent event) {
-
+        comprarVehiculo = true;
+        app.openSolicitudClienteView();
     }
 
     @FXML
     void alquilarVehiculo(ActionEvent event) {
-
+        alquilarVehiculo = true;
+        app.openSolicitudClienteView();
     }
 
     @FXML
     void regresarLogin(ActionEvent event) {
+        Stage stage = (Stage) btnSalir.getScene().getWindow();
+        stage.close();
+        app.openLoginView();
+    }
 
+    public Vehiculo getSelectedVehiculo() {
+        return selectedVehiculo;
     }
 
     public void setApp(App app) {

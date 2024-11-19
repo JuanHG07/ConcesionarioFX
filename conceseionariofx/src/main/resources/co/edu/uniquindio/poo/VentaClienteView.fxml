@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="1908.0" prefWidth="1114.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.VentaClienteViewController">
-   <bottom>
-    <ScrollPane prefHeight="1969.0" prefWidth="1114.0" style="-fx-background-color: #EAEAEA;" BorderPane.alignment="CENTER">
+<BorderPane prefHeight="2007.0" prefWidth="1117.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.viewController.VentaClienteViewController">
+   <left>
+    <ScrollPane prefHeight="2003.0" prefWidth="1117.0" style="-fx-background-color: #EAEAEA;" BorderPane.alignment="CENTER">
        <content>
-         <VBox prefHeight="2065.0" prefWidth="1104.0" spacing="10.0" style="-fx-padding: 10;">
+         <VBox prefHeight="1949.0" prefWidth="1104.0" spacing="10.0" style="-fx-padding: 10;">
             <children>
               <!-- Vehículos Disponibles -->
               <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill:  #66CC33;" text="Formulario para Vender Vehículo" />
@@ -170,5 +170,8 @@
          </VBox>
        </content>
     </ScrollPane>
+   </left>
+   <bottom>
+      <ScrollPane prefHeight="0.0" prefWidth="1117.0" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

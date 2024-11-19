@@ -40,8 +40,10 @@ public class Concesionario {
                 "juanperez", "secreta123", "nombre de tu madre", "María Pérez", "EMP001");
         Cliente cliente = new Cliente("Ana", "Gómez", "9876543210", "0123456789", "ana.gomez@email.com", "anagomez",
                 "contraseña123", "nombre de tu mascota", "Rex", "Calle Ficticia 123");
-        Vehiculo sedan = new Sedan("S1234", "Toyota", "Corolla", true, 6, 180.0, 1800, 5, 4, 6, Combustion.GASOLINA, Transmision.MANUAL,
+        Vehiculo sedan = new Sedan("S1234", "Toyota", "Corolla", true, 6, 180.0, 1800, 5, 4, 6, Combustion.GASOLINA,
+                Transmision.MANUAL,
                 true, true, true, 450, true, true, true, true, true);
+        sedan.setEstado(Estado.DISPONIBLE);
         agregarVehiculo(sedan);
         agregarCliente(cliente);
         agregarVendedor(vendedor);
@@ -165,6 +167,36 @@ public class Concesionario {
     }
 
     /**
+     * Verifica si un cliente existe por su usuario.
+     * 
+     * @param direccion Usuario del cliente.
+     * @return Cliente encontrado o null.
+     */
+    public Cliente verificarUsuarioCliente(String usuario) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getCuenta().equals(usuario)) {
+                return cliente;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Verifica si un vendedor existe por su usuario.
+     * 
+     * @param direccion Usuario del vendedor.
+     * @return Vendedor encontrado o null.
+     */
+    public Vendedor verificarUsuarioVendedor(String usuario) {
+        for (Vendedor vendedor : vendedores) {
+            if (vendedor.getCuenta().equals(usuario)) {
+                return vendedor;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Agrega un cliente a la lista.
      * 
      * @param cliente Cliente a agregar.
@@ -174,9 +206,9 @@ public class Concesionario {
     }
 
     /**
-     * Verifica si un cliente existe por su dirección.
+     * Verifica si un cliente existe por su cedula.
      * 
-     * @param direccion Dirección del cliente.
+     * @param direccion Cedula del cliente.
      * @return Cliente encontrado o null.
      */
     public Cliente verificarCliente(String cedula) {

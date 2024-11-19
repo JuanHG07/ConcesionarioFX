@@ -26,8 +26,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class VentaClienteViewController {
     @FXML
@@ -271,8 +273,33 @@ public class VentaClienteViewController {
 
     VentaClienteController ventaClienteController;
 
+    ToggleGroup toggleGroup;
+
+    private Vehiculo vehiculoAgregado;
+
+    public boolean venderVehiculo;
+
     void initialize() {
         ventaClienteController = new VentaClienteController(app.concesionario);
+
+        toggleGroup = new ToggleGroup();
+
+        venderVehiculo = false;
+
+        agruparOpciones();
+    }
+
+    private void agruparOpciones() {
+        radioMoto.setToggleGroup(toggleGroup);
+        radioBus.setToggleGroup(toggleGroup);
+        radioCamion.setToggleGroup(toggleGroup);
+        radioCamioneta.setToggleGroup(toggleGroup);
+        radioDeportivo.setToggleGroup(toggleGroup);
+        radioElectrico.setToggleGroup(toggleGroup);
+        radioHibrido.setToggleGroup(toggleGroup);
+        radioPickUp.setToggleGroup(toggleGroup);
+        radioSedan.setToggleGroup(toggleGroup);
+        radioVan.setToggleGroup(toggleGroup);
     }
 
     @FXML
@@ -415,7 +442,8 @@ public class VentaClienteViewController {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setTitle("ERROR");
-                alert.setContentText("Debes rellenar los espacios: Codigo, Marca, Modelo, Nuevo, Cambios, Velocidad Maxima o Cilindraje.");
+                alert.setContentText(
+                        "Debes rellenar los espacios: Codigo, Marca, Modelo, Nuevo, Cambios, Velocidad Maxima o Cilindraje.");
                 alert.showAndWait();
             } else {
                 boolean nuevo = ingresarBooleano(txtNuevo, "Nuevo");
@@ -439,6 +467,7 @@ public class VentaClienteViewController {
                             if (ventaClienteController.verificarVehiculo(codigo) == null) {
                                 ventaClienteController.agregarVehiculoVenta(vehiculo);
                                 vehiculo.setEstado(Estado.NODISPONIBLE);
+                                vehiculoAgregado = vehiculo;
                                 generarSolicitudTransaccion();
                             } else {
                                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -473,6 +502,7 @@ public class VentaClienteViewController {
                                 if (ventaClienteController.verificarVehiculo(codigo) == null) {
                                     ventaClienteController.agregarVehiculoVenta(vehiculo);
                                     vehiculo.setEstado(Estado.NODISPONIBLE);
+                                    vehiculoAgregado = vehiculo;
                                     generarSolicitudTransaccion();
                                 } else {
                                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -504,6 +534,7 @@ public class VentaClienteViewController {
                             if (ventaClienteController.verificarVehiculo(codigo) == null) {
                                 ventaClienteController.agregarVehiculoVenta(vehiculo);
                                 vehiculo.setEstado(Estado.NODISPONIBLE);
+                                vehiculoAgregado = vehiculo;
                                 generarSolicitudTransaccion();
                             } else {
                                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -528,6 +559,7 @@ public class VentaClienteViewController {
                             if (ventaClienteController.verificarVehiculo(codigo) == null) {
                                 ventaClienteController.agregarVehiculoVenta(vehiculo);
                                 vehiculo.setEstado(Estado.NODISPONIBLE);
+                                vehiculoAgregado = vehiculo;
                                 generarSolicitudTransaccion();
                             } else {
                                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -566,6 +598,7 @@ public class VentaClienteViewController {
                                     if (ventaClienteController.verificarVehiculo(codigo) == null) {
                                         ventaClienteController.agregarVehiculoVenta(vehiculo);
                                         vehiculo.setEstado(Estado.NODISPONIBLE);
+                                        vehiculoAgregado = vehiculo;
                                         generarSolicitudTransaccion();
                                     } else {
                                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -605,6 +638,7 @@ public class VentaClienteViewController {
                                             if (ventaClienteController.verificarVehiculo(codigo) == null) {
                                                 ventaClienteController.agregarVehiculoVenta(vehiculo);
                                                 vehiculo.setEstado(Estado.NODISPONIBLE);
+                                                vehiculoAgregado = vehiculo;
                                                 generarSolicitudTransaccion();
                                             } else {
                                                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -633,6 +667,7 @@ public class VentaClienteViewController {
                                             if (ventaClienteController.verificarVehiculo(codigo) == null) {
                                                 ventaClienteController.agregarVehiculoVenta(vehiculo);
                                                 vehiculo.setEstado(Estado.NODISPONIBLE);
+                                                vehiculoAgregado = vehiculo;
                                                 generarSolicitudTransaccion();
                                             } else {
                                                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -675,6 +710,7 @@ public class VentaClienteViewController {
                                                     if (ventaClienteController.verificarVehiculo(codigo) == null) {
                                                         ventaClienteController.agregarVehiculoVenta(vehiculo);
                                                         vehiculo.setEstado(Estado.NODISPONIBLE);
+                                                        vehiculoAgregado = vehiculo;
                                                         generarSolicitudTransaccion();
                                                     } else {
                                                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -727,6 +763,7 @@ public class VentaClienteViewController {
                                                                     .verificarVehiculo(codigo) == null) {
                                                                 ventaClienteController.agregarVehiculoVenta(vehiculo);
                                                                 vehiculo.setEstado(Estado.NODISPONIBLE);
+                                                                vehiculoAgregado = vehiculo;
                                                                 generarSolicitudTransaccion();
                                                             } else {
                                                                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -746,12 +783,20 @@ public class VentaClienteViewController {
                                                                     "Verifique los campos: Traccion.");
                                                             alert.showAndWait();
                                                         } else {
-                                                            boolean traccion = ingresarBooleano(txtTraccion, "Traccion");
-                                                            Vehiculo vehiculo = new Camioneta(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numeroPasajeros, numeroPuertas, numeroBolsasAire, combustion, transmision, aireAcondicionado, abs, velocidadCrucero, capacidadMaletero, camaraReversa, sensorColision, sensorTraficoCruzado, asistentePermanenciaCarril, traccion);
+                                                            boolean traccion = ingresarBooleano(txtTraccion,
+                                                                    "Traccion");
+                                                            Vehiculo vehiculo = new Camioneta(codigo, marca, modelo,
+                                                                    nuevo, cambios, velMax, cilindraje, numeroPasajeros,
+                                                                    numeroPuertas, numeroBolsasAire, combustion,
+                                                                    transmision, aireAcondicionado, abs,
+                                                                    velocidadCrucero, capacidadMaletero, camaraReversa,
+                                                                    sensorColision, sensorTraficoCruzado,
+                                                                    asistentePermanenciaCarril, traccion);
                                                             if (ventaClienteController
                                                                     .verificarVehiculo(codigo) == null) {
                                                                 ventaClienteController.agregarVehiculoVenta(vehiculo);
                                                                 vehiculo.setEstado(Estado.NODISPONIBLE);
+                                                                vehiculoAgregado = vehiculo;
                                                                 generarSolicitudTransaccion();
                                                             } else {
                                                                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -780,7 +825,11 @@ public class VentaClienteViewController {
                 }
             }
         } catch (NumberFormatException e) {
-            // TODO: handle exception
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("Verifique la informacion ingresada.");
+            alert.showAndWait();
         }
     }
 
@@ -836,12 +885,19 @@ public class VentaClienteViewController {
     }
 
     private void generarSolicitudTransaccion() {
-
+        venderVehiculo = true;
+        app.openSolicitudClienteView();
     }
 
     @FXML
     void regresarCliente(ActionEvent event) {
+        Stage stage = (Stage) btnSalir.getScene().getWindow();
+        stage.close();
+        app.openClienteView();
+    }
 
+    public Vehiculo getVehiculo() {
+        return vehiculoAgregado;
     }
 
     public void setApp(App app) {
