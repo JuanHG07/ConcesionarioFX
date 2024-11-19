@@ -255,9 +255,9 @@ public class EmpleadoViewController {
             app.openDatosVehiculoView();
             tblVehiculos.refresh();
             tblVehiculos.getSelectionModel().clearSelection();
-        }
+            
     }
-    
+}
 
     @FXML
     void eliminarVehiculo(ActionEvent event) {

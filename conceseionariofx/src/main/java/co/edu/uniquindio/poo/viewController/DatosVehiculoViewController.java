@@ -267,7 +267,7 @@ public class DatosVehiculoViewController {
     private TextField txtNumeroBolsasAireVan;
 
     @FXML
-    private Button btnBuscar;
+    private Button btnCargarDatos;
 
     @FXML
     private RadioButton radioCamion;
@@ -456,8 +456,6 @@ public class DatosVehiculoViewController {
         }
     }
 
-    
-
     private void deshabilitartipoVehiculo() {
         radioMoto.setDisable(true);
         radioCamion.setDisable(true);
@@ -529,8 +527,7 @@ public class DatosVehiculoViewController {
         }
     }
 
-    @FXML
-    void btnActualizarAction(ActionEvent event) {
+    private void btnActualizarAction(ActionEvent event) {
         Vehiculo vehiculo = app.getEmpleadoViewController().getSelectedVehiculo();
 
         if (vehiculo == null) {
@@ -589,11 +586,12 @@ public class DatosVehiculoViewController {
                     boolean defensas = ingresarBooleano(txtDefensas, "Defensas Moto");
                     ((Moto) vehiculo).setDefensas(defensas);
 
-                }  else if (vehiculo instanceof Camion) {
+                } else if (vehiculo instanceof Camion) {
 
                     double capacidadCarga = ingresarDouble(txtCapacidadCargaCamion, "Capacidad de Carga");
                     int numEjes = ingresarEntero(txtNumeroEjes, "Número de Ejes");
-                    boolean aireAcondicionado = ingresarBooleano(txtAireAcondicionadoCamion, "Aire Acondicionado Camion");
+                    boolean aireAcondicionado = ingresarBooleano(txtAireAcondicionadoCamion,
+                            "Aire Acondicionado Camion");
                     boolean abs = ingresarBooleano(txtAbsCamion, "ABS Camion");
                     boolean frenosAire = ingresarBooleano(txtFrenosAire, "Frenos Aire Camion");
                     ((Camion) vehiculo).setCapacidadCarga(capacidadCarga);
@@ -614,7 +612,7 @@ public class DatosVehiculoViewController {
                     ((Bus) vehiculo).setCapacidadMaletero(capacidadMaletero);
                     ((Bus) vehiculo).setAbs(abs);
 
-                } else if (radioVan.isSelected()) {
+                } else if (vehiculo instanceof Van) {
 
                     int numPasajeros = ingresarEntero(txtNumeroPasajerosVan, "Número de Pasajeros");
                     int numPuertas = ingresarEntero(txtNumeroPuertasVan, "Numero de Puertas");
@@ -631,9 +629,8 @@ public class DatosVehiculoViewController {
                     ((Van) vehiculo).setAbs(abs);
                     ((Van) vehiculo).setCamaraReversa(camaraReversaVan);
                     ((Van) vehiculo).setCapacidadMaletero(capacidadMaletero);
-                   
 
-                } else if (radioPickUp.isSelected()) {
+                } else if (vehiculo instanceof PickUp) {
                     int numPasajeros = ingresarEntero(txtNumeroPasajerosPickUp, "Número de Pasajeros");
                     int numPuertas = ingresarEntero(txtNumeroPuertasPickUp, "Numero de Puertas");
                     int numBolsaAire = ingresarEntero(txtNumeroBolsasAirePickUp, "Numero de Bolsas de Aire");
@@ -650,7 +647,7 @@ public class DatosVehiculoViewController {
                     ((PickUp) vehiculo).setTraccion(traccion);
                     ((PickUp) vehiculo).setCapacidadCarga(capacidadCarga);
 
-                } else if (radioDeportivo.isSelected()) {
+                } else if (vehiculo instanceof Deportivo) {
                     int numPasajeros = ingresarEntero(txtNumeroPasajerosDeportivo, "Número de Pasajeros");
                     int numPuertas = ingresarEntero(txtNumeroPuertasDeportivo, "Numero de Puertas");
                     int numBolsaAire = ingresarEntero(txtNumeroBolsasAireDeportivo, "Numero de Bolsas de Aire");
@@ -663,7 +660,7 @@ public class DatosVehiculoViewController {
                     ((Deportivo) vehiculo).setCaballosFuerza(caballosFuerza);
                     ((Deportivo) vehiculo).setTiempoCeroCien(tiempoCeroCien);
 
-                } else if (radioSedan.isSelected()) {
+                } else if (vehiculo instanceof Sedan) {
 
                     int numPasajeros = ingresarEntero(txtNumeroPasajerosSedan, "Número de Pasajeros");
                     int numPuertas = ingresarEntero(txtNumeroPuertasSedan, "Numero de Puertas");
@@ -692,10 +689,8 @@ public class DatosVehiculoViewController {
                     ((Sedan) vehiculo).setSensorTraficoCruzado(sensorTraficoCruzado);
                     ((Sedan) vehiculo).setAsistentePermanenciaCarril(asistentePermanenciaCarril);
                     ((Sedan) vehiculo).setEspejosElectricos(espejosElectricos);
-  
-                    
 
-                } else if (radioCamioneta.isSelected()) {
+                } else if (vehiculo instanceof Camioneta) {
 
                     int numPasajeros = ingresarEntero(txtNumeroPasajerosCamioneta, "Número de Pasajeros");
                     int numPuertas = ingresarEntero(txtNumeroPuertasCamioneta, "Numero de Puertas");
@@ -725,14 +720,14 @@ public class DatosVehiculoViewController {
                     ((Camioneta) vehiculo).setAsistentePermanenciaCarril(asistentePermanenciaCarril);
                     ((Camioneta) vehiculo).setTraccion(traccion);
 
-                } else if (radioElectrico.isSelected()) {
+                } else if (vehiculo instanceof VehiculoElectrico) {
                     double autonomia = ingresarDouble(txtAutonomiaElectrico, "Autonomía");
                     double tiempoCarga = ingresarDouble(txtTiempoCargaElectrico, "Tiempo de Carga");
 
                     ((VehiculoElectrico) vehiculo).setAutonomia(autonomia);
                     ((VehiculoElectrico) vehiculo).setTiempoCarga(tiempoCarga);
 
-                } else if (radioHibrido.isSelected()) {
+                } else if (vehiculo instanceof VehiculoHibrido) {
 
                     boolean enchufable = ingresarBooleano(txtEnchufableHibrido, "Enchufable");
                     boolean ligero = ingresarBooleano(txtLigeroHibrido, "Ligero");
@@ -754,6 +749,157 @@ public class DatosVehiculoViewController {
                 alerta.setHeaderText("Ha ocurrido un error al guardar el vehículo.");
                 alerta.setContentText("Revisa los datos ingresados");
                 alerta.showAndWait();
+            }
+        }
+    }
+
+    @FXML
+    void btnCargarDatos(ActionEvent event) {
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("Vehiculo");
+                alerta.setHeaderText("A continuacion se cargara el vehiculo");
+                alerta.setContentText("");
+                alerta.showAndWait();
+        Vehiculo vehiculo = app.getEmpleadoViewController().getSelectedVehiculo();
+        mostrarInformacionVehiculo(vehiculo);
+
+    }
+
+
+    private void selectedCombustion(Vehiculo vehiculo){
+        if (vehiculo.getCombustion()==Combustion.DIESEL){
+            radioDiesel.setSelected(true);
+        }else if (vehiculo.getCombustion()==Combustion.GASOLINA){
+            radioGasolina.setSelected(true);
+        }else if(vehiculo.getCombustion()==Combustion.SINCOMBUSTION){
+            radioSinCombustion.setSelected(true);
+        }
+    }
+
+    private void selectedTransmision (Vehiculo vehiculo){
+        if (vehiculo.getTransmision()==Transmision.AUTOMATICO){
+            radioAutomatico.setSelected(true);
+        }else if (vehiculo.getTransmision()==Transmision.MANUAL){
+            radioManual.setSelected(true);
+        }
+    }
+
+    private void selectedCamion (Camion camion){
+        if (camion.getTipo()==TipoCamion.LIGERO){
+            radioLigero.setSelected(true);
+        }else if (camion.getTipo()==TipoCamion.MEDIANO){
+            radioMediano.setSelected(true);
+        }else if (camion.getTipo()==TipoCamion.PESADO){
+            radioPesado.setSelected(true);
+        }
+    }
+
+    private void mostrarInformacionVehiculo(Vehiculo vehiculo) {
+        if (vehiculo== null){
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("Vehiculo");
+                alerta.setHeaderText("el vehiculo es null");
+                alerta.setContentText("");
+                alerta.showAndWait();
+        }
+        if (vehiculo != null) {
+            // Datos comunes a todos los vehículos
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("Vehiculo");
+                alerta.setHeaderText("El vehiculo no es nulo");
+                alerta.setContentText("");
+                alerta.showAndWait();
+
+            txtCodigo.setText(vehiculo.getCodigo());
+            txtMarca.setText(vehiculo.getMarca());
+            txtModelo.setText(vehiculo.getModelo());
+            txtNuevo.setText(vehiculo.getNuevo() ? "Si" : "No");
+            txtCambios.setText(String.valueOf(vehiculo.getCambios()));
+            txtVelMax.setText(String.valueOf(vehiculo.getVelMax()));
+            txtCilindraje.setText(String.valueOf(vehiculo.getCilindraje()));
+            selectedCombustion(vehiculo);
+            selectedTransmision(vehiculo);
+
+            // Datos específicos según el tipo de vehículo
+            if (vehiculo instanceof Moto) {
+                Moto moto = (Moto) vehiculo;
+                txtDefensas.setText(moto.isDefensas() ? "Si" : "No");
+            } else if (vehiculo instanceof Camion) {
+                Camion camion = (Camion) vehiculo;
+                selectedCamion(camion);
+                txtCapacidadCargaCamion.setText(String.valueOf(camion.getCapacidadCarga()));
+                txtNumeroEjes.setText(String.valueOf(camion.getNumeroEjes()));
+                txtAireAcondicionadoCamion.setText(camion.isAireAcondicionado() ? "Si" : "No");
+                txtAbsCamion.setText(camion.isAbs() ? "Si" : "No");
+                txtFrenosAire.setText(camion.isFrenosAire() ? "Si" : "No");
+            } else if (vehiculo instanceof Bus) {
+                Bus bus = (Bus) vehiculo;
+                txtNumeroPasajerosBus.setText(String.valueOf(bus.getNumeroPasajeros()));
+                txtNumeroPuertasBus.setText(String.valueOf(bus.getNumeroPuertas()));
+                txtNumeroBolsasAireBus.setText(String.valueOf(bus.getNumeroBolsasAire()));
+                txtCapacidadMaleteroBus.setText(String.valueOf(bus.getCapacidadMaletero()));
+                txtAbsBus.setText(bus.isAbs() ? "Si" : "No");
+            } else if (vehiculo instanceof Van) {
+                Van van = (Van) vehiculo;
+                txtNumeroPasajerosVan.setText(String.valueOf(van.getNumeroPasajeros()));
+                txtNumeroPuertasVan.setText(String.valueOf(van.getNumeroPuertas()));
+                txtNumeroBolsasAireVan.setText(String.valueOf(van.getNumeroBolsasAire()));
+                txtAireAcondicionadoVan.setText(van.isAireAcondicionado() ? "Si" : "No");
+                txtAbsVan.setText(van.isAbs() ? "Si" : "No");
+                txtCamaraReversaVan.setText(van.isCamaraReversa() ? "Si" : "No");
+                txtCapacidadMaleteroVan.setText(String.valueOf(van.getCapacidadMaletero()));
+            } else if (vehiculo instanceof PickUp) {
+                PickUp pickUp = (PickUp) vehiculo;
+                txtNumeroPasajerosPickUp.setText(String.valueOf(pickUp.getNumeroPasajeros()));
+                txtNumeroPuertasPickUp.setText(String.valueOf(pickUp.getNumeroPuertas()));
+                txtNumeroBolsasAirePickUp.setText(String.valueOf(pickUp.getNumeroBolsasAire()));
+                txtAireAcondicionadoPickUp.setText(pickUp.isAireAcondicionado() ? "Si" : "No");
+                txtAbsPickUp.setText(pickUp.isAbs() ? "Si" : "No");
+                txtTraccionPickUp.setText(pickUp.isTraccion() ? "Si" : "No");
+                txtCapacidadCargaPickUp.setText(String.valueOf(pickUp.getCapacidadCarga()));
+            } else if (vehiculo instanceof Deportivo) {
+                Deportivo deportivo = (Deportivo) vehiculo;
+                txtNumeroPasajerosDeportivo.setText(String.valueOf(deportivo.getNumeroPasajeros()));
+                txtNumeroPuertasDeportivo.setText(String.valueOf(deportivo.getNumeroPuertas()));
+                txtNumeroBolsasAireDeportivo.setText(String.valueOf(deportivo.getNumeroBolsasAire()));
+                txtCaballosFuerzaDeportivo.setText(String.valueOf(deportivo.getCaballosFuerza()));
+                txtTiempoCeroCienDeportivo.setText(String.valueOf(deportivo.getTiempoCeroCien()));
+            } else if (vehiculo instanceof Sedan) {
+                Sedan sedan = (Sedan) vehiculo;
+                txtNumeroPasajerosSedan.setText(String.valueOf(sedan.getNumeroPasajeros()));
+                txtNumeroPuertasSedan.setText(String.valueOf(sedan.getNumeroPuertas()));
+                txtNumeroBolsasAireSedan.setText(String.valueOf(sedan.getNumeroBolsasAire()));
+                txtAireAcondicionadoSedan.setText(sedan.isAireAcondicionado() ? "Si" : "No");
+                txtAbsSedan.setText(sedan.isAbs() ? "Si" : "No");
+                txtVelocidadCruceroSedan.setText(sedan.isVelocidadCrucero() ? "Si" : "No");
+                txtCapacidadMaleteroSedan.setText(String.valueOf(sedan.getCapacidadMaletero()));
+                txtCamaraReversaSedan.setText(sedan.isCamaraReversa() ? "Si" : "No");
+                txtSensorColisionSedan.setText(sedan.isSensorColision() ? "Si" : "No");
+                txtSensorTraficoCruzadoSedan.setText(sedan.isSensorTraficoCruzado() ? "Si" : "No");
+                txtAsistentePermanenciaCarrilSedan.setText(sedan.isAsistentePermanenciaCarril() ? "Si" : "No");
+                txtEspejosElectricosSedan.setText(sedan.isEspejosElectricos() ? "Si" : "No");
+            } else if (vehiculo instanceof Camioneta) {
+                Camioneta camioneta = (Camioneta) vehiculo;
+                txtNumeroPasajerosCamioneta.setText(String.valueOf(camioneta.getNumeroPasajeros()));
+                txtNumeroPuertasCamioneta.setText(String.valueOf(camioneta.getNumeroPuertas()));
+                txtNumeroBolsasAireCamioneta.setText(String.valueOf(camioneta.getNumeroBolsasAire()));
+                txtAireAcondicionadoCamioneta.setText(camioneta.isAireAcondicionado() ? "Si" : "No");
+                txtAbsCamioneta.setText(camioneta.isAbs() ? "Si" : "No");
+                txtVelocidadCruceroCamioneta.setText(camioneta.isVelocidadCrucero() ? "Si" : "No");
+                txtCapacidadMaleteroCamioneta.setText(String.valueOf(camioneta.getCapacidadMaletero()));
+                txtCamaraReversaCamioneta.setText(camioneta.isCamaraReversa() ? "Si" : "No");
+                txtSensorColisionCamioneta.setText(camioneta.isSensorColision() ? "Si" : "No");
+                txtSensorTraficoCruzadoCamioneta.setText(camioneta.isSensorTraficoCruzado() ? "Si" : "No");
+                txtAsistentePermanenciaCarrilCamioneta.setText(camioneta.isAsistentePermanenciaCarril() ? "Si" : "No");
+                txtTraccionCamioneta.setText(camioneta.getTraccion() ? "Si" : "No");
+            } else if (vehiculo instanceof VehiculoElectrico) {
+                VehiculoElectrico electrico = (VehiculoElectrico) vehiculo;
+                txtAutonomiaElectrico.setText(String.valueOf(electrico.getAutonomia()));
+                txtTiempoCargaElectrico.setText(String.valueOf(electrico.getTiempoCarga()));
+            } else if (vehiculo instanceof VehiculoHibrido) {
+                VehiculoHibrido hibrido = (VehiculoHibrido) vehiculo;
+                txtEnchufableHibrido.setText(hibrido.Enchufable() ? "Si" : "No");
+                txtLigeroHibrido.setText(hibrido.Ligero() ? "Si" : "No");
             }
         }
     }
@@ -1128,11 +1274,6 @@ public class DatosVehiculoViewController {
     @FXML
     private void txtCodigoAction(ActionEvent event) {
         // Lógica para manejar el evento
-    }
-
-    @FXML
-    void btnBuscarAction(ActionEvent event) {
-
     }
 
     public void setApp(App app) {
