@@ -10,14 +10,17 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import co.edu.uniquindio.poo.App;
 import co.edu.uniquindio.poo.controller.DatosVehiculoController;
 import co.edu.uniquindio.poo.controller.LoginController;
 import co.edu.uniquindio.poo.model.Bus;
 import co.edu.uniquindio.poo.model.Camion;
 import co.edu.uniquindio.poo.model.Camioneta;
+import co.edu.uniquindio.poo.model.Cliente;
 import co.edu.uniquindio.poo.model.Combustion;
 import co.edu.uniquindio.poo.model.Deportivo;
+import co.edu.uniquindio.poo.model.Estado;
 import co.edu.uniquindio.poo.model.Moto;
 import co.edu.uniquindio.poo.model.PickUp;
 import co.edu.uniquindio.poo.model.Sedan;
@@ -27,6 +30,7 @@ import co.edu.uniquindio.poo.model.Van;
 import co.edu.uniquindio.poo.model.Vehiculo;
 import co.edu.uniquindio.poo.model.VehiculoElectrico;
 import co.edu.uniquindio.poo.model.VehiculoHibrido;
+import co.edu.uniquindio.poo.model.Estado;
 import javafx.event.ActionEvent;
 
 public class DatosVehiculoViewController {
@@ -247,7 +251,6 @@ public class DatosVehiculoViewController {
     @FXML
     private Label labelCamion;
 
-
     @FXML
     private TextField txtAireAcondicionadoBus;
 
@@ -350,6 +353,16 @@ public class DatosVehiculoViewController {
     private ToggleGroup tipoCombustionGroup;
     private ToggleGroup tipoTransmisionGroup;
     private ToggleGroup tipoCamionGroup;
+    private boolean motoT;
+    private boolean camionT;
+    private boolean busT;
+    private boolean vanT;
+    private boolean pickUpT;
+    private boolean deportivoT;
+    private boolean sedanT;
+    private boolean camionetaT;
+    private boolean electricoT;
+    private boolean hibridoT;
 
     @FXML
     void initialize() {
@@ -362,6 +375,16 @@ public class DatosVehiculoViewController {
         agruparTipoCombustionBtn();
         agruparTipoTransmisionBtn();
         agruparTipoCamionBtn();
+        motoT = false;
+        camionT = false;
+        busT = false;
+        vanT = false;
+        pickUpT = false;
+        deportivoT = false;
+        sedanT = false;
+        camionetaT = false;
+        electricoT = false;
+        hibridoT = false;
 
     }
 
@@ -412,7 +435,7 @@ public class DatosVehiculoViewController {
 
         if (radioMoto.isSelected()) {
             labelMoto.setTextFill(Color.RED);
-        }else if(radioCamion.isSelected()){
+        } else if (radioCamion.isSelected()) {
             labelCamion.setTextFill(Color.RED);
         } else if (radioCamion.isSelected()) {
             labelCamioneta.setTextFill(Color.RED);
@@ -431,6 +454,21 @@ public class DatosVehiculoViewController {
         } else if (radioHibrido.isSelected()) {
             labelHibrido.setTextFill(Color.RED);
         }
+    }
+
+    
+
+    private void deshabilitartipoVehiculo() {
+        radioMoto.setDisable(true);
+        radioCamion.setDisable(true);
+        radioBus.setDisable(true);
+        radioVan.setDisable(true);
+        radioPickUp.setDisable(true);
+        radioDeportivo.setDisable(true);
+        radioSedan.setDisable(true);
+        radioCamioneta.setDisable(true);
+        radioElectrico.setDisable(true);
+        radioHibrido.setDisable(true);
     }
 
     @FXML
@@ -478,8 +516,249 @@ public class DatosVehiculoViewController {
 
     }
 
+    private void determinarEstado() {
+        datosVehiculoController.setEstado(Estado.DISPONIBLE);
+    }
+
     @FXML
     void btnGuardarAction(ActionEvent event) {
+        if (app.getEmpleadoViewController().agregarCliente) {
+            agregarVehiculo(event);
+        } else if (app.getEmpleadoViewController().modificarCliente) {
+            btnActualizarAction(event);
+        }
+    }
+
+    @FXML
+    void btnActualizarAction(ActionEvent event) {
+        Vehiculo vehiculo = app.getEmpleadoViewController().getSelectedVehiculo();
+
+        if (vehiculo == null) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Error");
+            alerta.setHeaderText("Vehículo no seleccionado");
+            alerta.setContentText("Por favor, selecciona un vehículo antes de intentar actualizar.");
+            alerta.showAndWait();
+            return;
+        }
+
+        txtCodigo.setEditable(false);
+        deshabilitartipoVehiculo();
+
+        String marca = txtMarca.getText();
+        String modelo = txtModelo.getText();
+        String nuevoAux = txtNuevo.getText().toLowerCase();
+        boolean nuevo = nuevoAux.equals("si");
+        int cambios = ingresarEntero(txtCambios, "Cambios");
+        double velMax = ingresarDouble(txtVelMax, "Velocidad Máxima");
+        double cilindraje = ingresarDouble(txtCilindraje, "Cilindraje");
+        determinarCombustion(event);
+        Combustion combustion = datosVehiculoController.getCombustion();
+        determinarTransmision(event);
+        Transmision transmision = datosVehiculoController.getTransmision();
+
+        if (marca.isEmpty() || modelo.isEmpty() || nuevoAux.isEmpty() || combustion == null
+                || transmision == null) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Campos incompletos");
+            alerta.setHeaderText("Todos los campos son obligatorios");
+            alerta.setContentText("Por favor, rellena todos los campos antes de continuar.");
+            alerta.showAndWait();
+
+        } else if (cambios <= 0 || velMax <= 0 || cilindraje <= 0) {
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Datos Erróneos");
+            alerta.setHeaderText("Cambios, Velocidad Máxima o Cilindraje son erróneos.");
+            alerta.setContentText("No pueden haber datos numéricos menores o iguales a 0.");
+            alerta.showAndWait();
+
+        } else {
+
+            try {
+
+                vehiculo.setMarca(marca);
+                vehiculo.setModelo(modelo);
+                vehiculo.setNuevo(nuevo);
+                vehiculo.setCambios(cambios);
+                vehiculo.setVelMax(velMax);
+                vehiculo.setCilindraje(cilindraje);
+                vehiculo.setCombustion(combustion);
+                vehiculo.setTransmision(transmision);
+
+                if (vehiculo instanceof Moto) {
+                    boolean defensas = ingresarBooleano(txtDefensas, "Defensas Moto");
+                    ((Moto) vehiculo).setDefensas(defensas);
+
+                }  else if (vehiculo instanceof Camion) {
+
+                    double capacidadCarga = ingresarDouble(txtCapacidadCargaCamion, "Capacidad de Carga");
+                    int numEjes = ingresarEntero(txtNumeroEjes, "Número de Ejes");
+                    boolean aireAcondicionado = ingresarBooleano(txtAireAcondicionadoCamion, "Aire Acondicionado Camion");
+                    boolean abs = ingresarBooleano(txtAbsCamion, "ABS Camion");
+                    boolean frenosAire = ingresarBooleano(txtFrenosAire, "Frenos Aire Camion");
+                    ((Camion) vehiculo).setCapacidadCarga(capacidadCarga);
+                    ((Camion) vehiculo).setNumeroEjes(numEjes);
+                    ((Camion) vehiculo).setAireAcondicionado(aireAcondicionado);
+                    ((Camion) vehiculo).setAbs(abs);
+                    ((Camion) vehiculo).setFrenosAire(frenosAire);
+
+                } else if (vehiculo instanceof Bus) {
+                    int numPasajeros = ingresarEntero(txtNumeroPasajerosBus, "Número de Pasajeros");
+                    int numPuertas = ingresarEntero(txtNumeroPuertasBus, "Número de Puertas");
+                    int numBolsaAire = ingresarEntero(txtNumeroBolsasAireBus, "Número de Bolsas de Aire");
+                    double capacidadMaletero = ingresarDouble(txtCapacidadMaleteroBus, "Capacidad Maletero");
+                    boolean abs = ingresarBooleano(txtAbsBus, "ABS Bus");
+                    ((Bus) vehiculo).setNumeroPasajeros(numPasajeros);
+                    ((Bus) vehiculo).setNumeroPuertas(numPuertas);
+                    ((Bus) vehiculo).setNumeroBolsasAire(numBolsaAire);
+                    ((Bus) vehiculo).setCapacidadMaletero(capacidadMaletero);
+                    ((Bus) vehiculo).setAbs(abs);
+
+                } else if (radioVan.isSelected()) {
+
+                    int numPasajeros = ingresarEntero(txtNumeroPasajerosVan, "Número de Pasajeros");
+                    int numPuertas = ingresarEntero(txtNumeroPuertasVan, "Numero de Puertas");
+                    int numBolsaAire = ingresarEntero(txtNumeroBolsasAireVan, "Numero de Bolsas de Aire");
+                    boolean aireAcondicionado = ingresarBooleano(txtAireAcondicionadoVan, "Aire Acondicionado");
+                    boolean abs = ingresarBooleano(txtAbsVan, "ABS");
+                    boolean camaraReversaVan = ingresarBooleano(txtCamaraReversaVan, "Camara de Reversa");
+                    double capacidadMaletero = ingresarDouble(txtCapacidadMaleteroVan, "Capacidad Maletero");
+
+                    ((Van) vehiculo).setNumeroPasajeros(numPasajeros);
+                    ((Van) vehiculo).setNumeroPuertas(numPuertas);
+                    ((Van) vehiculo).setNumeroBolsasAire(numBolsaAire);
+                    ((Van) vehiculo).setAireAcondicionado(aireAcondicionado);
+                    ((Van) vehiculo).setAbs(abs);
+                    ((Van) vehiculo).setCamaraReversa(camaraReversaVan);
+                    ((Van) vehiculo).setCapacidadMaletero(capacidadMaletero);
+                   
+
+                } else if (radioPickUp.isSelected()) {
+                    int numPasajeros = ingresarEntero(txtNumeroPasajerosPickUp, "Número de Pasajeros");
+                    int numPuertas = ingresarEntero(txtNumeroPuertasPickUp, "Numero de Puertas");
+                    int numBolsaAire = ingresarEntero(txtNumeroBolsasAirePickUp, "Numero de Bolsas de Aire");
+                    boolean aireAcondicionado = ingresarBooleano(txtAireAcondicionadoPickUp, "Aire Acondicionado");
+                    boolean abs = ingresarBooleano(txtAbsPickUp, "ABS");
+                    boolean traccion = ingresarBooleano(txtTraccionPickUp, "Tracción");
+                    double capacidadCarga = ingresarDouble(txtCapacidadCargaPickUp, "Capacidad de Carga");
+
+                    ((PickUp) vehiculo).setNumeroPasajeros(numPasajeros);
+                    ((PickUp) vehiculo).setNumeroPuertas(numPuertas);
+                    ((PickUp) vehiculo).setNumeroBolsasAire(numBolsaAire);
+                    ((PickUp) vehiculo).setAireAcondicionado(aireAcondicionado);
+                    ((PickUp) vehiculo).setAbs(abs);
+                    ((PickUp) vehiculo).setTraccion(traccion);
+                    ((PickUp) vehiculo).setCapacidadCarga(capacidadCarga);
+
+                } else if (radioDeportivo.isSelected()) {
+                    int numPasajeros = ingresarEntero(txtNumeroPasajerosDeportivo, "Número de Pasajeros");
+                    int numPuertas = ingresarEntero(txtNumeroPuertasDeportivo, "Numero de Puertas");
+                    int numBolsaAire = ingresarEntero(txtNumeroBolsasAireDeportivo, "Numero de Bolsas de Aire");
+                    int caballosFuerza = ingresarEntero(txtCaballosFuerzaDeportivo, "Caballos de Fuerza");
+                    double tiempoCeroCien = ingresarDouble(txtTiempoCeroCienDeportivo, "Tiempo de 0 a 100");
+
+                    ((Deportivo) vehiculo).setNumeroPasajeros(numPasajeros);
+                    ((Deportivo) vehiculo).setNumeroPuertas(numPuertas);
+                    ((Deportivo) vehiculo).setNumeroBolsasAire(numBolsaAire);
+                    ((Deportivo) vehiculo).setCaballosFuerza(caballosFuerza);
+                    ((Deportivo) vehiculo).setTiempoCeroCien(tiempoCeroCien);
+
+                } else if (radioSedan.isSelected()) {
+
+                    int numPasajeros = ingresarEntero(txtNumeroPasajerosSedan, "Número de Pasajeros");
+                    int numPuertas = ingresarEntero(txtNumeroPuertasSedan, "Numero de Puertas");
+                    int numBolsaAire = ingresarEntero(txtNumeroBolsasAireSedan, "Numero de Bolsas de Aire");
+                    boolean aireAcondicionado = ingresarBooleano(txtAireAcondicionadoSedan, "Aire Acondicionado");
+                    boolean abs = ingresarBooleano(txtAbsSedan, "ABS");
+                    boolean velocidadCrucero = ingresarBooleano(txtVelocidadCruceroSedan, "Velocidad Crucero");
+                    double capacidadMaletero = ingresarDouble(txtCapacidadMaleteroSedan, "Capacidad Maletero");
+                    boolean camaraReversa = ingresarBooleano(txtCamaraReversaSedan, "Camara de Reversa");
+                    boolean sensorColicion = ingresarBooleano(txtSensorColisionSedan, "Sensor de Colicion");
+                    boolean sensorTraficoCruzado = ingresarBooleano(txtSensorTraficoCruzadoSedan,
+                            "Sensor de Trafico Cruzado");
+                    boolean asistentePermanenciaCarril = ingresarBooleano(txtAsistentePermanenciaCarrilSedan,
+                            "Asistente de Permanencia en el Carril");
+                    boolean espejosElectricos = ingresarBooleano(txtEspejosElectricosSedan, "Espejos Electricos");
+
+                    ((Sedan) vehiculo).setNumeroPasajeros(numPasajeros);
+                    ((Sedan) vehiculo).setNumeroPuertas(numPuertas);
+                    ((Sedan) vehiculo).setNumeroBolsasAire(numBolsaAire);
+                    ((Sedan) vehiculo).setAireAcondicionado(aireAcondicionado);
+                    ((Sedan) vehiculo).setAbs(abs);
+                    ((Sedan) vehiculo).setVelocidadCrucero(velocidadCrucero);
+                    ((Sedan) vehiculo).setCapacidadMaletero(capacidadMaletero);
+                    ((Sedan) vehiculo).setCamaraReversa(camaraReversa);
+                    ((Sedan) vehiculo).setSensorColision(sensorColicion);
+                    ((Sedan) vehiculo).setSensorTraficoCruzado(sensorTraficoCruzado);
+                    ((Sedan) vehiculo).setAsistentePermanenciaCarril(asistentePermanenciaCarril);
+                    ((Sedan) vehiculo).setEspejosElectricos(espejosElectricos);
+  
+                    
+
+                } else if (radioCamioneta.isSelected()) {
+
+                    int numPasajeros = ingresarEntero(txtNumeroPasajerosCamioneta, "Número de Pasajeros");
+                    int numPuertas = ingresarEntero(txtNumeroPuertasCamioneta, "Numero de Puertas");
+                    int numBolsasAire = ingresarEntero(txtNumeroBolsasAireCamioneta, "Numero de Bolsas de Aire");
+                    boolean aireAcondicionado = ingresarBooleano(txtAireAcondicionadoCamioneta, "Aire Acondicionado");
+                    boolean abs = ingresarBooleano(txtAbsCamioneta, "ABS");
+                    boolean velocidadCrucero = ingresarBooleano(txtVelocidadCruceroCamioneta, "Velocidad Crucero");
+                    double capacidadMaletero = ingresarDouble(txtCapacidadMaleteroCamioneta, "Capacidad Maletero");
+                    boolean camaraReversa = ingresarBooleano(txtCamaraReversaCamioneta, "Camara de Reversa");
+                    boolean sensorColision = ingresarBooleano(txtSensorColisionCamioneta, "Sensor de Colicion");
+                    boolean sensorTraficoCruzado = ingresarBooleano(txtSensorTraficoCruzadoCamioneta,
+                            "Sensor de Trafico Cruzado");
+                    boolean asistentePermanenciaCarril = ingresarBooleano(txtAsistentePermanenciaCarrilCamioneta,
+                            "Asistente de Permanencia en el Carril");
+                    boolean traccion = ingresarBooleano(txtTraccionCamioneta, "Tracción");
+
+                    ((Camioneta) vehiculo).setNumeroPasajeros(numPasajeros);
+                    ((Camioneta) vehiculo).setNumeroPuertas(numPuertas);
+                    ((Camioneta) vehiculo).setNumeroBolsasAire(numBolsasAire);
+                    ((Camioneta) vehiculo).setAireAcondicionado(aireAcondicionado);
+                    ((Camioneta) vehiculo).setAbs(abs);
+                    ((Camioneta) vehiculo).setVelocidadCrucero(velocidadCrucero);
+                    ((Camioneta) vehiculo).setCapacidadMaletero(capacidadMaletero);
+                    ((Camioneta) vehiculo).setCamaraReversa(camaraReversa);
+                    ((Camioneta) vehiculo).setSensorColision(sensorColision);
+                    ((Camioneta) vehiculo).setSensorTraficoCruzado(sensorTraficoCruzado);
+                    ((Camioneta) vehiculo).setAsistentePermanenciaCarril(asistentePermanenciaCarril);
+                    ((Camioneta) vehiculo).setTraccion(traccion);
+
+                } else if (radioElectrico.isSelected()) {
+                    double autonomia = ingresarDouble(txtAutonomiaElectrico, "Autonomía");
+                    double tiempoCarga = ingresarDouble(txtTiempoCargaElectrico, "Tiempo de Carga");
+
+                    ((VehiculoElectrico) vehiculo).setAutonomia(autonomia);
+                    ((VehiculoElectrico) vehiculo).setTiempoCarga(tiempoCarga);
+
+                } else if (radioHibrido.isSelected()) {
+
+                    boolean enchufable = ingresarBooleano(txtEnchufableHibrido, "Enchufable");
+                    boolean ligero = ingresarBooleano(txtLigeroHibrido, "Ligero");
+
+                    ((VehiculoHibrido) vehiculo).setEnchufable(enchufable);
+                    ((VehiculoHibrido) vehiculo).setLigero(ligero);
+
+                }
+
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("Actualización exitosa");
+                alerta.setHeaderText("Vehículo actualizado");
+                alerta.setContentText("Los datos del vehículo se han modificado correctamente.");
+                alerta.showAndWait();
+
+            } catch (Exception e) {
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Error");
+                alerta.setHeaderText("Ha ocurrido un error al guardar el vehículo.");
+                alerta.setContentText("Revisa los datos ingresados");
+                alerta.showAndWait();
+            }
+        }
+    }
+
+    private void agregarVehiculo(ActionEvent event) {
         String codigo = txtCodigo.getText();
         String marca = txtMarca.getText();
         String modelo = txtModelo.getText();
@@ -488,8 +767,13 @@ public class DatosVehiculoViewController {
         int cambios = ingresarEntero(txtCambios, "Cambios");
         double velMax = ingresarDouble(txtVelMax, "Velocidad Máxima");
         double cilindraje = ingresarDouble(txtCilindraje, "Cilindraje");
+        determinarCombustion(event);
+        Combustion combustion = datosVehiculoController.getCombustion();
+        determinarTransmision(event);
+        Transmision transmision = datosVehiculoController.getTransmision();
 
-        if (codigo.isEmpty() || marca.isEmpty() || modelo.isEmpty() || nuevoAux.isEmpty()) {
+        if (codigo.isEmpty() || marca.isEmpty() || modelo.isEmpty() || nuevoAux.isEmpty() || combustion == null
+                || transmision == null) {
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Campos incompletos");
             alerta.setHeaderText("Todos los campos son obligatorios");
@@ -502,18 +786,18 @@ public class DatosVehiculoViewController {
             alerta.setContentText("No pueden haber datos numéricos menores o iguales a 0.");
             alerta.showAndWait();
         } else {
-            determinarCombustion(event);
-            Combustion combustion = datosVehiculoController.getCombustion();
-            determinarTransmision(event);
-            Transmision transmision = datosVehiculoController.getTransmision();
 
             try {
+                determinarEstado();
+                Estado estado = datosVehiculoController.getEstado();
                 Vehiculo auxVehiculo = null;
                 if (radioMoto.isSelected()) {
                     boolean defensas = ingresarBooleano(txtDefensas, "Defensas Moto");
                     auxVehiculo = new Moto(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, defensas,
                             combustion,
                             transmision);
+                    auxVehiculo.setEstado(estado);
+
                 } else if (radioCamion.isSelected()) {
 
                     double capacidadCarga = ingresarDouble(txtCapacidadCargaCamion, "Capacidad de Carga");
@@ -530,6 +814,8 @@ public class DatosVehiculoViewController {
                             aireAcondicionado, frenosAire, abs, numEjes, tipoCamion, combustion,
                             transmision);
 
+                    auxVehiculo.setEstado(estado);
+
                 } else if (radioBus.isSelected()) {
 
                     int numPasajeros = ingresarEntero(txtNumeroPasajerosBus, "Número de Pasajeros");
@@ -542,9 +828,12 @@ public class DatosVehiculoViewController {
                     int numeroSalidasEmergencia = ingresarEntero(txtNumeroSalidasEmergenciaBus,
                             "Numero Salidas de Emergencia");
                     int numEjes = ingresarEntero(txtNumeroEjesBus, "Número de Ejes");
+
                     auxVehiculo = new Bus(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numPasajeros,
                             numPuertas, numBolsaAire, combustion, transmision, aireAcondicionado, abs,
                             velocidadCruceroBus, capacidadMaletero, numEjes, numeroSalidasEmergencia);
+
+                    auxVehiculo.setEstado(estado);
 
                 } else if (radioVan.isSelected()) {
 
@@ -560,6 +849,8 @@ public class DatosVehiculoViewController {
                             numPuertas, numBolsaAire, combustion, transmision, aireAcondicionado, abs, camaraReversaVan,
                             capacidadMaletero);
 
+                    auxVehiculo.setEstado(estado);
+
                 } else if (radioPickUp.isSelected()) {
                     int numPasajeros = ingresarEntero(txtNumeroPasajerosPickUp, "Número de Pasajeros");
                     int numPuertas = ingresarEntero(txtNumeroPuertasPickUp, "Numero de Puertas");
@@ -573,6 +864,8 @@ public class DatosVehiculoViewController {
                             numPuertas, numBolsaAire, combustion, transmision, aireAcondicionado, abs, traccion,
                             capacidadCarga);
 
+                    auxVehiculo.setEstado(estado);
+
                 } else if (radioDeportivo.isSelected()) {
                     int numPasajeros = ingresarEntero(txtNumeroPasajerosDeportivo, "Número de Pasajeros");
                     int numPuertas = ingresarEntero(txtNumeroPuertasDeportivo, "Numero de Puertas");
@@ -582,6 +875,8 @@ public class DatosVehiculoViewController {
 
                     auxVehiculo = new Deportivo(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numPasajeros,
                             numPuertas, numBolsaAire, combustion, transmision, caballosFuerza, tiempoCeroCien);
+
+                    auxVehiculo.setEstado(estado);
 
                 } else if (radioSedan.isSelected()) {
 
@@ -605,6 +900,8 @@ public class DatosVehiculoViewController {
                             capacidadMaletero, camaraReversa, sensorColicion, sensorTraficoCruzado,
                             asistentePermanenciaCarril, espejosElectricos);
 
+                    auxVehiculo.setEstado(estado);
+
                 } else if (radioCamioneta.isSelected()) {
 
                     int numPasajeros = ingresarEntero(txtNumeroPasajerosCamioneta, "Número de Pasajeros");
@@ -622,9 +919,13 @@ public class DatosVehiculoViewController {
                             "Asistente de Permanencia en el Carril");
                     boolean traccion = ingresarBooleano(txtTraccionCamioneta, "Tracción");
 
-                    auxVehiculo = new Camioneta (codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numPasajeros, numPuertas,
-                    numBolsasAire, combustion, transmision, aireAcondicionado, abs, velocidadCrucero, capacidadMaletero,
-                    camaraReversa, sensorColision, sensorTraficoCruzado, asistentePermanenciaCarril, traccion);
+                    auxVehiculo = new Camioneta(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje, numPasajeros,
+                            numPuertas,
+                            numBolsasAire, combustion, transmision, aireAcondicionado, abs, velocidadCrucero,
+                            capacidadMaletero,
+                            camaraReversa, sensorColision, sensorTraficoCruzado, asistentePermanenciaCarril, traccion);
+
+                    auxVehiculo.setEstado(estado);
 
                 } else if (radioElectrico.isSelected()) {
                     double autonomia = ingresarDouble(txtAutonomiaElectrico, "Autonomía");
@@ -634,6 +935,8 @@ public class DatosVehiculoViewController {
                             tiempoCarga, autonomia, combustion,
                             transmision);
 
+                    auxVehiculo.setEstado(estado);
+
                 } else if (radioHibrido.isSelected()) {
 
                     boolean enchufable = ingresarBooleano(txtEnchufableHibrido, "Enchufable");
@@ -642,23 +945,26 @@ public class DatosVehiculoViewController {
                     auxVehiculo = new VehiculoHibrido(codigo, marca, modelo, nuevo, cambios, velMax, cilindraje,
                             enchufable, ligero, combustion,
                             transmision);
+
+                    auxVehiculo.setEstado(estado);
+
                 }
 
                 if (auxVehiculo != null) {
-                    if (datosVehiculoController.verificarVehiculo(auxVehiculo.getCodigo()) != null) {
-                        Alert alerta = new Alert(Alert.AlertType.ERROR);
-                        alerta.setTitle("El Vehiculo ya existe");
-                        alerta.setHeaderText("");
-                        alerta.setContentText("Hay un vehiculo asociado al codigo ingresado");
+                    if (datosVehiculoController.verificarVehiculo(codigo) != null) {
+                        Alert alerta1 = new Alert(Alert.AlertType.ERROR);
+                        alerta1.setTitle("El Vehiculo ya existe");
+                        alerta1.setHeaderText("");
+                        alerta1.setContentText("Hay un vehiculo asociado al codigo ingresado");
+                        alerta1.showAndWait();
+                    } else {
+                        datosVehiculoController.agregarVehiculo(auxVehiculo);
+                        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                        alerta.setTitle("Creacion Exitosa");
+                        alerta.setHeaderText("El vehiculo se ha creado con exito");
+                        alerta.setContentText("El vehiculo se ha guardado con exito");
                         alerta.showAndWait();
                     }
-                } else {
-                    datosVehiculoController.agregarVehiculo(auxVehiculo);
-                    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                    alerta.setTitle("Vehiculo");
-                    alerta.setHeaderText("");
-                    alerta.setContentText("El vehiculo se ha creado con exito");
-                    alerta.showAndWait();
                 }
             } catch (Exception e) {
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
@@ -745,6 +1051,81 @@ public class DatosVehiculoViewController {
     }
 
     @FXML
+    void btnLimpiarAction(ActionEvent event) {
+        txtCodigo.clear();
+        txtMarca.clear();
+        txtModelo.clear();
+        txtNuevo.clear();
+        txtCambios.clear();
+        txtVelMax.clear();
+        txtCilindraje.clear();
+        tipoCamionGroup.selectToggle(null);
+        tipoCombustionGroup.selectToggle(null);
+        tipoTransmisionGroup.selectToggle(null);
+        txtDefensas.clear();
+        txtAireAcondicionadoCamion.clear();
+        txtFrenosAire.clear();
+        tipoCamionGroup.selectToggle(null);
+        txtNumeroPasajerosBus.clear();
+        txtNumeroPuertasBus.clear();
+        txtNumeroBolsasAireBus.clear();
+        txtAireAcondicionadoBus.clear();
+        txtAbsBus.clear();
+        txtVelocidadCruceroBus.clear();
+        txtCapacidadMaleteroBus.clear();
+        txtNumeroSalidasEmergenciaBus.clear();
+        txtNumeroEjesBus.clear();
+        txtNumeroPasajerosVan.clear();
+        txtNumeroPuertasVan.clear();
+        txtNumeroBolsasAireVan.clear();
+        txtAireAcondicionadoVan.clear();
+        txtAbsVan.clear();
+        txtCamaraReversaVan.clear();
+        txtCapacidadMaleteroVan.clear();
+        txtNumeroPasajerosPickUp.clear();
+        txtNumeroPuertasPickUp.clear();
+        txtNumeroBolsasAirePickUp.clear();
+        txtAireAcondicionadoPickUp.clear();
+        txtAbsPickUp.clear();
+        txtTraccionPickUp.clear();
+        txtCapacidadCargaPickUp.clear();
+        txtNumeroBolsasAireDeportivo.clear();
+        txtNumeroPasajerosDeportivo.clear();
+        txtNumeroBolsasAireDeportivo.clear();
+        txtCaballosFuerzaDeportivo.clear();
+        txtTiempoCeroCienDeportivo.clear();
+        txtNumeroPasajerosSedan.clear();
+        txtNumeroPuertasSedan.clear();
+        txtNumeroBolsasAireSedan.clear();
+        txtAireAcondicionadoSedan.clear();
+        txtAbsSedan.clear();
+        txtVelocidadCruceroSedan.clear();
+        txtCapacidadMaleteroSedan.clear();
+        txtCapacidadMaleteroSedan.clear();
+        txtSensorColisionSedan.clear();
+        txtSensorTraficoCruzadoSedan.clear();
+        txtAsistentePermanenciaCarrilSedan.clear();
+        txtEspejosElectricosSedan.clear();
+        txtNumeroPasajerosCamioneta.clear();
+        txtNumeroPuertasCamioneta.clear();
+        txtNumeroBolsasAireCamioneta.clear();
+        txtAireAcondicionadoCamioneta.clear();
+        txtAbsCamioneta.clear();
+        txtVelocidadCruceroCamioneta.clear();
+        txtCapacidadMaleteroCamioneta.clear();
+        txtCamaraReversaCamioneta.clear();
+        txtSensorColisionCamioneta.clear();
+        txtSensorTraficoCruzadoCamioneta.clear();
+        txtAsistentePermanenciaCarrilCamioneta.clear();
+        txtTraccionCamioneta.clear();
+        txtAutonomiaElectrico.clear();
+        txtTiempoCargaElectrico.clear();
+        txtEnchufableHibrido.clear();
+        txtLigeroHibrido.clear();
+
+    }
+
+    @FXML
     private void txtCodigoAction(ActionEvent event) {
         // Lógica para manejar el evento
     }
@@ -759,23 +1140,14 @@ public class DatosVehiculoViewController {
     }
 
     @FXML
-    void btnActualizarAction(ActionEvent event) {
-
-    }
-
-    @FXML
     void btnEliminarAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnLimpiarAction(ActionEvent event) {
-
-    }
-
-    @FXML
     void btnSalirAction(ActionEvent event) {
-
+        Stage stage = (Stage) btnSalir.getScene().getWindow();
+        stage.close();
     }
 
 }

@@ -26,4 +26,6 @@ public class EmpleadoController {
     public ArrayList<Transaccion> obtenerListaTransacciones() {
         return concesionario.getTransacciones();
     }
+
+    
 }

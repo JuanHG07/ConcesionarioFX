@@ -2,6 +2,7 @@ package co.edu.uniquindio.poo.controller;
 
 import co.edu.uniquindio.poo.model.Combustion;
 import co.edu.uniquindio.poo.model.Concesionario;
+import co.edu.uniquindio.poo.model.Estado;
 import co.edu.uniquindio.poo.model.TipoCamion;
 import co.edu.uniquindio.poo.model.Transmision;
 import co.edu.uniquindio.poo.model.Vehiculo;
@@ -11,6 +12,7 @@ public class DatosVehiculoController {
 Concesionario concesionario;
 Combustion combustion;
 Transmision transmision;
+Estado estado;
 TipoCamion tipoCamion;
 
     public DatosVehiculoController (Concesionario concesionario){
@@ -54,6 +56,14 @@ TipoCamion tipoCamion;
 
     public void setTipoCamion(TipoCamion tipoCamion) {
         this.tipoCamion = tipoCamion;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
 }

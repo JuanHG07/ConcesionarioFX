@@ -235,14 +235,29 @@ public class EmpleadoViewController {
 
     @FXML
     void agregarVehiculo(ActionEvent event) {
-        
         app.openDatosVehiculoView();
     }
 
     @FXML
     void modificarVehiculo(ActionEvent event) {
+        selectedVehiculo = tblVehiculos.getSelectionModel().getSelectedItem();
+        if (selectedVehiculo == null) {
 
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("ERROR");
+            alert.setContentText("Debes seleccionar a un vehiculo.");
+            alert.showAndWait();
+
+        } else {
+
+            modificarVehiculo = true;
+            app.openDatosVehiculoView();
+            tblVehiculos.refresh();
+            tblVehiculos.getSelectionModel().clearSelection();
+        }
     }
+    
 
     @FXML
     void eliminarVehiculo(ActionEvent event) {
