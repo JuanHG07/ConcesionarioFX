@@ -253,8 +253,6 @@ public class EmpleadoViewController {
 
             modificarVehiculo = true;
             app.openDatosVehiculoView();
-            tblVehiculos.refresh();
-            tblVehiculos.getSelectionModel().clearSelection();
             
     }
 }
