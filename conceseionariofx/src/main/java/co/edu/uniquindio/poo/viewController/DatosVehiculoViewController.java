@@ -520,9 +520,15 @@ public class DatosVehiculoViewController {
 
     @FXML
     void btnGuardarAction(ActionEvent event) {
+        System.out.println("BTN GUARDAR");
+        System.out.println(app.getEmpleadoViewController().agregarVehiculo);
+        System.out.println(app.getEmpleadoViewController().modificarVehiculo);
+        
         if (app.getEmpleadoViewController().agregarVehiculo) {
+            System.out.println("Se agregara vehiculo");
             agregarVehiculo(event);
         } else if (app.getEmpleadoViewController().modificarVehiculo) {
+            System.out.println("Se actualizara vehiculo");
             btnActualizarAction(event);
         }
     }
@@ -1158,6 +1164,7 @@ public class DatosVehiculoViewController {
             alerta.setContentText("Por favor, rellene el campo antes de continuar.");
             alerta.showAndWait();
             throw new IllegalArgumentException("El campo " + nombreCampo + " está vacío.");
+          
         }
 
         try {

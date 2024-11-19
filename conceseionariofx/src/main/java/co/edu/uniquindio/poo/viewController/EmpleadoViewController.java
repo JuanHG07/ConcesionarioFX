@@ -235,6 +235,9 @@ public class EmpleadoViewController {
 
     @FXML
     void agregarVehiculo(ActionEvent event) {
+
+        agregarVehiculo=true;
+
         app.openDatosVehiculoView();
         vehiculos.setAll(empleadoController.obtenerListaVehiculos());
     }
