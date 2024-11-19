@@ -313,7 +313,7 @@ public class EmpleadoViewController {
 
     @FXML
     void consultarTransaccion(ActionEvent event) {
-
+        app.openConsultaTransaccionView();
     }
 
     @FXML
