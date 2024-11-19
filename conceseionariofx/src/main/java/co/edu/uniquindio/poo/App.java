@@ -293,7 +293,7 @@ public class App extends Application {
 
             Scene scene = new Scene(root);
             datosVehiculo = new Stage();
-            datosClienteStage.initModality(Modality.WINDOW_MODAL);
+            datosVehiculo.initModality(Modality.WINDOW_MODAL);
             datosVehiculo.setScene(scene);
 
             datosVehiculo.showAndWait();
