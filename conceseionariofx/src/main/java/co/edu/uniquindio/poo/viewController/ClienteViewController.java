@@ -238,6 +238,9 @@ public class ClienteViewController {
     private Label lblTiempo;
 
     @FXML
+    private Button btnConsultarPendientes;
+
+    @FXML
     private Button btnComprar;
 
     @FXML
@@ -424,6 +427,11 @@ public class ClienteViewController {
         Stage stage = (Stage) btnSalir.getScene().getWindow();
         stage.close();
         app.openLoginView();
+    }
+
+    @FXML
+    void consultarPendientes(ActionEvent event) {
+
     }
 
     public Vehiculo getSelectedVehiculo() {

@@ -133,6 +133,7 @@
                    <Button id="btnActualizar" fx:id="btnComprar" mnemonicParsing="false" onAction="#comprarVehiculo" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Comprar" />
                    <Button id="btnEliminar" fx:id="btnAlquilar" mnemonicParsing="false" onAction="#alquilarVehiculo" style="-fx-background-color: #F44336; -fx-text-fill: white;" text="Alquilar" />
                    <Button id="btnListar" fx:id="btnSalir" mnemonicParsing="false" onAction="#regresarLogin" style="-fx-background-color: #FF9800; -fx-text-fill: white;" text="Salir" />
+                        <Button id="btnEliminar" fx:id="btnConsultarPendientes" mnemonicParsing="false" onAction="#consultarPendientes" style="-fx-background-color: #808080; -fx-text-fill: white;" text="Consultar Mis Pendientes" />
                  </children>
               </HBox>
             </children>

@@ -236,6 +236,7 @@ public class EmpleadoViewController {
     @FXML
     void agregarVehiculo(ActionEvent event) {
         app.openDatosVehiculoView();
+        vehiculos.setAll(empleadoController.obtenerListaVehiculos());
     }
 
     @FXML
@@ -317,7 +318,7 @@ public class EmpleadoViewController {
 
     @FXML
     void terminarTransaccion(ActionEvent event) {
-
+        
     }
 
     @FXML

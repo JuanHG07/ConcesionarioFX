@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Pos?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <!-- Titulo -->
+      <Label layoutX="296.0" layoutY="41.0" text="Solicitudes Hechas">
+         <font>
+            <Font name="Bauhaus 93" size="33.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1" endY="1" startX="0" startY="0">
+               <stops>
+                  <Stop color="lightblue" offset="0" />
+                  <Stop color="lightgreen" offset="1" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+
+      <!-- Tabla -->
+      <TableView fx:id="tblSolicitudes" layoutX="163.0" layoutY="112.0" prefHeight="200.0" prefWidth="499.0" style="-fx-background-color: #f0f8ff;">
+        <columns>
+          <TableColumn fx:id="clmCodigo" prefWidth="186.0" text="Código" />
+          <TableColumn fx:id="clmFecha" minWidth="0.0" prefWidth="147.0" text="Fecha" />
+          <TableColumn fx:id="ClmCodigoVendedor" minWidth="0.0" prefWidth="165.0" text="Código Vendedor" />
+        </columns>
+      </TableView>
+
+      <!-- Labels y RadioButtons -->
+      <Label fx:id="lblOferta" layoutX="390.0" layoutY="337.0" style="-fx-font-size: 18; -fx-text-fill: #333333;" text="Oferta" />
+      
+      <RadioButton fx:id="radioCompra" layoutX="186.0" layoutY="398.0" mnemonicParsing="false" onAction="#radioCompraAction" style="-fx-font-size: 14;" text="Compra" />
+      <RadioButton fx:id="radioVenta" layoutX="386.0" layoutY="398.0" mnemonicParsing="false" onAction="#radioVentaAction" style="-fx-font-size: 14;" text="Venta" />
+      <RadioButton fx:id="radioAlquiler" layoutX="557.0" layoutY="398.0" mnemonicParsing="false" onAction="#radioAlquilerAction" style="-fx-font-size: 14;" text="Alquiler" />
+
+      <Label layoutX="355.0" layoutY="447.0" style="-fx-font-size: 16; -fx-text-fill: #555555;" text="Valor de la oferta" />
+      
+      <!-- Campo de texto -->
+      <TextField layoutX="307.0" layoutY="483.0" prefHeight="31.0" prefWidth="208.0" promptText="Ingrese El Valor De La Oferta" style="-fx-border-radius: 5; -fx-background-color: #fafafa;" />
+
+      <!-- Botones -->
+      <Button layoutX="346.0" layoutY="560.0" mnemonicParsing="false" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14; -fx-border-radius: 5;" text="Aceptar" />
+      <Button layoutX="424.0" layoutY="560.0" mnemonicParsing="false" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-size: 14; -fx-border-radius: 5;" text="Cancelar" />
+
+   </children>
+</AnchorPane>
