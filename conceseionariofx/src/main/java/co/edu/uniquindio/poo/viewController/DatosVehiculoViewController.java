@@ -520,15 +520,12 @@ public class DatosVehiculoViewController {
 
     @FXML
     void btnGuardarAction(ActionEvent event) {
-        System.out.println("BTN GUARDAR");
-        System.out.println(app.getEmpleadoViewController().agregarVehiculo);
-        System.out.println(app.getEmpleadoViewController().modificarVehiculo);
-        
+    
         if (app.getEmpleadoViewController().agregarVehiculo) {
-            System.out.println("Se agregara vehiculo");
+            
             agregarVehiculo(event);
         } else if (app.getEmpleadoViewController().modificarVehiculo) {
-            System.out.println("Se actualizara vehiculo");
+       
             btnActualizarAction(event);
         }
     }

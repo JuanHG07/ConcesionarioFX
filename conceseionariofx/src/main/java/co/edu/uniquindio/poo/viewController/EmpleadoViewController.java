@@ -244,6 +244,7 @@ public class EmpleadoViewController {
 
     @FXML
     void modificarVehiculo(ActionEvent event) {
+        modificarVehiculo= true;
         selectedVehiculo = tblVehiculos.getSelectionModel().getSelectedItem();
         if (selectedVehiculo == null) {
 
